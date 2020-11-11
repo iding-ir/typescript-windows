@@ -1,7 +1,9 @@
-import React, { useEffect, useState, SyntheticEvent } from "react";
+import React, { useEffect, useState, SyntheticEvent, useContext } from "react";
 import Draggable, { DraggableEvent, DraggableData } from "react-draggable";
 import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
+
+import { WindowContext, IWindow } from "./Windows";
 
 const iWindowLocations = localStorage.getItem("windowLocations")
   ? JSON.parse(localStorage.getItem("windowLocations") as string)
@@ -26,7 +28,6 @@ interface Location {
 }
 
 interface WindowProps {
-  grid: number;
   name: string;
   component: JSX.Element;
   size: Size;
@@ -40,8 +41,9 @@ interface WindowProps {
 const Window = (props: WindowProps) => {
   const { t } = useTranslation();
 
+  const { grid } = useContext<IWindow>(WindowContext);
+
   const {
-    grid,
     name,
     component,
     size,
@@ -153,7 +155,6 @@ const Window = (props: WindowProps) => {
 };
 
 Window.defaultProps = {
-  grid: 5,
   draggable: true,
   resizable: true,
   collapsable: true,
