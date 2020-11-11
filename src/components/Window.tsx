@@ -85,33 +85,35 @@ const Window = (props: WindowProps) => {
     });
   };
 
-  const handleZIndex = () => {
-    setZIndex(zIndex + 1);
-
-    setLocalZIndex(zIndex + 2);
-  };
-
   const handleCollapse = () => {
-    if (!collapsable) {
-      return;
-    }
-
     setWindowsDisplays({
       ...windowsDisplays,
       [name]: !windowsDisplays[name],
     });
   };
 
+  const handleZIndex = () => {
+    setZIndex(zIndex + 1);
+
+    setLocalZIndex(zIndex + 2);
+  };
+
+  const renderCollapse = () => {
+    return collapsable ? (
+      <div className="collapse" onClick={handleCollapse}>
+        Collapse
+      </div>
+    ) : null;
+  };
+
   const renderHandler = () => {
     const classNames = "header " + (draggable && "draggable-header");
 
     return (
-      <div
-        className={classNames}
-        onClick={handleZIndex}
-        onDoubleClick={handleCollapse}
-      >
-        {title ? t(title) : null}
+      <div className={classNames} onClick={handleZIndex}>
+        <div className="title">{title ? t(title) : null}</div>
+
+        {renderCollapse()}
       </div>
     );
   };
