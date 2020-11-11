@@ -100,20 +100,18 @@ const Window = (props: WindowProps) => {
 
   const renderCollapse = () => {
     return collapsable ? (
-      <div className="collapse" onClick={handleCollapse}>
-        Collapse
-      </div>
+      <div className="ts-button ts-collapse" onClick={handleCollapse}></div>
     ) : null;
   };
 
   const renderHandler = () => {
-    const classNames = "header " + (draggable && "draggable-header");
+    const classNames = "ts-header " + (draggable && "ts-header-draggable");
 
     return (
       <div className={classNames} onClick={handleZIndex}>
-        <div className="title">{title ? t(title) : null}</div>
+        <div className="ts-title">{title ? t(title) : null}</div>
 
-        {renderCollapse()}
+        <div className="ts-buttons">{renderCollapse()}</div>
       </div>
     );
   };
@@ -122,7 +120,7 @@ const Window = (props: WindowProps) => {
     const display = windowsDisplays[name] === false ? "none" : "block";
 
     return (
-      <div className="body" style={{ display }}>
+      <div className="ts-body" style={{ display }}>
         {renderBodyContents()}
       </div>
     );
@@ -154,11 +152,11 @@ const Window = (props: WindowProps) => {
       defaultPosition={windowsLocations[name] || location}
       grid={[grid, grid]}
       scale={1}
-      handle=".draggable-header"
+      handle=".ts-header-draggable"
       bounds="parent"
       onStop={handleDrag}
     >
-      <div className={`window ${name}`} style={{ zIndex: localZIndex }}>
+      <div className={`ts-window ${name}`} style={{ zIndex: localZIndex }}>
         {renderHandler()}
 
         {renderBody()}

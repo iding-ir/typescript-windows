@@ -33,7 +33,7 @@ const Windows = (props: WindowsProps) => {
 
   return (
     <WindowContext.Provider value={value}>
-      <div className="windows">{items}</div>
+      <div className="ts-windows">{items}</div>
     </WindowContext.Provider>
   );
 };
