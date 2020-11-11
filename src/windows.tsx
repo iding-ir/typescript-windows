@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Window } from "./App";
+import { IWindow } from "./components/Windows";
 import Box from "./components/Box";
 
-export const windows: Window[] = [
+export const windows: IWindow[] = [
   {
     key: "box-1",
     component: <Box text="draggable, resizable, collapsable" />,

@@ -1,34 +1,4 @@
 .app {
-  position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  background-color: #263238;
-}
-
-.window {
-  position: absolute;
-  overflow: hidden;
-  border-radius: 1rem 1rem 0 0;
-  border: 1px solid #cfd8dc;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
-}
-
-.body {
-  padding: 1rem;
-  background-color: #fafafa;
-}
-
-.header {
-  width: 100%;
-  height: 3rem;
-  line-height: 3rem;
-  padding: 0 1rem;
-  color: #263238;
-  background-color: #cfd8dc;
-  z-index: 1000;
-}
-
-.draggable-header {
-  cursor: move;
 }
