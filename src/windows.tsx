@@ -5,7 +5,8 @@ import Box from "./components/Box";
 
 export const windows: JSX.Element[] = [
   <Window
-    key="box-1"
+    key="1"
+    name="box-1"
     component={<Box text="Draggable, resizable and collapsable" />}
     size={{ w: 200, h: 200 }}
     location={{ x: 15, y: 15 }}
@@ -15,7 +16,8 @@ export const windows: JSX.Element[] = [
     title="box.title"
   />,
   <Window
-    key="box-1"
+    key="2"
+    name="box-2"
     component={<Box text="Only draggable" />}
     size={{ w: 200, h: 200 }}
     location={{ x: 315, y: 15 }}

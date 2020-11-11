@@ -27,7 +27,7 @@ interface Location {
 
 interface WindowProps {
   grid: number;
-  key: string;
+  name: string;
   component: JSX.Element;
   size: Size;
   location: Location;
@@ -42,7 +42,7 @@ const Window = (props: WindowProps) => {
 
   const {
     grid,
-    key,
+    name,
     component,
     size,
     location,
@@ -71,14 +71,14 @@ const Window = (props: WindowProps) => {
   const handleDrag = (e: DraggableEvent, data: DraggableData) => {
     setWindowsLocations({
       ...windowLocations,
-      [key]: { x: data.x, y: data.y },
+      [name]: { x: data.x, y: data.y },
     });
   };
 
   const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
     setWindowsSizes({
       ...windowSizes,
-      [key]: { w: data.size.width, h: data.size.height },
+      [name]: { w: data.size.width, h: data.size.height },
     });
   };
 
@@ -89,7 +89,7 @@ const Window = (props: WindowProps) => {
 
     setWindowsDisplays({
       ...windowDisplays,
-      [key]: !windowDisplays[key],
+      [name]: !windowDisplays[name],
     });
   };
 
@@ -104,7 +104,7 @@ const Window = (props: WindowProps) => {
   };
 
   const renderBody = () => {
-    const display = windowDisplays[key] === false ? "none" : "block";
+    const display = windowDisplays[name] === false ? "none" : "block";
 
     return (
       <div className="body" style={{ display }}>
@@ -114,9 +114,9 @@ const Window = (props: WindowProps) => {
   };
 
   const renderBodyContents = () => {
-    const width = windowSizes[key] ? windowSizes[key].w : size.w;
+    const width = windowSizes[name] ? windowSizes[name].w : size.w;
 
-    const height = windowSizes[key] ? windowSizes[key].h : size.h;
+    const height = windowSizes[name] ? windowSizes[name].h : size.h;
 
     return resizable ? (
       <ResizableBox
@@ -135,15 +135,15 @@ const Window = (props: WindowProps) => {
 
   return (
     <Draggable
-      key={key}
-      defaultPosition={windowLocations[key] || location}
+      key={name}
+      defaultPosition={windowLocations[name] || location}
       grid={[grid, grid]}
       scale={1}
       handle=".draggable-header"
       bounds="parent"
       onStop={handleDrag}
     >
-      <div className={`window ${key}`}>
+      <div className={`window ${name}`}>
         {renderHandler()}
 
         {renderBody()}
