@@ -7,7 +7,7 @@ import Windows from "./components/Windows";
 const App = () => {
   return (
     <div className="app">
-      <Windows items={windows} grid={1} />
+      <Windows windows={windows} grid={1} />
     </div>
   );
 };
