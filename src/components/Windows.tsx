@@ -1,7 +1,6 @@
 import React, { useState, createContext } from "react";
 
-import "./Windows.css";
-import "../css/resizable.css";
+import "./Windows.scss";
 
 export interface IWindow {
   grid: number;
