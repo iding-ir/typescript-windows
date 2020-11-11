@@ -5,7 +5,7 @@ import { ResizableBox, ResizeCallbackData } from "react-resizable";
 
 import "./App.css";
 import "./css/resizable.css";
-import Box from "./components/Box";
+import { windows } from "./windows";
 
 interface Size {
   w: number;
@@ -17,7 +17,7 @@ interface Location {
   y: number;
 }
 
-interface Window {
+export interface Window {
   key: string;
   component: JSX.Element;
   size: Size;
@@ -27,91 +27,6 @@ interface Window {
   collapsable: boolean;
   title?: string;
 }
-
-const windows: Window[] = [
-  {
-    key: "box-1",
-    component: <Box text="draggable, resizable, collapsable" />,
-    size: { w: 200, h: 200 },
-    location: { x: 0, y: 0 },
-    draggable: true,
-    resizable: true,
-    collapsable: true,
-    title: "box.title",
-  },
-  {
-    key: "box-2",
-    component: <Box text="draggable, resizable" />,
-    size: { w: 200, h: 200 },
-    location: { x: 300, y: 0 },
-    draggable: true,
-    resizable: true,
-    collapsable: false,
-    title: "box.title",
-  },
-  {
-    key: "box-3",
-    component: <Box text="draggable, collapsable" />,
-    size: { w: 200, h: 200 },
-    location: { x: 600, y: 0 },
-    draggable: true,
-    resizable: false,
-    collapsable: true,
-    title: "box.title",
-  },
-  {
-    key: "box-4",
-    component: <Box text="resizable, collapsable" />,
-    size: { w: 200, h: 200 },
-    location: { x: 900, y: 0 },
-    draggable: false,
-    resizable: true,
-    collapsable: true,
-    title: "box.title",
-  },
-  {
-    key: "box-5",
-    component: <Box text="draggable" />,
-    size: { w: 200, h: 200 },
-    location: { x: 0, y: 300 },
-    draggable: true,
-    resizable: false,
-    collapsable: false,
-    title: "box.title",
-  },
-  {
-    key: "box-6",
-    component: <Box text="resizable" />,
-    size: { w: 200, h: 200 },
-    location: { x: 300, y: 300 },
-    draggable: false,
-    resizable: true,
-    collapsable: false,
-    title: "box.title",
-  },
-
-  {
-    key: "box-7",
-    component: <Box text="collapsable" />,
-    size: { w: 200, h: 200 },
-    location: { x: 600, y: 300 },
-    draggable: false,
-    resizable: false,
-    collapsable: true,
-    title: "box.title",
-  },
-
-  {
-    key: "box-8",
-    component: <Box text="neither" />,
-    size: { w: 200, h: 200 },
-    location: { x: 900, y: 300 },
-    draggable: false,
-    resizable: false,
-    collapsable: false,
-    title: "box.title",
-  },
-];
 
 const iWindowLocations = localStorage.getItem("windowLocations")
   ? JSON.parse(localStorage.getItem("windowLocations") as string)
