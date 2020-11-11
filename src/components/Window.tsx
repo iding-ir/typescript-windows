@@ -5,16 +5,16 @@ import { ResizableBox, ResizeCallbackData } from "react-resizable";
 
 import { WindowContext, IWindow } from "./Windows";
 
-const iWindowLocations = localStorage.getItem("windowLocations")
-  ? JSON.parse(localStorage.getItem("windowLocations") as string)
+const iWindowsLocations = localStorage.getItem("windowsLocations")
+  ? JSON.parse(localStorage.getItem("windowsLocations") as string)
   : {};
 
-const iWindowSizes = localStorage.getItem("windowSizes")
-  ? JSON.parse(localStorage.getItem("windowSizes") as string)
+const iWindowsSizes = localStorage.getItem("windowsSizes")
+  ? JSON.parse(localStorage.getItem("windowsSizes") as string)
   : {};
 
-const iWindowDisplays = localStorage.getItem("windowDisplays")
-  ? JSON.parse(localStorage.getItem("windowDisplays") as string)
+const iWindowsDisplays = localStorage.getItem("windowsDisplays")
+  ? JSON.parse(localStorage.getItem("windowsDisplays") as string)
   : {};
 
 interface Size {
@@ -54,32 +54,32 @@ const Window = (props: WindowProps) => {
     title,
   } = props;
 
-  const [windowLocations, setWindowsLocations] = useState(iWindowLocations);
-  const [windowSizes, setWindowsSizes] = useState(iWindowSizes);
-  const [windowDisplays, setWindowsDisplays] = useState(iWindowDisplays);
+  const [windowsLocations, setWindowsLocations] = useState(iWindowsLocations);
+  const [windowsSizes, setWindowsSizes] = useState(iWindowsSizes);
+  const [windowsDisplays, setWindowsDisplays] = useState(iWindowsDisplays);
 
   useEffect(() => {
-    localStorage.setItem("windowLocations", JSON.stringify(windowLocations));
-  }, [windowLocations]);
+    localStorage.setItem("windowsLocations", JSON.stringify(windowsLocations));
+  }, [windowsLocations]);
 
   useEffect(() => {
-    localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
-  }, [windowSizes]);
+    localStorage.setItem("windowsSizes", JSON.stringify(windowsSizes));
+  }, [windowsSizes]);
 
   useEffect(() => {
-    localStorage.setItem("windowDisplays", JSON.stringify(windowDisplays));
-  }, [windowDisplays]);
+    localStorage.setItem("windowsDisplays", JSON.stringify(windowsDisplays));
+  }, [windowsDisplays]);
 
   const handleDrag = (e: DraggableEvent, data: DraggableData) => {
     setWindowsLocations({
-      ...windowLocations,
+      ...windowsLocations,
       [name]: { x: data.x, y: data.y },
     });
   };
 
   const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
     setWindowsSizes({
-      ...windowSizes,
+      ...windowsSizes,
       [name]: { w: data.size.width, h: data.size.height },
     });
   };
@@ -90,8 +90,8 @@ const Window = (props: WindowProps) => {
     }
 
     setWindowsDisplays({
-      ...windowDisplays,
-      [name]: !windowDisplays[name],
+      ...windowsDisplays,
+      [name]: !windowsDisplays[name],
     });
   };
 
@@ -106,7 +106,7 @@ const Window = (props: WindowProps) => {
   };
 
   const renderBody = () => {
-    const display = windowDisplays[name] === false ? "none" : "block";
+    const display = windowsDisplays[name] === false ? "none" : "block";
 
     return (
       <div className="body" style={{ display }}>
@@ -116,9 +116,9 @@ const Window = (props: WindowProps) => {
   };
 
   const renderBodyContents = () => {
-    const width = windowSizes[name] ? windowSizes[name].w : size.w;
+    const width = windowsSizes[name] ? windowsSizes[name].w : size.w;
 
-    const height = windowSizes[name] ? windowSizes[name].h : size.h;
+    const height = windowsSizes[name] ? windowsSizes[name].h : size.h;
 
     return resizable ? (
       <ResizableBox
@@ -138,7 +138,7 @@ const Window = (props: WindowProps) => {
   return (
     <Draggable
       key={name}
-      defaultPosition={windowLocations[name] || location}
+      defaultPosition={windowsLocations[name] || location}
       grid={[grid, grid]}
       scale={1}
       handle=".draggable-header"
