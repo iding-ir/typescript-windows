@@ -26,4 +26,15 @@ export const windows: JSX.Element[] = [
     collapsable={false}
     title="box.title"
   />,
+  <Window
+    key="3"
+    name="box-3"
+    component={<Box text="Draggable, resizable and collapsable" />}
+    size={{ w: 200, h: 200 }}
+    location={{ x: 615, y: 15 }}
+    draggable={true}
+    resizable={true}
+    collapsable={true}
+    title="box.title"
+  />,
 ];

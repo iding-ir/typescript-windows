@@ -1,17 +1,13 @@
-import React, { useState, createContext } from "react";
+import React, { createContext } from "react";
 
 import "./Windows.scss";
 
 export interface IWindow {
   grid: number;
-  zIndex: number;
-  setZIndex: (zIndex: number) => void;
 }
 
 export const WindowContext = createContext<IWindow>({
   grid: 5,
-  zIndex: 1000,
-  setZIndex: () => {},
 });
 
 interface WindowsProps {
@@ -22,12 +18,8 @@ interface WindowsProps {
 const Windows = (props: WindowsProps) => {
   const { items, grid } = props;
 
-  const [zIndex, setZIndex] = useState(items.length);
-
   const value = {
     grid: grid as number,
-    zIndex,
-    setZIndex,
   };
 
   return (

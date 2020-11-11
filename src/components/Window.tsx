@@ -20,6 +20,10 @@ const iWindowsDisplays = localStorage.getItem("windowsDisplays")
   ? JSON.parse(localStorage.getItem("windowsDisplays") as string)
   : {};
 
+const iWindowsZIndexes = localStorage.getItem("windowsZIndexes")
+  ? JSON.parse(localStorage.getItem("windowsZIndexes") as string)
+  : {};
+
 interface Size {
   w: number;
   h: number;
@@ -42,8 +46,6 @@ interface WindowProps {
 }
 
 const Window = (props: WindowProps) => {
-  const { t } = useTranslation();
-
   const {
     name,
     component,
@@ -55,12 +57,14 @@ const Window = (props: WindowProps) => {
     title,
   } = props;
 
-  const { grid, zIndex, setZIndex } = useContext<IWindow>(WindowContext);
+  const { t } = useTranslation();
+
+  const { grid } = useContext<IWindow>(WindowContext);
 
   const [windowsLocations, setWindowsLocations] = useState(iWindowsLocations);
   const [windowsSizes, setWindowsSizes] = useState(iWindowsSizes);
   const [windowsDisplays, setWindowsDisplays] = useState(iWindowsDisplays);
-  const [localZIndex, setLocalZIndex] = useState(zIndex);
+  const [windowsZIndexes, setWindowsZIndexes] = useState(iWindowsZIndexes);
 
   useEffect(() => {
     localStorage.setItem("windowsLocations", JSON.stringify(windowsLocations));
@@ -73,6 +77,10 @@ const Window = (props: WindowProps) => {
   useEffect(() => {
     localStorage.setItem("windowsDisplays", JSON.stringify(windowsDisplays));
   }, [windowsDisplays]);
+
+  useEffect(() => {
+    localStorage.setItem("windowsZIndexes", JSON.stringify(windowsZIndexes));
+  }, [windowsZIndexes]);
 
   const handleDrag = (e: DraggableEvent, data: DraggableData) => {
     setWindowsLocations({
@@ -96,9 +104,13 @@ const Window = (props: WindowProps) => {
   };
 
   const handleZIndex = () => {
-    setZIndex(zIndex + 1);
+    const nums = Object.values(windowsZIndexes).length
+      ? Object.values(windowsZIndexes)
+      : [0];
 
-    setLocalZIndex(zIndex + 2);
+    const zIndex = Math.max(...(nums as number[])) + 1;
+
+    setWindowsZIndexes({ ...windowsZIndexes, [name]: zIndex });
   };
 
   const renderCollapse = () => {
@@ -168,7 +180,7 @@ const Window = (props: WindowProps) => {
       bounds="parent"
       onStop={handleDrag}
     >
-      <div className={classNames} style={{ zIndex: localZIndex }}>
+      <div className={classNames} style={{ zIndex: windowsZIndexes[name] }}>
         {renderHandler()}
 
         {renderBody()}
