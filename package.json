@@ -1,7 +1,27 @@
 {
   "name": "typescript-windows",
   "version": "0.1.0",
-  "private": true,
+  "description": "Typescript Floating Windows.",
+  "keywords": [
+    "React",
+    "Typescript",
+    "Windows",
+    "Draggable",
+    "Resizable"
+  ],
+  "author": {
+    "name": "Aydin Ghane Kh.",
+    "email": "aydin.ghane.kh@gmail.com",
+    "url": "http://iding.ir"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iding-ir/typescript-windows.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iding-ir/typescript-windows/issues"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
