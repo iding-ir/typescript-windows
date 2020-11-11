@@ -45,6 +45,13 @@
   width: 3rem;
   height: 3rem;
   margin-left: 1rem;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.ts-button:hover {
+  opacity: 0.8;
 }
 
 .ts-collapse {
@@ -52,7 +59,7 @@
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAALVBMVEUAAACwvsWxvsWyvcWwvcWwv8awvcawvsWwvsWwvcOquMawvcaxvsSxvsSwvsUpenvjAAAADnRSTlMAbqZCq2dRxcFNEngneQA427gAAABdSURBVHja3dMxCsUgEIThcdWn7jN7/+OmiAwYAoukMl/rX6mDIYhEUBQJmCWzDMpmaavgdyn3oIwDGE0B+UGlBmqVsED/pHjSjfq+gR6kWOBd9fvXdD/MN3bhzv8EcLoPvRUSz1oAAAAASUVORK5CYII=);
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAALVBMVEUAAACcnJydnZ2enp6fn5+dnZ2enp6enp6dnZ2enp6enp6enp6fn5+enp6enp5UeqKqAAAADnRSTlMAEidCTVFnbnh5pqvBxQSFgdoAAABdSURBVHja3dMxCsUgEIThWfXpy6p7/+OmiAwYAoukMl/rX6mDoahGUFQtmFWzDMpmdavgd+n3oI8DGE0B+UGjBEqNsED+JHgSjMK+gRwkWOBd9fvXdD/MN3bhzv8EFfsQh1Q/2OkAAAAASUVORK5CYII=);
 }
 
 .ts-body {

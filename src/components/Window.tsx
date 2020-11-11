@@ -2,6 +2,7 @@ import React, { useEffect, useState, SyntheticEvent, useContext } from "react";
 import Draggable, { DraggableEvent, DraggableData } from "react-draggable";
 import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
+import clsx from "clsx";
 
 import { WindowContext, IWindow } from "./Windows";
 
@@ -99,13 +100,20 @@ const Window = (props: WindowProps) => {
   };
 
   const renderCollapse = () => {
+    const classNames = clsx("ts-button", "ts-collapse", {
+      "ts-display-on": windowsDisplays[name],
+      "ts-display-off": !windowsDisplays[name],
+    });
+
     return collapsable ? (
-      <div className="ts-button ts-collapse" onClick={handleCollapse}></div>
+      <div className={classNames} onClick={handleCollapse}></div>
     ) : null;
   };
 
   const renderHandler = () => {
-    const classNames = "ts-header " + (draggable && "ts-header-draggable");
+    const classNames = clsx("ts-header", {
+      "ts-header-draggable": draggable,
+    });
 
     return (
       <div className={classNames} onClick={handleZIndex}>
@@ -146,6 +154,8 @@ const Window = (props: WindowProps) => {
     );
   };
 
+  const classNames = clsx("ts-window", name);
+
   return (
     <Draggable
       key={name}
@@ -156,7 +166,7 @@ const Window = (props: WindowProps) => {
       bounds="parent"
       onStop={handleDrag}
     >
-      <div className={`ts-window ${name}`} style={{ zIndex: localZIndex }}>
+      <div className={classNames} style={{ zIndex: localZIndex }}>
         {renderHandler()}
 
         {renderBody()}
