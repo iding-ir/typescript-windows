@@ -41,8 +41,6 @@ interface WindowProps {
 const Window = (props: WindowProps) => {
   const { t } = useTranslation();
 
-  const { grid } = useContext<IWindow>(WindowContext);
-
   const {
     name,
     component,
@@ -54,9 +52,12 @@ const Window = (props: WindowProps) => {
     title,
   } = props;
 
+  const { grid, zIndex, setZIndex } = useContext<IWindow>(WindowContext);
+
   const [windowsLocations, setWindowsLocations] = useState(iWindowsLocations);
   const [windowsSizes, setWindowsSizes] = useState(iWindowsSizes);
   const [windowsDisplays, setWindowsDisplays] = useState(iWindowsDisplays);
+  const [localZIndex, setLocalZIndex] = useState(zIndex);
 
   useEffect(() => {
     localStorage.setItem("windowsLocations", JSON.stringify(windowsLocations));
@@ -84,6 +85,12 @@ const Window = (props: WindowProps) => {
     });
   };
 
+  const handleZIndex = () => {
+    setZIndex(zIndex + 1);
+
+    setLocalZIndex(zIndex + 2);
+  };
+
   const handleCollapse = () => {
     if (!collapsable) {
       return;
@@ -99,7 +106,11 @@ const Window = (props: WindowProps) => {
     const classNames = "header " + (draggable && "draggable-header");
 
     return (
-      <div className={classNames} onDoubleClick={handleCollapse}>
+      <div
+        className={classNames}
+        onClick={handleZIndex}
+        onDoubleClick={handleCollapse}
+      >
         {title ? t(title) : null}
       </div>
     );
@@ -145,7 +156,7 @@ const Window = (props: WindowProps) => {
       bounds="parent"
       onStop={handleDrag}
     >
-      <div className={`window ${name}`}>
+      <div className={`window ${name}`} style={{ zIndex: localZIndex }}>
         {renderHandler()}
 
         {renderBody()}
