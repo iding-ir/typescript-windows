@@ -7,37 +7,27 @@ import clsx from "clsx";
 import "./Windows.scss";
 import "../css/resizable.css";
 
-const iWindowsLocations = localStorage.getItem("windowsLocations")
-  ? JSON.parse(localStorage.getItem("windowsLocations") as string)
+const iWindowLocations = localStorage.getItem("windowLocations")
+  ? JSON.parse(localStorage.getItem("windowLocations") as string)
   : {};
 
-const iWindowsSizes = localStorage.getItem("windowsSizes")
-  ? JSON.parse(localStorage.getItem("windowsSizes") as string)
+const iWindowSizes = localStorage.getItem("windowSizes")
+  ? JSON.parse(localStorage.getItem("windowSizes") as string)
   : {};
 
-const iWindowsDisplays = localStorage.getItem("windowsDisplays")
-  ? JSON.parse(localStorage.getItem("windowsDisplays") as string)
+const iWindowDisplays = localStorage.getItem("windowDisplays")
+  ? JSON.parse(localStorage.getItem("windowDisplays") as string)
   : {};
 
-const iWindowsZIndexes = localStorage.getItem("windowsZIndexes")
-  ? JSON.parse(localStorage.getItem("windowsZIndexes") as string)
+const iWindowZIndexes = localStorage.getItem("windowZIndexes")
+  ? JSON.parse(localStorage.getItem("windowZIndexes") as string)
   : {};
 
-interface Size {
-  w: number;
-  h: number;
-}
-
-interface Location {
-  x: number;
-  y: number;
-}
-
-export interface IWindow {
+export interface Window {
   key: string;
   component: JSX.Element;
-  size: Size;
-  location: Location;
+  size: { w: number; h: number };
+  location: { x: number; y: number };
   draggable?: boolean;
   resizable?: boolean;
   collapsable?: boolean;
@@ -45,7 +35,7 @@ export interface IWindow {
 }
 
 interface WindowsProps {
-  windows: IWindow[];
+  windows: Window[];
   grid?: number;
 }
 
@@ -54,29 +44,29 @@ const Windows = (props: WindowsProps) => {
 
   const { t } = useTranslation();
 
-  const [windowsLocations, setWindowsLocations] = useState(iWindowsLocations);
-  const [windowsSizes, setWindowsSizes] = useState(iWindowsSizes);
-  const [windowsDisplays, setWindowsDisplays] = useState(iWindowsDisplays);
-  const [windowsZIndexes, setWindowsZIndexes] = useState(iWindowsZIndexes);
+  const [windowLocations, setWindowLocations] = useState(iWindowLocations);
+  const [windowSizes, setWindowSizes] = useState(iWindowSizes);
+  const [windowDisplays, setWindowDisplays] = useState(iWindowDisplays);
+  const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);
 
   useEffect(() => {
-    localStorage.setItem("windowsLocations", JSON.stringify(windowsLocations));
-  }, [windowsLocations]);
+    localStorage.setItem("windowLocations", JSON.stringify(windowLocations));
+  }, [windowLocations]);
 
   useEffect(() => {
-    localStorage.setItem("windowsSizes", JSON.stringify(windowsSizes));
-  }, [windowsSizes]);
+    localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
+  }, [windowSizes]);
 
   useEffect(() => {
-    localStorage.setItem("windowsDisplays", JSON.stringify(windowsDisplays));
-  }, [windowsDisplays]);
+    localStorage.setItem("windowDisplays", JSON.stringify(windowDisplays));
+  }, [windowDisplays]);
 
   useEffect(() => {
-    localStorage.setItem("windowsZIndexes", JSON.stringify(windowsZIndexes));
-  }, [windowsZIndexes]);
+    localStorage.setItem("windowZIndexes", JSON.stringify(windowZIndexes));
+  }, [windowZIndexes]);
 
   const renderWindows = () => {
-    return windows.map((window: IWindow) => {
+    return windows.map((window: Window) => {
       const {
         key,
         component,
@@ -89,34 +79,34 @@ const Windows = (props: WindowsProps) => {
       } = window;
 
       const handleDrag = (e: DraggableEvent, data: DraggableData) => {
-        setWindowsLocations({
-          ...windowsLocations,
+        setWindowLocations({
+          ...windowLocations,
           [key]: { x: data.x, y: data.y },
         });
       };
 
       const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
-        setWindowsSizes({
-          ...windowsSizes,
+        setWindowSizes({
+          ...windowSizes,
           [key]: { w: data.size.width, h: data.size.height },
         });
       };
 
       const handleDisplay = () => {
-        setWindowsDisplays({
-          ...windowsDisplays,
-          [key]: !windowsDisplays[key],
+        setWindowDisplays({
+          ...windowDisplays,
+          [key]: !windowDisplays[key],
         });
       };
 
       const handleZIndex = () => {
-        const nums = Object.values(windowsZIndexes).length
-          ? Object.values(windowsZIndexes)
+        const nums = Object.values(windowZIndexes).length
+          ? Object.values(windowZIndexes)
           : [0];
 
         const zIndex = Math.max(...(nums as number[])) + 1;
 
-        setWindowsZIndexes({ ...windowsZIndexes, [key]: zIndex });
+        setWindowZIndexes({ ...windowZIndexes, [key]: zIndex });
       };
 
       const renderCollapse = () => {
@@ -144,9 +134,8 @@ const Windows = (props: WindowsProps) => {
       };
 
       const renderBodyContents = () => {
-        const width = windowsSizes[key] ? windowsSizes[key].w : size.w;
-
-        const height = windowsSizes[key] ? windowsSizes[key].h : size.h;
+        const width = windowSizes[key] ? windowSizes[key].w : size.w;
+        const height = windowSizes[key] ? windowSizes[key].h : size.h;
 
         return resizable ? (
           <ResizableBox
@@ -164,21 +153,21 @@ const Windows = (props: WindowsProps) => {
       };
 
       const classNames = clsx("ts-window", key, {
-        "ts-display-on": !windowsDisplays[key],
-        "ts-display-off": windowsDisplays[key],
+        "ts-display-on": !windowDisplays[key],
+        "ts-display-off": windowDisplays[key],
       });
 
       return (
         <Draggable
           key={key}
-          defaultPosition={windowsLocations[key] || location}
+          defaultPosition={windowLocations[key] || location}
           grid={[grid as number, grid as number]}
           scale={1}
           handle=".ts-header-draggable"
           bounds="parent"
           onStop={handleDrag}
         >
-          <div className={classNames} style={{ zIndex: windowsZIndexes[key] }}>
+          <div className={classNames} style={{ zIndex: windowZIndexes[key] }}>
             {renderHandler()}
 
             {renderBody()}
