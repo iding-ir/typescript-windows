@@ -4,9 +4,6 @@ import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
 import clsx from "clsx";
 
-import "./Windows.scss";
-import "../css/resizable.css";
-
 const iWindowLocations = localStorage.getItem("windowLocations")
   ? JSON.parse(localStorage.getItem("windowLocations") as string)
   : {};
