@@ -1,0 +1,1 @@
+export { default as Windows } from "./dist/components/Windows";
