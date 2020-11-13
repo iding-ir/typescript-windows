@@ -13,6 +13,7 @@ export interface Window {
     draggable?: boolean;
     resizable?: boolean;
     collapsable?: boolean;
+    maximizable?: boolean;
     title?: string;
 }
 interface WindowsProps {
