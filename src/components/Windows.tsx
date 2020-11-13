@@ -108,26 +108,26 @@ const Windows = (props: WindowsProps) => {
 
       const renderCollapse = () => {
         return collapsable ? (
-          <div className="ts-button ts-collapse" onClick={handleDisplay}></div>
+          <div className="tw-button tw-collapse" onClick={handleDisplay}></div>
         ) : null;
       };
 
       const renderHandler = () => {
-        const classNames = clsx("ts-header", {
-          "ts-header-draggable": draggable,
+        const classNames = clsx("tw-header", {
+          "tw-header-draggable": draggable,
         });
 
         return (
           <div className={classNames} onClick={handleZIndex}>
-            <div className="ts-title">{title ? t(title) : null}</div>
+            <div className="tw-title">{title ? t(title) : null}</div>
 
-            <div className="ts-buttons">{renderCollapse()}</div>
+            <div className="tw-buttons">{renderCollapse()}</div>
           </div>
         );
       };
 
       const renderBody = () => {
-        return <div className="ts-body">{renderBodyContents()}</div>;
+        return <div className="tw-body">{renderBodyContents()}</div>;
       };
 
       const renderBodyContents = () => {
@@ -149,9 +149,9 @@ const Windows = (props: WindowsProps) => {
         );
       };
 
-      const classNames = clsx("ts-window", key, {
-        "ts-display-on": !windowDisplays[key],
-        "ts-display-off": windowDisplays[key],
+      const classNames = clsx("tw-window", key, {
+        "tw-display-on": !windowDisplays[key],
+        "tw-display-off": windowDisplays[key],
       });
 
       return (
@@ -160,7 +160,7 @@ const Windows = (props: WindowsProps) => {
           defaultPosition={windowLocations[key] || location}
           grid={[grid as number, grid as number]}
           scale={1}
-          handle=".ts-header-draggable"
+          handle=".tw-header-draggable"
           bounds="parent"
           onStop={handleDrag}
         >
@@ -174,7 +174,7 @@ const Windows = (props: WindowsProps) => {
     });
   };
 
-  return <div className="ts-windows">{renderWindows()}</div>;
+  return <div className="tw-windows">{renderWindows()}</div>;
 };
 
 Windows.defaultProps = {
