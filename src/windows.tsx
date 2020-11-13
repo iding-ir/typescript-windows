@@ -6,12 +6,13 @@ import Box from "./components/Box";
 export const windows: Window[] = [
   {
     key: "box-1",
-    component: <Box text="Draggable, resizable and collapsable" />,
+    component: <Box text="Draggable, resizable, collapsable and maximizable" />,
     size: { w: 200, h: 200 },
     location: { x: 15, y: 15 },
     draggable: true,
     resizable: true,
     collapsable: true,
+    maximizable: true,
     title: "box.title",
   },
   {
@@ -22,6 +23,7 @@ export const windows: Window[] = [
     draggable: true,
     resizable: false,
     collapsable: false,
+    maximizable: false,
     title: "box.title",
   },
 ];

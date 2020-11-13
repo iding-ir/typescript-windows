@@ -4,10 +4,6 @@ import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
 import clsx from "clsx";
 
-const iWindowLocations = localStorage.getItem("windowLocations")
-  ? JSON.parse(localStorage.getItem("windowLocations") as string)
-  : {};
-
 const iWindowSizes = localStorage.getItem("windowSizes")
   ? JSON.parse(localStorage.getItem("windowSizes") as string)
   : {};
@@ -20,6 +16,14 @@ const iWindowZIndexes = localStorage.getItem("windowZIndexes")
   ? JSON.parse(localStorage.getItem("windowZIndexes") as string)
   : {};
 
+const iWindowLocations = localStorage.getItem("windowLocations")
+  ? JSON.parse(localStorage.getItem("windowLocations") as string)
+  : {};
+
+const iWindowMaximized = localStorage.getItem("windowMaximized")
+  ? JSON.parse(localStorage.getItem("windowMaximized") as string)
+  : {};
+
 export interface Window {
   key: string;
   component: JSX.Element;
@@ -28,6 +32,7 @@ export interface Window {
   draggable?: boolean;
   resizable?: boolean;
   collapsable?: boolean;
+  maximizable?: boolean;
   title?: string;
 }
 
@@ -41,14 +46,11 @@ const Windows = (props: WindowsProps) => {
 
   const { t } = useTranslation();
 
-  const [windowLocations, setWindowLocations] = useState(iWindowLocations);
   const [windowSizes, setWindowSizes] = useState(iWindowSizes);
   const [windowDisplays, setWindowDisplays] = useState(iWindowDisplays);
   const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);
-
-  useEffect(() => {
-    localStorage.setItem("windowLocations", JSON.stringify(windowLocations));
-  }, [windowLocations]);
+  const [windowLocations, setWindowLocations] = useState(iWindowLocations);
+  const [windowMaximized, setWindowMaximized] = useState(iWindowMaximized);
 
   useEffect(() => {
     localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
@@ -62,6 +64,14 @@ const Windows = (props: WindowsProps) => {
     localStorage.setItem("windowZIndexes", JSON.stringify(windowZIndexes));
   }, [windowZIndexes]);
 
+  useEffect(() => {
+    localStorage.setItem("windowLocations", JSON.stringify(windowLocations));
+  }, [windowLocations]);
+
+  useEffect(() => {
+    localStorage.setItem("windowMaximized", JSON.stringify(windowMaximized));
+  }, [windowMaximized]);
+
   const renderWindows = () => {
     return windows.map((window: Window) => {
       const {
@@ -72,15 +82,9 @@ const Windows = (props: WindowsProps) => {
         draggable,
         resizable,
         collapsable,
+        maximizable,
         title,
       } = window;
-
-      const handleDrag = (e: DraggableEvent, data: DraggableData) => {
-        setWindowLocations({
-          ...windowLocations,
-          [key]: { x: data.x, y: data.y },
-        });
-      };
 
       const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
         setWindowSizes({
@@ -90,6 +94,8 @@ const Windows = (props: WindowsProps) => {
       };
 
       const handleDisplay = () => {
+        setWindowMaximized(null);
+
         setWindowDisplays({
           ...windowDisplays,
           [key]: !windowDisplays[key],
@@ -106,9 +112,28 @@ const Windows = (props: WindowsProps) => {
         setWindowZIndexes({ ...windowZIndexes, [key]: zIndex });
       };
 
+      const handleDrag = (e: DraggableEvent, data: DraggableData) => {
+        setWindowLocations({
+          ...windowLocations,
+          [key]: { x: data.x, y: data.y },
+        });
+      };
+
+      const handleMaximize = () => {
+        windowMaximized === key
+          ? setWindowMaximized(null)
+          : setWindowMaximized(key);
+      };
+
       const renderCollapse = () => {
         return collapsable ? (
           <div className="tw-button tw-collapse" onClick={handleDisplay}></div>
+        ) : null;
+      };
+
+      const renderMaximize = () => {
+        return maximizable ? (
+          <div className="tw-button tw-maximize" onClick={handleMaximize}></div>
         ) : null;
       };
 
@@ -121,7 +146,11 @@ const Windows = (props: WindowsProps) => {
           <div className={classNames} onClick={handleZIndex}>
             <div className="tw-title">{title ? t(title) : null}</div>
 
-            <div className="tw-buttons">{renderCollapse()}</div>
+            <div className="tw-buttons">
+              {renderCollapse()}
+
+              {renderMaximize()}
+            </div>
           </div>
         );
       };
@@ -152,6 +181,8 @@ const Windows = (props: WindowsProps) => {
       const classNames = clsx("tw-window", key, {
         "tw-display-on": !windowDisplays[key],
         "tw-display-off": windowDisplays[key],
+        "tw-maximize-on": windowMaximized === key,
+        "tw-maximize-off": windowMaximized !== key,
       });
 
       return (
