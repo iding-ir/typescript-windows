@@ -1,4 +1,4 @@
-import React, { useEffect, useState, SyntheticEvent } from "react";
+import React, { useEffect, useState, SyntheticEvent, useRef } from "react";
 import ReactDOM from "react-dom";
 import Draggable, { DraggableEvent, DraggableData } from "react-draggable";
 import { useTranslation } from "react-i18next";
@@ -47,6 +47,9 @@ const Windows = (props: WindowsProps) => {
 
   const { t } = useTranslation();
 
+  const taskbarRef = useRef(null);
+
+  const [, forceUpdate] = useState(0);
   const [windowSizes, setWindowSizes] = useState(iWindowSizes);
   const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);
   const [windowLocations, setWindowLocations] = useState(iWindowLocations);
@@ -217,18 +220,25 @@ const Windows = (props: WindowsProps) => {
         </Draggable>
       );
 
-      return windowMinimizes[key] && document.querySelector(".tw-taskbar")
+      return windowMinimizes[key] && taskbarRef?.current
         ? ReactDOM.createPortal(
             element,
-            document.querySelector(".tw-taskbar") as HTMLElement
+            (taskbarRef?.current as unknown) as HTMLElement
           )
         : element;
     });
   };
 
   const renderTaskbar = () => {
-    return <div className="tw-taskbar"></div>;
+    return <div className="tw-taskbar" ref={taskbarRef}></div>;
   };
+
+  // By the time of creating a portal to ".tw-taskbar" this element is not
+  // yet rendered in DOM. By forceUpdate(ing) Windows component we make sure
+  // that minimized windows go to taskbar when page is refreshed.
+  setTimeout(() => {
+    forceUpdate(1);
+  }, 0);
 
   return (
     <div className="tw-windows">
