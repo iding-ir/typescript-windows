@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
-import "./styles/reset.scss";
-import "./styles/fonts.scss";
+import "./styles/reset.css";
+import "./styles/fonts.css";
 import "./localization";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";

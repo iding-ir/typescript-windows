@@ -1,16 +1,16 @@
 $header-size: 2.4rem;
+$border-radius: 1rem;
 
 .tw-windows {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #263238;
 
   .tw-window {
     position: absolute;
     overflow: hidden;
-    border-radius: 1rem 1rem 0 1rem;
+    border-radius: $border-radius $border-radius 0 $border-radius;
     border: 1px solid #cfd8dc;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
@@ -20,6 +20,8 @@ $header-size: 2.4rem;
     }
 
     &.tw-display-off {
+      border-radius: $border-radius;
+
       .tw-body {
         display: none;
       }
@@ -64,7 +66,7 @@ $header-size: 2.4rem;
 
       .tw-buttons {
         display: flex;
-        margin-left: 1rem;
+        margin-left: 2rem;
 
         .tw-button {
           width: $header-size;
