@@ -14,7 +14,6 @@ $border-radius: 1rem;
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 0.5rem;
   }
 
   .tw-window {
@@ -29,10 +28,11 @@ $border-radius: 1rem;
       background-color: #fafafa;
     }
 
-    &.tw-display-off {
+    &.tw-minimize-off {
       position: relative;
       transform: none !important;
       border-radius: $border-radius;
+      margin: 0.25rem;
 
       .tw-body {
         display: none;

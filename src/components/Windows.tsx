@@ -17,8 +17,8 @@ const iWindowLocations = localStorage.getItem("windowLocations")
   ? JSON.parse(localStorage.getItem("windowLocations") as string)
   : {};
 
-const iWindowMaximized = localStorage.getItem("windowMaximized")
-  ? JSON.parse(localStorage.getItem("windowMaximized") as string)
+const iWindowMaximizes = localStorage.getItem("windowMaximizes")
+  ? JSON.parse(localStorage.getItem("windowMaximizes") as string)
   : {};
 
 const iWindowMinimizes = localStorage.getItem("windowMinimizes")
@@ -32,7 +32,7 @@ export interface Window {
   location: { x: number; y: number };
   draggable?: boolean;
   resizable?: boolean;
-  collapsable?: boolean;
+  minimizable?: boolean;
   maximizable?: boolean;
   title?: string;
 }
@@ -50,7 +50,7 @@ const Windows = (props: WindowsProps) => {
   const [windowSizes, setWindowSizes] = useState(iWindowSizes);
   const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);
   const [windowLocations, setWindowLocations] = useState(iWindowLocations);
-  const [windowMaximized, setWindowMaximized] = useState(iWindowMaximized);
+  const [windowMaximizes, setWindowMaximizes] = useState(iWindowMaximizes);
   const [windowMinimizes, setWindowMinimizes] = useState(iWindowMinimizes);
 
   useEffect(() => {
@@ -66,8 +66,8 @@ const Windows = (props: WindowsProps) => {
   }, [windowLocations]);
 
   useEffect(() => {
-    localStorage.setItem("windowMaximized", JSON.stringify(windowMaximized));
-  }, [windowMaximized]);
+    localStorage.setItem("windowMaximizes", JSON.stringify(windowMaximizes));
+  }, [windowMaximizes]);
 
   useEffect(() => {
     localStorage.setItem("windowMinimizes", JSON.stringify(windowMinimizes));
@@ -82,7 +82,7 @@ const Windows = (props: WindowsProps) => {
         location,
         draggable,
         resizable,
-        collapsable,
+        minimizable,
         maximizable,
         title,
       } = window;
@@ -105,7 +105,7 @@ const Windows = (props: WindowsProps) => {
       };
 
       const handleDrag = (e: DraggableEvent, data: DraggableData) => {
-        if (windowMaximized === key) {
+        if (windowMaximizes[key] || windowMinimizes[key]) {
           return;
         }
 
@@ -121,13 +121,26 @@ const Windows = (props: WindowsProps) => {
           [key]: false,
         });
 
-        windowMaximized === key
-          ? setWindowMaximized(null)
-          : setWindowMaximized(key);
+        setWindowMaximizes({
+          ...windowMaximizes,
+          [key]: !windowMaximizes[key],
+        });
+      };
+
+      const handleMinimize = () => {
+        setWindowMaximizes({
+          ...windowMaximizes,
+          [key]: false,
+        });
+
+        setWindowMinimizes({
+          ...windowMinimizes,
+          [key]: !windowMinimizes[key],
+        });
       };
 
       const renderCollapse = () => {
-        return collapsable ? (
+        return minimizable ? (
           <div className="tw-button tw-collapse" onClick={handleMinimize}></div>
         ) : null;
       };
@@ -136,15 +149,6 @@ const Windows = (props: WindowsProps) => {
         return maximizable ? (
           <div className="tw-button tw-maximize" onClick={handleMaximize}></div>
         ) : null;
-      };
-
-      const handleMinimize = () => {
-        setWindowMaximized(null);
-
-        setWindowMinimizes({
-          ...windowMinimizes,
-          [key]: !windowMinimizes[key],
-        });
       };
 
       const renderHandler = () => {
@@ -173,7 +177,7 @@ const Windows = (props: WindowsProps) => {
         const width = windowSizes[key] ? windowSizes[key].w : size.w;
         const height = windowSizes[key] ? windowSizes[key].h : size.h;
 
-        return resizable ? (
+        return resizable && !windowMaximizes[key] ? (
           <ResizableBox
             width={width}
             height={height}
@@ -189,10 +193,10 @@ const Windows = (props: WindowsProps) => {
       };
 
       const classNames = clsx("tw-window", key, {
-        "tw-display-on": !windowMinimizes[key],
-        "tw-display-off": windowMinimizes[key],
-        "tw-maximize-on": windowMaximized === key,
-        "tw-maximize-off": windowMaximized !== key,
+        "tw-minimize-on": !windowMinimizes[key],
+        "tw-minimize-off": windowMinimizes[key],
+        "tw-maximize-on": windowMaximizes[key],
+        "tw-maximize-off": !windowMaximizes[key],
       });
 
       const element: JSX.Element = (
