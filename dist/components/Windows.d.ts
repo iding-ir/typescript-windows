@@ -12,7 +12,7 @@ export interface Window {
     };
     draggable?: boolean;
     resizable?: boolean;
-    collapsable?: boolean;
+    minimizable?: boolean;
     maximizable?: boolean;
     title?: string;
 }
