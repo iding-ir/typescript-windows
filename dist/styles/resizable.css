@@ -8,9 +8,15 @@
   background-repeat: no-repeat;
   background-origin: content-box;
   box-sizing: border-box;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2IDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmYwMCIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iNnB4Ij48ZyBvcGFjaXR5PSIwLjMwMiI+PHBhdGggZD0iTSA2IDYgTCAwIDYgTCAwIDQuMiBMIDQgNC4yIEwgNC4yIDQuMiBMIDQuMiAwIEwgNiAwIEwgNiA2IEwgNiA2IFoiIGZpbGw9IiMwMDAwMDAiLz48L2c+PC9zdmc+");
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAOVBMVEUAAACAgICAgICJiYmPj4+Ojo6Hh4eHh4eJiYmJiYmJiYmIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIjvnaEIAAAAEnRSTlMABgwNEBIzcXuMmczS2e3v8P4hIioKAAAAO0lEQVR42u3KwwHAAAADwNRW9t+1tu17H1bSrYyBAQ4z3vnhD3/QzB5+FaSAI+Ig8w1BcDnCBqCoI0REpLsfXpZhSP4AAAAASUVORK5CYII=);
   background-position: bottom right;
-  padding: 0 3px 3px 0; }
+  background-size: 50%;
+  opacity: 0.5;
+  padding: 0 3px 3px 0;
+  transition: opacity 0.3s; }
+
+.react-resizable-handle:hover {
+  opacity: 1; }
 
 .react-resizable-handle-sw {
   bottom: 0;

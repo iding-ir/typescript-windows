@@ -1,5 +1,5 @@
 import "./index.css";
-import "./styles/reset.scss";
-import "./styles/fonts.scss";
+import "./styles/reset.css";
+import "./styles/fonts.css";
 import "./localization";
 //# sourceMappingURL=index.d.ts.map
