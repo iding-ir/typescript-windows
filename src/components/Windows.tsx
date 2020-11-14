@@ -193,8 +193,8 @@ const Windows = (props: WindowsProps) => {
       };
 
       const classNames = clsx("tw-window", key, {
-        "tw-minimize-on": !windowMinimizes[key],
-        "tw-minimize-off": windowMinimizes[key],
+        "tw-minimize-on": windowMinimizes[key],
+        "tw-minimize-off": !windowMinimizes[key],
         "tw-maximize-on": windowMaximizes[key],
         "tw-maximize-off": !windowMaximizes[key],
       });
