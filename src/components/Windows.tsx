@@ -1,4 +1,5 @@
 import React, { useEffect, useState, SyntheticEvent } from "react";
+import ReactDOM from "react-dom";
 import Draggable, { DraggableEvent, DraggableData } from "react-draggable";
 import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
@@ -6,10 +7,6 @@ import clsx from "clsx";
 
 const iWindowSizes = localStorage.getItem("windowSizes")
   ? JSON.parse(localStorage.getItem("windowSizes") as string)
-  : {};
-
-const iWindowDisplays = localStorage.getItem("windowDisplays")
-  ? JSON.parse(localStorage.getItem("windowDisplays") as string)
   : {};
 
 const iWindowZIndexes = localStorage.getItem("windowZIndexes")
@@ -22,6 +19,10 @@ const iWindowLocations = localStorage.getItem("windowLocations")
 
 const iWindowMaximized = localStorage.getItem("windowMaximized")
   ? JSON.parse(localStorage.getItem("windowMaximized") as string)
+  : {};
+
+const iWindowMinimizes = localStorage.getItem("windowMinimizes")
+  ? JSON.parse(localStorage.getItem("windowMinimizes") as string)
   : {};
 
 export interface Window {
@@ -47,18 +48,14 @@ const Windows = (props: WindowsProps) => {
   const { t } = useTranslation();
 
   const [windowSizes, setWindowSizes] = useState(iWindowSizes);
-  const [windowDisplays, setWindowDisplays] = useState(iWindowDisplays);
   const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);
   const [windowLocations, setWindowLocations] = useState(iWindowLocations);
   const [windowMaximized, setWindowMaximized] = useState(iWindowMaximized);
+  const [windowMinimizes, setWindowMinimizes] = useState(iWindowMinimizes);
 
   useEffect(() => {
     localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
   }, [windowSizes]);
-
-  useEffect(() => {
-    localStorage.setItem("windowDisplays", JSON.stringify(windowDisplays));
-  }, [windowDisplays]);
 
   useEffect(() => {
     localStorage.setItem("windowZIndexes", JSON.stringify(windowZIndexes));
@@ -71,6 +68,10 @@ const Windows = (props: WindowsProps) => {
   useEffect(() => {
     localStorage.setItem("windowMaximized", JSON.stringify(windowMaximized));
   }, [windowMaximized]);
+
+  useEffect(() => {
+    localStorage.setItem("windowMinimizes", JSON.stringify(windowMinimizes));
+  }, [windowMinimizes]);
 
   const renderWindows = () => {
     return windows.map((window: Window) => {
@@ -93,15 +94,6 @@ const Windows = (props: WindowsProps) => {
         });
       };
 
-      const handleDisplay = () => {
-        setWindowMaximized(null);
-
-        setWindowDisplays({
-          ...windowDisplays,
-          [key]: !windowDisplays[key],
-        });
-      };
-
       const handleZIndex = () => {
         const nums = Object.values(windowZIndexes).length
           ? Object.values(windowZIndexes)
@@ -113,6 +105,10 @@ const Windows = (props: WindowsProps) => {
       };
 
       const handleDrag = (e: DraggableEvent, data: DraggableData) => {
+        if (windowMaximized === key) {
+          return;
+        }
+
         setWindowLocations({
           ...windowLocations,
           [key]: { x: data.x, y: data.y },
@@ -120,6 +116,11 @@ const Windows = (props: WindowsProps) => {
       };
 
       const handleMaximize = () => {
+        setWindowMinimizes({
+          ...windowMinimizes,
+          [key]: false,
+        });
+
         windowMaximized === key
           ? setWindowMaximized(null)
           : setWindowMaximized(key);
@@ -127,7 +128,7 @@ const Windows = (props: WindowsProps) => {
 
       const renderCollapse = () => {
         return collapsable ? (
-          <div className="tw-button tw-collapse" onClick={handleDisplay}></div>
+          <div className="tw-button tw-collapse" onClick={handleMinimize}></div>
         ) : null;
       };
 
@@ -135,6 +136,15 @@ const Windows = (props: WindowsProps) => {
         return maximizable ? (
           <div className="tw-button tw-maximize" onClick={handleMaximize}></div>
         ) : null;
+      };
+
+      const handleMinimize = () => {
+        setWindowMaximized(null);
+
+        setWindowMinimizes({
+          ...windowMinimizes,
+          [key]: !windowMinimizes[key],
+        });
       };
 
       const renderHandler = () => {
@@ -179,13 +189,13 @@ const Windows = (props: WindowsProps) => {
       };
 
       const classNames = clsx("tw-window", key, {
-        "tw-display-on": !windowDisplays[key],
-        "tw-display-off": windowDisplays[key],
+        "tw-display-on": !windowMinimizes[key],
+        "tw-display-off": windowMinimizes[key],
         "tw-maximize-on": windowMaximized === key,
         "tw-maximize-off": windowMaximized !== key,
       });
 
-      return (
+      const element: JSX.Element = (
         <Draggable
           key={key}
           defaultPosition={windowLocations[key] || location}
@@ -202,10 +212,27 @@ const Windows = (props: WindowsProps) => {
           </div>
         </Draggable>
       );
+
+      return windowMinimizes[key] && document.querySelector(".tw-taskbar")
+        ? ReactDOM.createPortal(
+            element,
+            document.querySelector(".tw-taskbar") as HTMLElement
+          )
+        : element;
     });
   };
 
-  return <div className="tw-windows">{renderWindows()}</div>;
+  const renderTaskbar = () => {
+    return <div className="tw-taskbar"></div>;
+  };
+
+  return (
+    <div className="tw-windows">
+      {renderWindows()}
+
+      {renderTaskbar()}
+    </div>
+  );
 };
 
 Windows.defaultProps = {

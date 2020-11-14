@@ -5,7 +5,17 @@ $border-radius: 1rem;
   position: relative;
   width: 100%;
   height: 100%;
+  padding-bottom: $header-size;
   overflow: hidden;
+
+  .tw-taskbar {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem;
+  }
 
   .tw-window {
     position: absolute;
@@ -20,6 +30,8 @@ $border-radius: 1rem;
     }
 
     &.tw-display-off {
+      position: relative;
+      transform: none !important;
       border-radius: $border-radius;
 
       .tw-body {
