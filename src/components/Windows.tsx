@@ -177,8 +177,17 @@ const Windows = (props: WindowsProps) => {
       };
 
       const renderBodyContents = () => {
-        const width = windowSizes[key] ? windowSizes[key].w : size.w;
-        const height = windowSizes[key] ? windowSizes[key].h : size.h;
+        const width = windowMaximizes[key]
+          ? "100%"
+          : windowSizes[key]
+          ? windowSizes[key].w
+          : size.w;
+
+        const height = windowMaximizes[key]
+          ? "100%"
+          : windowSizes[key]
+          ? windowSizes[key].h
+          : size.h;
 
         return resizable && !windowMaximizes[key] ? (
           <ResizableBox

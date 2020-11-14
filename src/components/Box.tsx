@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./Box.scss";
+
 interface BoxProps {
   text: string;
 }
@@ -7,7 +9,7 @@ interface BoxProps {
 const Box = (props: BoxProps) => {
   const { text } = props;
 
-  return <div>{text}</div>;
+  return <div className="box">{text}</div>;
 };
 
 export default Box;
