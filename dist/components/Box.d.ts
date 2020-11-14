@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import "./Box.scss";
 interface BoxProps {
     text: string;
 }

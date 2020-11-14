@@ -17,7 +17,7 @@
     border: 1px solid #cfd8dc;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
     .tw-windows .tw-window .tw-body {
-      padding: 1rem;
+      overflow: auto;
       background-color: #fafafa; }
     .tw-windows .tw-window.tw-minimize-on {
       position: relative;
