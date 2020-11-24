@@ -38,11 +38,12 @@ export interface Window {
 
 interface WindowsProps {
   windows: Window[];
+  taskbar?: boolean;
   grid?: number;
 }
 
 const Windows = (props: WindowsProps) => {
-  const { windows, grid } = props;
+  const { windows, taskbar, grid } = props;
 
   const { t } = useTranslation();
 
@@ -206,6 +207,8 @@ const Windows = (props: WindowsProps) => {
       };
 
       const classNames = clsx("tw-window", key, {
+        "tw-taskbar-on": taskbar,
+        "tw-taskbar-off": !taskbar,
         "tw-minimize-on": windowMinimizes[key],
         "tw-minimize-off": !windowMinimizes[key],
         "tw-maximize-on": windowMaximizes[key],
@@ -230,7 +233,7 @@ const Windows = (props: WindowsProps) => {
         </Draggable>
       );
 
-      if (windowMinimizes[key]) {
+      if (windowMinimizes[key] && taskbar) {
         taskbarItemsMin = [...taskbarItemsMin, element];
       } else {
         taskbarItemsMax = [...taskbarItemsMax, element];
@@ -258,6 +261,7 @@ const Windows = (props: WindowsProps) => {
 };
 
 Windows.defaultProps = {
+  taskbar: true,
   grid: 5,
 };
 

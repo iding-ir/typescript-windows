@@ -29,10 +29,14 @@ $border-radius: 1rem;
     }
 
     &.tw-minimize-on {
-      position: relative;
-      transform: none !important;
       border-radius: $border-radius;
-      margin: 0.25rem;
+
+      &.tw-taskbar-on {
+        position: relative;
+        transform: none !important;
+        border-radius: $border-radius;
+        margin: 0.25rem;
+      }
 
       .tw-body {
         display: none;
