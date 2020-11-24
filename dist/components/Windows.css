@@ -14,16 +14,19 @@
     position: absolute;
     overflow: hidden;
     border-radius: 1rem 1rem 0 1rem;
-    border: 1px solid #cfd8dc;
+    border: 1px solid #424242;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
     .tw-windows .tw-window .tw-body {
       overflow: auto;
-      background-color: #fafafa; }
+      color: #9E9E9E;
+      background-color: #212121; }
     .tw-windows .tw-window.tw-minimize-on {
-      position: relative;
-      transform: none !important;
-      border-radius: 1rem;
-      margin: 0.25rem; }
+      border-radius: 1rem; }
+      .tw-windows .tw-window.tw-minimize-on.tw-taskbar-on {
+        position: relative;
+        transform: none !important;
+        border-radius: 1rem;
+        margin: 0.25rem; }
       .tw-windows .tw-window.tw-minimize-on .tw-body {
         display: none; }
     .tw-windows .tw-window.tw-maximize-on {
@@ -44,8 +47,8 @@
       height: 2.4rem;
       line-height: 2.4rem;
       padding: 0 1rem;
-      color: #263238;
-      background-color: #cfd8dc;
+      color: #BDBDBD;
+      background-color: #424242;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       z-index: 1000;
       cursor: pointer;

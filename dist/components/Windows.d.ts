@@ -18,11 +18,13 @@ export interface Window {
 }
 interface WindowsProps {
     windows: Window[];
+    taskbar?: boolean;
     grid?: number;
 }
 declare const Windows: {
     (props: WindowsProps): JSX.Element;
     defaultProps: {
+        taskbar: boolean;
         grid: number;
     };
 };
