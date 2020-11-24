@@ -20,12 +20,13 @@ $border-radius: 1rem;
     position: absolute;
     overflow: hidden;
     border-radius: $border-radius $border-radius 0 $border-radius;
-    border: 1px solid #cfd8dc;
+    border: 1px solid #424242;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
     .tw-body {
       overflow: auto;
-      background-color: #fafafa;
+      color: #9E9E9E;
+      background-color: #212121;
     }
 
     &.tw-minimize-on {
@@ -65,8 +66,8 @@ $border-radius: 1rem;
       height: $header-size;
       line-height: $header-size;
       padding: 0 1rem;
-      color: #263238;
-      background-color: #cfd8dc;
+      color: #BDBDBD;
+      background-color: #424242;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       z-index: 1000;
       cursor: pointer;
