@@ -1,5 +1,4 @@
-import React, { useEffect, useState, SyntheticEvent, useRef } from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect, useState, SyntheticEvent } from "react";
 import Draggable, { DraggableEvent, DraggableData } from "react-draggable";
 import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
@@ -47,14 +46,13 @@ const Windows = (props: WindowsProps) => {
 
   const { t } = useTranslation();
 
-  const taskbarRef = useRef(null);
-
-  const [, forceUpdate] = useState(0);
   const [windowSizes, setWindowSizes] = useState(iWindowSizes);
   const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);
   const [windowLocations, setWindowLocations] = useState(iWindowLocations);
   const [windowMaximizes, setWindowMaximizes] = useState(iWindowMaximizes);
   const [windowMinimizes, setWindowMinimizes] = useState(iWindowMinimizes);
+  const [taskbarItemsMin, setTaskbarItemsMin] = useState<JSX.Element[]>([]);
+  const [taskbarItemsMax, setTaskbarItemsMax] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
@@ -76,8 +74,11 @@ const Windows = (props: WindowsProps) => {
     localStorage.setItem("windowMinimizes", JSON.stringify(windowMinimizes));
   }, [windowMinimizes]);
 
-  const renderWindows = () => {
-    return windows.map((window: Window) => {
+  useEffect(() => {
+    let taskbarItemsMin: JSX.Element[] = [];
+    let taskbarItemsMax: JSX.Element[] = [];
+
+    windows.forEach((window: Window) => {
       const {
         key,
         component,
@@ -229,31 +230,29 @@ const Windows = (props: WindowsProps) => {
         </Draggable>
       );
 
-      return windowMinimizes[key] && taskbarRef?.current
-        ? ReactDOM.createPortal(
-            element,
-            (taskbarRef?.current as unknown) as HTMLElement
-          )
-        : element;
+      if (windowMinimizes[key]) {
+        taskbarItemsMin = [...taskbarItemsMin, element];
+      } else {
+        taskbarItemsMax = [...taskbarItemsMax, element];
+      }
     });
-  };
 
-  const renderTaskbar = () => {
-    return <div className="tw-taskbar" ref={taskbarRef}></div>;
-  };
-
-  // By the time of creating a portal to ".tw-taskbar" this element is not
-  // yet rendered in DOM. By forceUpdate(ing) Windows component we make sure
-  // that minimized windows go to taskbar when page is refreshed.
-  setTimeout(() => {
-    forceUpdate(1);
-  }, 0);
+    setTaskbarItemsMin(taskbarItemsMin);
+    setTaskbarItemsMax(taskbarItemsMax);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    windowSizes,
+    windowZIndexes,
+    windowLocations,
+    windowMaximizes,
+    windowMinimizes,
+  ]);
 
   return (
     <div className="tw-windows">
-      {renderWindows()}
+      {taskbarItemsMax}
 
-      {renderTaskbar()}
+      <div className="tw-taskbar">{taskbarItemsMin}</div>
     </div>
   );
 };
