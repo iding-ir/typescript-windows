@@ -52,8 +52,8 @@ const Windows = (props: WindowsProps) => {
   const [windowLocations, setWindowLocations] = useState(iWindowLocations);
   const [windowMaximizes, setWindowMaximizes] = useState(iWindowMaximizes);
   const [windowMinimizes, setWindowMinimizes] = useState(iWindowMinimizes);
-  const [taskbarItemsMin, setTaskbarItemsMin] = useState<JSX.Element[]>([]);
-  const [taskbarItemsMax, setTaskbarItemsMax] = useState<JSX.Element[]>([]);
+  const [taskbarItemsIn, setTaskbarItemsIn] = useState<JSX.Element[]>([]);
+  const [taskbarItemsOut, setTaskbarItemsOut] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
@@ -76,8 +76,8 @@ const Windows = (props: WindowsProps) => {
   }, [windowMinimizes]);
 
   useEffect(() => {
-    let taskbarItemsMin: JSX.Element[] = [];
-    let taskbarItemsMax: JSX.Element[] = [];
+    let taskbarItemsIn: JSX.Element[] = [];
+    let taskbarItemsOut: JSX.Element[] = [];
 
     windows.forEach((window: Window) => {
       const {
@@ -234,14 +234,14 @@ const Windows = (props: WindowsProps) => {
       );
 
       if (windowMinimizes[key] && taskbar) {
-        taskbarItemsMin = [...taskbarItemsMin, element];
+        taskbarItemsIn = [...taskbarItemsIn, element];
       } else {
-        taskbarItemsMax = [...taskbarItemsMax, element];
+        taskbarItemsOut = [...taskbarItemsOut, element];
       }
     });
 
-    setTaskbarItemsMin(taskbarItemsMin);
-    setTaskbarItemsMax(taskbarItemsMax);
+    setTaskbarItemsIn(taskbarItemsIn);
+    setTaskbarItemsOut(taskbarItemsOut);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     windowSizes,
@@ -253,9 +253,9 @@ const Windows = (props: WindowsProps) => {
 
   return (
     <div className="tw-windows">
-      {taskbarItemsMax}
+      {taskbarItemsOut}
 
-      <div className="tw-taskbar">{taskbarItemsMin}</div>
+      <div className="tw-taskbar">{taskbarItemsIn}</div>
     </div>
   );
 };
