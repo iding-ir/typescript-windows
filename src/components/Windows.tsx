@@ -162,10 +162,10 @@ const Windows = (props: WindowsProps) => {
         });
 
         return (
-          <div className={classNames} onClick={handleZIndex}>
+          <div className={classNames}>
             <div className="tw-title">{title ? t(title) : null}</div>
 
-            <div className="tw-buttons">
+            <div className="tw-buttons" onClick={handleZIndex}>
               {renderMinimize()}
 
               {renderMaximize()}
@@ -223,8 +223,9 @@ const Windows = (props: WindowsProps) => {
           scale={1}
           handle=".tw-draggable"
           bounds="parent"
+          onStart={handleZIndex}
           onStop={handleDrag}
-          cancel=".tw-minimize, .tw-maximize"
+          cancel=".tw-buttons"
         >
           <div className={classNames} style={{ zIndex: windowZIndexes[key] }}>
             {renderHeader()}
