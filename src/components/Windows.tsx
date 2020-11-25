@@ -157,13 +157,13 @@ const Windows = (props: WindowsProps) => {
       };
 
       const renderHandler = () => {
-        const classNames = clsx("tw-header", {
-          "tw-header-draggable": draggable,
+        const classNames = clsx("tw-title", {
+          "tw-draggable": draggable,
         });
 
         return (
-          <div className={classNames} onClick={handleZIndex}>
-            <div className="tw-title">{title ? t(title) : null}</div>
+          <div className="tw-header" onClick={handleZIndex}>
+            <div className={classNames}>{title ? t(title) : null}</div>
 
             <div className="tw-buttons">
               {renderCollapse()}
@@ -221,7 +221,7 @@ const Windows = (props: WindowsProps) => {
           defaultPosition={windowLocations[key] || location}
           grid={[grid as number, grid as number]}
           scale={1}
-          handle=".tw-header-draggable"
+          handle=".tw-draggable"
           bounds="parent"
           onStop={handleDrag}
         >
