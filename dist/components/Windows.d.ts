@@ -1,6 +1,7 @@
 /// <reference types="react" />
 export interface Window {
     key: string;
+    title?: string;
     component: JSX.Element;
     size: {
         w: number;
@@ -14,7 +15,6 @@ export interface Window {
     resizable?: boolean;
     minimizable?: boolean;
     maximizable?: boolean;
-    title?: string;
 }
 interface WindowsProps {
     windows: Window[];
