@@ -56,18 +56,6 @@ const Windows = (props: WindowsProps) => {
   const [taskbarItemsOut, setTaskbarItemsOut] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    const zIndexArray = Object.values(windowZIndexes) as number[];
-    const zIndexMin = Math.min(...zIndexArray);
-
-    for (const key in windowZIndexes) {
-      windowZIndexes[key] = windowZIndexes[key] - zIndexMin;
-    }
-
-    setWindowZIndexes(windowZIndexes);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
   }, [windowSizes]);
 
@@ -133,8 +121,6 @@ const Windows = (props: WindowsProps) => {
       };
 
       const handleMaximize = () => {
-        handleZIndex();
-
         setWindowMinimizes({
           ...windowMinimizes,
           [key]: false,
@@ -147,8 +133,6 @@ const Windows = (props: WindowsProps) => {
       };
 
       const handleMinimize = () => {
-        handleZIndex();
-        
         setWindowMaximizes({
           ...windowMaximizes,
           [key]: false,
@@ -162,7 +146,7 @@ const Windows = (props: WindowsProps) => {
 
       const renderMinimize = () => {
         return minimizable ? (
-          <div className="tw-button tw-collapse" onClick={handleMinimize}></div>
+          <div className="tw-button tw-minimize" onClick={handleMinimize}></div>
         ) : null;
       };
 
@@ -173,13 +157,13 @@ const Windows = (props: WindowsProps) => {
       };
 
       const renderHeader = () => {
-        const classNames = clsx("tw-title", {
+        const classNames = clsx("tw-header", {
           "tw-draggable": draggable,
         });
 
         return (
-          <div className="tw-header">
-            <div className={classNames}>{title ? t(title) : null}</div>
+          <div className={classNames} onClick={handleZIndex}>
+            <div className="tw-title">{title ? t(title) : null}</div>
 
             <div className="tw-buttons">
               {renderMinimize()}
@@ -239,8 +223,8 @@ const Windows = (props: WindowsProps) => {
           scale={1}
           handle=".tw-draggable"
           bounds="parent"
-          onStart={handleZIndex}
           onStop={handleDrag}
+          cancel=".tw-minimize, .tw-maximize"
         >
           <div className={classNames} style={{ zIndex: windowZIndexes[key] }}>
             {renderHeader()}

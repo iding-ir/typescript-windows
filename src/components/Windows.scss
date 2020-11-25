@@ -51,7 +51,6 @@ $border-radius: 1rem;
       height: 100% !important;
       transform: none !important;
       border-radius: 0 !important;
-      z-index: 99999 !important;
 
       .tw-body {
         display: block !important;
@@ -100,7 +99,7 @@ $border-radius: 1rem;
             opacity: 1;
           }
 
-          &.tw-collapse {
+          &.tw-minimize {
             background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAM1BMVEUAAACEhISIiIiGhoaJiYmGhoaHh4eHh4eIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIjiyFMgAAAAEHRSTlMAHR43ODl1d4mLjeju+fr9acPXgwAAAFFJREFUeNrt0zUCgDAQRNHBffLvf1pKHCpS7asjqxrNCw8yryxI86MEgkmPph8OxIGm7Xba+nygNAcuvw4U5y/q4xdV9jTjwPfqmVeLhtcT7leKCRaLLITEhwAAAABJRU5ErkJggg==);
           }
 
