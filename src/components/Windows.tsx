@@ -133,6 +133,8 @@ const Windows = (props: WindowsProps) => {
       };
 
       const handleMaximize = () => {
+        handleZIndex();
+
         setWindowMinimizes({
           ...windowMinimizes,
           [key]: false,
@@ -145,6 +147,8 @@ const Windows = (props: WindowsProps) => {
       };
 
       const handleMinimize = () => {
+        handleZIndex();
+        
         setWindowMaximizes({
           ...windowMaximizes,
           [key]: false,
