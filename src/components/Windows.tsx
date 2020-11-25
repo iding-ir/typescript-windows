@@ -26,6 +26,7 @@ const iWindowMinimizes = localStorage.getItem("windowMinimizes")
 
 export interface Window {
   key: string;
+  title?: string;
   component: JSX.Element;
   size: { w: number; h: number };
   location: { x: number; y: number };
@@ -33,7 +34,6 @@ export interface Window {
   resizable?: boolean;
   minimizable?: boolean;
   maximizable?: boolean;
-  title?: string;
 }
 
 interface WindowsProps {
@@ -82,6 +82,7 @@ const Windows = (props: WindowsProps) => {
     windows.forEach((window: Window) => {
       const {
         key,
+        title,
         component,
         size,
         location,
@@ -89,7 +90,6 @@ const Windows = (props: WindowsProps) => {
         resizable,
         minimizable,
         maximizable,
-        title,
       } = window;
 
       const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
@@ -144,7 +144,7 @@ const Windows = (props: WindowsProps) => {
         });
       };
 
-      const renderCollapse = () => {
+      const renderMinimize = () => {
         return minimizable ? (
           <div className="tw-button tw-collapse" onClick={handleMinimize}></div>
         ) : null;
@@ -156,7 +156,7 @@ const Windows = (props: WindowsProps) => {
         ) : null;
       };
 
-      const renderHandler = () => {
+      const renderHeader = () => {
         const classNames = clsx("tw-title", {
           "tw-draggable": draggable,
         });
@@ -166,7 +166,7 @@ const Windows = (props: WindowsProps) => {
             <div className={classNames}>{title ? t(title) : null}</div>
 
             <div className="tw-buttons">
-              {renderCollapse()}
+              {renderMinimize()}
 
               {renderMaximize()}
             </div>
@@ -226,7 +226,7 @@ const Windows = (props: WindowsProps) => {
           onStop={handleDrag}
         >
           <div className={classNames} style={{ zIndex: windowZIndexes[key] }}>
-            {renderHandler()}
+            {renderHeader()}
 
             {renderBody()}
           </div>
@@ -262,7 +262,7 @@ const Windows = (props: WindowsProps) => {
 
 Windows.defaultProps = {
   taskbar: true,
-  grid: 5,
+  grid: 1,
 };
 
 export default Windows;
