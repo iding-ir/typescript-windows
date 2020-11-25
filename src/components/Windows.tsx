@@ -56,6 +56,18 @@ const Windows = (props: WindowsProps) => {
   const [taskbarItemsOut, setTaskbarItemsOut] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
+    const zIndexArray = Object.values(windowZIndexes) as number[];
+    const zIndexMin = Math.min(...zIndexArray);
+
+    for (const key in windowZIndexes) {
+      windowZIndexes[key] = windowZIndexes[key] - zIndexMin;
+    }
+
+    setWindowZIndexes(windowZIndexes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
   }, [windowSizes]);
 
