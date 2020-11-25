@@ -162,7 +162,7 @@ const Windows = (props: WindowsProps) => {
         });
 
         return (
-          <div className="tw-header" onClick={handleZIndex}>
+          <div className="tw-header">
             <div className={classNames}>{title ? t(title) : null}</div>
 
             <div className="tw-buttons">
@@ -223,6 +223,7 @@ const Windows = (props: WindowsProps) => {
           scale={1}
           handle=".tw-draggable"
           bounds="parent"
+          onStart={handleZIndex}
           onStop={handleDrag}
         >
           <div className={classNames} style={{ zIndex: windowZIndexes[key] }}>
