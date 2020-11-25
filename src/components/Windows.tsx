@@ -4,26 +4,6 @@ import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
 import clsx from "clsx";
 
-const iWindowSizes = localStorage.getItem("windowSizes")
-  ? JSON.parse(localStorage.getItem("windowSizes") as string)
-  : {};
-
-const iWindowZIndexes = localStorage.getItem("windowZIndexes")
-  ? JSON.parse(localStorage.getItem("windowZIndexes") as string)
-  : {};
-
-const iWindowLocations = localStorage.getItem("windowLocations")
-  ? JSON.parse(localStorage.getItem("windowLocations") as string)
-  : {};
-
-const iWindowMaximizes = localStorage.getItem("windowMaximizes")
-  ? JSON.parse(localStorage.getItem("windowMaximizes") as string)
-  : {};
-
-const iWindowMinimizes = localStorage.getItem("windowMinimizes")
-  ? JSON.parse(localStorage.getItem("windowMinimizes") as string)
-  : {};
-
 export interface Window {
   key: string;
   title?: string;
@@ -34,6 +14,7 @@ export interface Window {
   resizable?: boolean;
   minimizable?: boolean;
   maximizable?: boolean;
+  startMinimized?: boolean;
 }
 
 interface WindowsProps {
@@ -46,6 +27,30 @@ const Windows = (props: WindowsProps) => {
   const { windows, taskbar, grid } = props;
 
   const { t } = useTranslation();
+
+  const dWindowMinimizes = windows.reduce((total: object, item: Window) => {
+    return { ...total, [item.key]: item.startMinimized };
+  }, {});
+
+  const iWindowSizes = localStorage.getItem("windowSizes")
+    ? JSON.parse(localStorage.getItem("windowSizes") as string)
+    : {};
+
+  const iWindowZIndexes = localStorage.getItem("windowZIndexes")
+    ? JSON.parse(localStorage.getItem("windowZIndexes") as string)
+    : {};
+
+  const iWindowLocations = localStorage.getItem("windowLocations")
+    ? JSON.parse(localStorage.getItem("windowLocations") as string)
+    : {};
+
+  const iWindowMaximizes = localStorage.getItem("windowMaximizes")
+    ? JSON.parse(localStorage.getItem("windowMaximizes") as string)
+    : {};
+
+  const iWindowMinimizes = localStorage.getItem("windowMinimizes")
+    ? JSON.parse(localStorage.getItem("windowMinimizes") as string)
+    : dWindowMinimizes;
 
   const [windowSizes, setWindowSizes] = useState(iWindowSizes);
   const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);

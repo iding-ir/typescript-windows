@@ -16,6 +16,7 @@ export const windows: Window[] = [
     resizable: true,
     minimizable: true,
     maximizable: true,
+    startMinimized: false,
   },
   {
     key: "box-2",
@@ -27,12 +28,13 @@ export const windows: Window[] = [
     resizable: false,
     minimizable: false,
     maximizable: false,
+    startMinimized: false,
   },
   {
     key: "box-3",
     title: "box.title",
     component: (
-      <Box text="Box-3: draggable, resizable, minimizable and maximizable" />
+      <Box text="Box-3: starting minimized" />
     ),
     size: { w: 200, h: 200 },
     location: { x: 15, y: 315 },
@@ -40,5 +42,6 @@ export const windows: Window[] = [
     resizable: true,
     minimizable: true,
     maximizable: true,
+    startMinimized: true,
   },
 ];
