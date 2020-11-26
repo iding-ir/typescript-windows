@@ -6,7 +6,6 @@ import React, {
   SyntheticEvent,
 } from "react";
 import Draggable, { DraggableEvent, DraggableData } from "react-draggable";
-import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
 import clsx from "clsx";
 
@@ -15,7 +14,7 @@ import { getLocalStorage } from "../utils/getLocalStorage";
 
 export interface Window {
   key: string;
-  title?: string;
+  title: JSX.Element;
   component: JSX.Element;
   grids: { x: number; y: number; w: number; h: number };
   draggable?: boolean;
@@ -35,8 +34,6 @@ interface WindowsProps {
 
 const Windows = (props: WindowsProps) => {
   const { windows, taskbar, grid, gridsCount, gridsGap } = props;
-
-  const { t } = useTranslation();
 
   const { gridsWidth, gridsHeight } = useGrids(gridsCount, gridsGap);
 
@@ -186,7 +183,7 @@ const Windows = (props: WindowsProps) => {
 
         return (
           <div className={classNames} ref={headerRef}>
-            <div className="tw-title">{title ? t(title) : null}</div>
+            <div className="tw-title">{title || null}</div>
 
             <div className="tw-buttons" onClick={handleZIndex}>
               {renderMinimize()}

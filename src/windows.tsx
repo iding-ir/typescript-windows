@@ -1,15 +1,14 @@
 import React from "react";
 
 import { Window } from "./components/Windows";
-import Box from "./components/Box";
+import Content from "./components/Content";
+import Title from "./components/Title";
 
 export const windows: Window[] = [
   {
-    key: "box-1",
-    title: "box.title",
-    component: (
-      <Box text="Box-1: draggable, resizable, minimizable and maximizable." />
-    ),
+    key: "window1",
+    title: <Title i18n="window1.title" />,
+    component: <Content i18n="window1.content" />,
     grids: { x: 0, y: 0, w: 4, h: 3 },
     draggable: true,
     resizable: true,
@@ -18,9 +17,9 @@ export const windows: Window[] = [
     startMinimized: false,
   },
   {
-    key: "box-2",
-    title: "box.title",
-    component: <Box text="Box-2: only draggable." />,
+    key: "window2",
+    title: <Title i18n="window2.title" />,
+    component: <Content i18n="window2.content" />,
     grids: { x: 4, y: 9, w: 4, h: 3 },
     draggable: true,
     resizable: false,
@@ -29,9 +28,9 @@ export const windows: Window[] = [
     startMinimized: false,
   },
   {
-    key: "box-3",
-    title: "box.title",
-    component: <Box text="Box-3: starting minimized." />,
+    key: "window3",
+    title: <Title i18n="window3.title" />,
+    component: <Content i18n="window3.content" />,
     grids: { x: 8, y: 0, w: 4, h: 3 },
     draggable: true,
     resizable: true,
