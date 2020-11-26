@@ -168,7 +168,17 @@ const Windows = (props: WindowsProps) => {
         });
 
         return (
-          <div className={classNames} ref={headerRef}>
+          <div
+            className={classNames}
+            ref={headerRef}
+            style={{
+              width: windowMinimizes[key]
+                ? "auto"
+                : windowSizes[key]
+                ? windowSizes[key].w
+                : "auto",
+            }}
+          >
             <div className="tw-title">{title || null}</div>
 
             <div className="tw-buttons" onClick={handleZIndex}>
@@ -203,7 +213,7 @@ const Windows = (props: WindowsProps) => {
             height={height}
             resizeHandles={["se"]}
             draggableOpts={{ grid: [grid, grid] }}
-            onResizeStop={handleResize}
+            onResize={handleResize}
           >
             {component}
           </ResizableBox>
