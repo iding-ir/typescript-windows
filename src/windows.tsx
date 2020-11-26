@@ -10,38 +10,11 @@ export const windows: Window[] = [
     component: (
       <Box text="Box-1: draggable, resizable, minimizable and maximizable" />
     ),
-    size: { w: 200, h: 200 },
-    location: { x: 15, y: 15 },
+    grids: { x: 10, y: 0, w: 2, h: 2 },
     draggable: true,
     resizable: true,
     minimizable: true,
     maximizable: true,
     startMinimized: false,
-  },
-  {
-    key: "box-2",
-    title: "box.title",
-    component: <Box text="Box-2: only draggable" />,
-    size: { w: 200, h: 200 },
-    location: { x: 315, y: 15 },
-    draggable: true,
-    resizable: false,
-    minimizable: false,
-    maximizable: false,
-    startMinimized: false,
-  },
-  {
-    key: "box-3",
-    title: "box.title",
-    component: (
-      <Box text="Box-3: starting minimized" />
-    ),
-    size: { w: 200, h: 200 },
-    location: { x: 15, y: 315 },
-    draggable: true,
-    resizable: true,
-    minimizable: true,
-    maximizable: true,
-    startMinimized: true,
   },
 ];

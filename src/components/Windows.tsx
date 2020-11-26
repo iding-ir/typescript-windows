@@ -4,12 +4,13 @@ import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
 import clsx from "clsx";
 
+import { useGrids } from "../utils/useGrids";
+
 export interface Window {
   key: string;
   title?: string;
   component: JSX.Element;
-  size: { w: number; h: number };
-  location: { x: number; y: number };
+  grids: { x: number; y: number; w: number; h: number };
   draggable?: boolean;
   resizable?: boolean;
   minimizable?: boolean;
@@ -19,14 +20,18 @@ export interface Window {
 
 interface WindowsProps {
   windows: Window[];
-  taskbar?: boolean;
-  grid?: number;
+  taskbar: boolean;
+  grid: number;
+  gridsGap: number;
+  gridsCount: number;
 }
 
 const Windows = (props: WindowsProps) => {
-  const { windows, taskbar, grid } = props;
+  const { windows, taskbar, grid, gridsCount, gridsGap } = props;
 
   const { t } = useTranslation();
+
+  const { gridsWidth, gridsHeight } = useGrids(gridsCount, gridsGap);
 
   const dWindowMinimizes = windows.reduce((total: object, item: Window) => {
     return { ...total, [item.key]: item.startMinimized };
@@ -89,13 +94,22 @@ const Windows = (props: WindowsProps) => {
         key,
         title,
         component,
-        size,
-        location,
+        grids,
         draggable,
         resizable,
         minimizable,
         maximizable,
       } = window;
+
+      const size = {
+        w: gridsWidth * grids.w + gridsGap * (grids.w - 1),
+        h: gridsHeight * grids.h + gridsGap * (grids.h - 1),
+      };
+
+      const location = {
+        x: gridsWidth * grids.x + gridsGap * (grids.x + 1),
+        y: gridsHeight * grids.y + gridsGap * (grids.y + 1),
+      }
 
       const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
         setWindowSizes({
@@ -270,6 +284,8 @@ const Windows = (props: WindowsProps) => {
 Windows.defaultProps = {
   taskbar: true,
   grid: 1,
+  gridsGap: 10,
+  gridsCount: 12,
 };
 
 export default Windows;
