@@ -109,7 +109,7 @@ const Windows = (props: WindowsProps) => {
       const location = {
         x: gridsWidth * grids.x + gridsGap * (grids.x + 1),
         y: gridsHeight * grids.y + gridsGap * (grids.y + 1),
-      }
+      };
 
       const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
         setWindowSizes({
@@ -238,6 +238,7 @@ const Windows = (props: WindowsProps) => {
         <Draggable
           key={key}
           defaultPosition={windowLocations[key] || location}
+          position={windowLocations[key] || location}
           grid={[grid as number, grid as number]}
           scale={1}
           handle=".tw-draggable"
@@ -270,6 +271,8 @@ const Windows = (props: WindowsProps) => {
     windowLocations,
     windowMaximizes,
     windowMinimizes,
+    gridsWidth,
+    gridsHeight,
   ]);
 
   return (

@@ -10,7 +10,7 @@ export const windows: Window[] = [
     component: (
       <Box text="Box-1: draggable, resizable, minimizable and maximizable" />
     ),
-    grids: { x: 10, y: 0, w: 2, h: 2 },
+    grids: { x: 9, y: 0, w: 3, h: 2 },
     draggable: true,
     resizable: true,
     minimizable: true,
