@@ -21,7 +21,7 @@ export const windows: Window[] = [
     key: "box-2",
     title: "box.title",
     component: <Box text="Box-2: only draggable." />,
-    grids: { x: 4, y: 0, w: 4, h: 3 },
+    grids: { x: 4, y: 9, w: 4, h: 3 },
     draggable: true,
     resizable: false,
     minimizable: false,

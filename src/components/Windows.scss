@@ -5,7 +5,6 @@ $border-radius: 1rem;
   position: relative;
   width: 100%;
   height: 100%;
-  padding-bottom: $header-size;
   overflow: hidden;
 
   .tw-taskbar {
@@ -24,6 +23,7 @@ $border-radius: 1rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
     .tw-body {
+      margin-bottom: -$header-size;
       overflow: auto;
       color: #9e9e9e;
       background-color: #212121;
