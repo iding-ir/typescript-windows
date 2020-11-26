@@ -24,9 +24,11 @@
     "url": "https://github.com/iding-ir/typescript-windows/issues"
   },
   "dependencies": {
+    "@react-hook/window-size": "^3.0.7",
     "clsx": "^1.1.1",
     "react-draggable": "^4.4.3",
-    "react-resizable": "^1.11.0"
+    "react-resizable": "^1.11.0",
+    "react-use-dimensions": "^1.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",

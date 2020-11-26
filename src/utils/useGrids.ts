@@ -1,4 +1,4 @@
-import { useWindowSize } from "./useWindowSize";
+import { useWindowSize } from "@react-hook/window-size";
 
 export const useGrids = (gridsCount: number, gridsGap: number) => {
   const [windowWidth, windowHeight] = useWindowSize();
