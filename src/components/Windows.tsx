@@ -1,4 +1,10 @@
-import React, { useEffect, useState, SyntheticEvent } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useLayoutEffect,
+  SyntheticEvent,
+} from "react";
 import Draggable, { DraggableEvent, DraggableData } from "react-draggable";
 import { useTranslation } from "react-i18next";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
@@ -34,6 +40,8 @@ const Windows = (props: WindowsProps) => {
 
   const { gridsWidth, gridsHeight } = useGrids(gridsCount, gridsGap);
 
+  const headerRef = useRef(null);
+
   const dWindowMinimizes = windows.reduce((total: object, item: Window) => {
     return { ...total, [item.key]: item.startMinimized };
   }, {});
@@ -51,6 +59,15 @@ const Windows = (props: WindowsProps) => {
   const [windowMinimizes, setWindowMinimizes] = useState(iWindowMinimizes);
   const [taskbarItemsIn, setTaskbarItemsIn] = useState<JSX.Element[]>([]);
   const [taskbarItemsOut, setTaskbarItemsOut] = useState<JSX.Element[]>([]);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useLayoutEffect(() => {
+    if (headerRef && headerRef.current) {
+      // @ts-ignore
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  });
 
   useEffect(() => {
     localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
@@ -90,7 +107,7 @@ const Windows = (props: WindowsProps) => {
 
       const size = {
         w: gridsWidth * grids.w + gridsGap * (grids.w - 1),
-        h: gridsHeight * grids.h + gridsGap * (grids.h - 1),
+        h: gridsHeight * grids.h + gridsGap * (grids.h - 1) - headerHeight,
       };
 
       const location = {
@@ -168,7 +185,7 @@ const Windows = (props: WindowsProps) => {
         });
 
         return (
-          <div className={classNames}>
+          <div className={classNames} ref={headerRef}>
             <div className="tw-title">{title ? t(title) : null}</div>
 
             <div className="tw-buttons" onClick={handleZIndex}>
@@ -260,6 +277,7 @@ const Windows = (props: WindowsProps) => {
     windowMinimizes,
     gridsWidth,
     gridsHeight,
+    headerHeight,
   ]);
 
   return (
