@@ -1,7 +1,7 @@
 /// <reference types="react" />
 export interface Window {
     key: string;
-    title?: string;
+    title: JSX.Element;
     component: JSX.Element;
     grids: {
         x: number;

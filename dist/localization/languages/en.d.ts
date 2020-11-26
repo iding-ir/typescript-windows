@@ -1,6 +1,15 @@
 declare const i18n: {
-    box: {
+    window1: {
         title: string;
+        content: string;
+    };
+    window2: {
+        title: string;
+        content: string;
+    };
+    window3: {
+        title: string;
+        content: string;
     };
 };
 export default i18n;
