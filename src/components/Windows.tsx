@@ -271,7 +271,6 @@ const Windows = (props: WindowsProps) => {
     gridsWidth,
     gridsHeight,
     headerHeight,
-    headerRef,
   ]);
 
   return (
