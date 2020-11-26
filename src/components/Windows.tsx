@@ -5,6 +5,7 @@ import { ResizableBox, ResizeCallbackData } from "react-resizable";
 import clsx from "clsx";
 
 import { useGrids } from "../utils/useGrids";
+import { getLocalStorage } from "../utils/getLocalStorage";
 
 export interface Window {
   key: string;
@@ -37,25 +38,11 @@ const Windows = (props: WindowsProps) => {
     return { ...total, [item.key]: item.startMinimized };
   }, {});
 
-  const iWindowSizes = localStorage.getItem("windowSizes")
-    ? JSON.parse(localStorage.getItem("windowSizes") as string)
-    : {};
-
-  const iWindowZIndexes = localStorage.getItem("windowZIndexes")
-    ? JSON.parse(localStorage.getItem("windowZIndexes") as string)
-    : {};
-
-  const iWindowLocations = localStorage.getItem("windowLocations")
-    ? JSON.parse(localStorage.getItem("windowLocations") as string)
-    : {};
-
-  const iWindowMaximizes = localStorage.getItem("windowMaximizes")
-    ? JSON.parse(localStorage.getItem("windowMaximizes") as string)
-    : {};
-
-  const iWindowMinimizes = localStorage.getItem("windowMinimizes")
-    ? JSON.parse(localStorage.getItem("windowMinimizes") as string)
-    : dWindowMinimizes;
+  const iWindowSizes = getLocalStorage("windowSizes", {});
+  const iWindowZIndexes = getLocalStorage("windowZIndexes", {});
+  const iWindowLocations = getLocalStorage("windowLocations", {});
+  const iWindowMaximizes = getLocalStorage("windowMaximizes", {});
+  const iWindowMinimizes = getLocalStorage("windowMinimizes", dWindowMinimizes);
 
   const [windowSizes, setWindowSizes] = useState(iWindowSizes);
   const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);
@@ -239,7 +226,7 @@ const Windows = (props: WindowsProps) => {
           key={key}
           defaultPosition={windowLocations[key] || location}
           position={windowLocations[key] || location}
-          grid={[grid as number, grid as number]}
+          grid={[grid, grid]}
           scale={1}
           handle=".tw-draggable"
           bounds="parent"
