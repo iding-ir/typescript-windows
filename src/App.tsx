@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./App.css";
+import "./App.scss";
 import { windows } from "./windows";
 import Windows from "./components/Windows";
 import iconMinimize from "./assets/images/icon-minimize.png";
