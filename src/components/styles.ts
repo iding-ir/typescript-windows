@@ -11,6 +11,9 @@ export const useStyles = (styles: Styles) => {
     bodyColor,
     bodyBackground,
     boxShadow,
+    IconMaximize,
+    IconMinimize,
+    IconResize,
   } = styles;
 
   return createUseStyles({
@@ -23,8 +26,8 @@ export const useStyles = (styles: Styles) => {
       "& .tw-taskbar": {
         display: "flex",
         position: "absolute",
-        bottom: '0',
-        left: '0',
+        bottom: "0",
+        left: "0",
         width: "100%",
       },
 
@@ -53,14 +56,14 @@ export const useStyles = (styles: Styles) => {
           },
 
           "& .tw-title": {
-            flexGrow: '10',
+            flexGrow: "10",
             padding: "0 1rem",
             overflow: "hidden",
           },
 
           "& .tw-buttons": {
             display: "flex",
-            flexShrink: '0',
+            flexShrink: "0",
             padding: "0 0.5rem",
 
             "& .tw-button": {
@@ -70,21 +73,19 @@ export const useStyles = (styles: Styles) => {
               backgroundSize: "50%",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
-              opacity: '0.5',
+              opacity: "0.5",
               cursor: "pointer",
 
               "&:hover": {
-                opacity: '1',
+                opacity: "1",
               },
 
               "&.tw-minimize": {
-                backgroundImage:
-                  "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAM1BMVEUAAACEhISIiIiGhoaJiYmGhoaHh4eHh4eIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIjiyFMgAAAAEHRSTlMAHR43ODl1d4mLjeju+fr9acPXgwAAAFFJREFUeNrt0zUCgDAQRNHBffLvf1pKHCpS7asjqxrNCw8yryxI86MEgkmPph8OxIGm7Xba+nygNAcuvw4U5y/q4xdV9jTjwPfqmVeLhtcT7leKCRaLLITEhwAAAABJRU5ErkJggg==)",
+                backgroundImage: IconMinimize,
               },
 
               "&.tw-maximize": {
-                backgroundImage:
-                  "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAeFBMVEUAAAD///+JiYmIiIiPj4+Hh4eOjo6GhoaFhYWEhISGhoaIiIiHh4eJiYmGhoaHh4eHh4eHh4eIiIiJiYmJiYmIiIiHh4eIiIiHh4eIiIiIiIiJiYmIiIiJiYmHh4eIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIgiuQX5AAAAJ3RSTlMAAQ0PEBESExkbKCs1ODlAREhJVGxtd4OEh4uMqarAyMrMzdjd+P5IcrmSAAAA2UlEQVR42rWTA4IEMQAEe62xbfz/haeoz+7FoCpOUE86/QVPuQzmXYWV4gvB53fPBFsIzmuh8R5jQcZ6emy4hhKvkpkaxodf/pLnT0AI15bqoPLDTQrnHRnEj2clgAziMAIZxEkgg7gQ5nU5AcC+E2MR/e/2AHBa1hlBEgLacAFXcyBMxOxro98C217zl9lHBwA4RHv8V/axaCLmJj7t5GfDDD6fKJ7qAk9JeaqFQJwMEpiToQXmbCjhypyN21c3LZfnOl4fnI1AGz44nx+9Tw9v9cbx7+n43wOGjkWM6lWC8gAAAABJRU5ErkJggg==)",
+                backgroundImage: IconMaximize,
               },
             },
           },
@@ -142,8 +143,7 @@ export const useStyles = (styles: Styles) => {
         backgroundRepeat: "no-repeat",
         backgroundOrigin: "content-box",
         boxSizing: "border-box",
-        backgroundImage:
-          "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAOVBMVEUAAACAgICAgICJiYmPj4+Ojo6Hh4eHh4eJiYmJiYmJiYmIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIjvnaEIAAAAEnRSTlMABgwNEBIzcXuMmczS2e3v8P4hIioKAAAAO0lEQVR42u3KwwHAAAADwNRW9t+1tu17H1bSrYyBAQ4z3vnhD3/QzB5+FaSAI+Ig8w1BcDnCBqCoI0REpLsfXpZhSP4AAAAASUVORK5CYII=)",
+        backgroundImage: IconResize,
         backgroundPosition: "bottom right",
         backgroundSize: "50%",
         opacity: "0.5",
@@ -151,7 +151,7 @@ export const useStyles = (styles: Styles) => {
         transition: "opacity 0.3s",
 
         "&:hover": {
-          opacity: '1',
+          opacity: "1",
         },
       },
 

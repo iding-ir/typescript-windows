@@ -9,6 +9,9 @@ import { useGrids } from "../utils/useGrids";
 import { getLocalStorage } from "../utils/getLocalStorage";
 import { useStyles } from "./styles";
 import { Window, WindowsProps } from "./Windows.d";
+import iconMinimize from "../assets/images/icon-minimize.png";
+import iconMaximize from "../assets/images/icon-maximize.png";
+import iconResize from "../assets/images/icon-resize.png";
 
 const Windows = (props: WindowsProps) => {
   const { windows, taskbar, grid, gridsCount, gridsGap, styles } = props;
@@ -288,6 +291,9 @@ Windows.defaultProps = {
     bodyColor: "#9e9e9e",
     bodyBackground: "#212121",
     boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+    IconMaximize: `url(${iconMinimize})`,
+    IconMinimize: `url(${iconMaximize})`,
+    IconResize: `url(${iconResize})`,
   },
 };
 

@@ -20,6 +20,9 @@ export interface Window {
     bodyColor: string;
     bodyBackground: string;
     boxShadow: string;
+    IconMaximize: string;
+    IconMinimize: string;
+    IconResize: string;
   }
   
   export interface WindowsProps {
