@@ -1,8 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import "./Content.scss";
-
 interface ContentProps {
   i18n: string;
 }
@@ -12,7 +10,7 @@ const Content = (props: ContentProps) => {
 
   const { t } = useTranslation();
 
-  return <div className="content">{t(i18n)}</div>;
+  return <div style={{ padding: "1rem" }}>{t(i18n)}</div>;
 };
 
 export default Content;

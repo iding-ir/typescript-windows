@@ -1,6 +1,6 @@
 import { createUseStyles } from "react-jss";
 
-import { Styles } from "./Windows";
+import { Styles } from "./Windows.d";
 
 export const useStyles = (styles: Styles) => {
   const {
