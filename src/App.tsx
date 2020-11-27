@@ -2,7 +2,6 @@ import React from "react";
 
 import "./App.css";
 import "./styles/resizable.scss";
-import "./components/Windows.scss";
 import { windows } from "./windows";
 import Windows from "./components/Windows";
 
