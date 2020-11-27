@@ -291,8 +291,8 @@ Windows.defaultProps = {
     bodyColor: "#9e9e9e",
     bodyBackground: "#212121",
     boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
-    IconMaximize: `url(${iconMinimize})`,
-    IconMinimize: `url(${iconMaximize})`,
+    IconMaximize: `url(${iconMaximize})`,
+    IconMinimize: `url(${iconMinimize})`,
     IconResize: `url(${iconResize})`,
   },
 };
