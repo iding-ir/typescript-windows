@@ -175,6 +175,7 @@ const Windows = (props: WindowsProps) => {
           <div
             className={classNames}
             ref={headerRef}
+            onClick={handleZIndex}
             style={{
               width: windowMinimizes[key]
                 ? "auto"
@@ -183,11 +184,7 @@ const Windows = (props: WindowsProps) => {
                 : "auto",
             }}
           >
-            <div
-              className="tw-title"
-              onClick={handleZIndex}
-              onDoubleClick={handleMaximize}
-            >
+            <div className="tw-title" onDoubleClick={handleMaximize}>
               {title || null}
             </div>
 
