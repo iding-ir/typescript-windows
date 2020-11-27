@@ -12,6 +12,8 @@ export interface Window {
   title: JSX.Element;
   component: JSX.Element;
   grids: { x: number; y: number; w: number; h: number };
+  minSize?: { w: number; h: number };
+  maxSize?: { w: number; h: number };
   draggable?: boolean;
   resizable?: boolean;
   minimizable?: boolean;
@@ -82,6 +84,8 @@ const Windows = (props: WindowsProps) => {
         title,
         component,
         grids,
+        minSize,
+        maxSize,
         draggable,
         resizable,
         minimizable,
@@ -214,6 +218,8 @@ const Windows = (props: WindowsProps) => {
             resizeHandles={["se"]}
             draggableOpts={{ grid: [grid, grid] }}
             onResize={handleResize}
+            minConstraints={minSize && [minSize?.w, minSize.h] }
+            maxConstraints={maxSize && [maxSize?.w, maxSize.h] }
           >
             {component}
           </ResizableBox>
