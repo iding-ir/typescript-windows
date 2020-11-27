@@ -1,5 +1,4 @@
 /// <reference types="react" />
-import "./Content.scss";
 interface ContentProps {
     i18n: string;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Window } from "./components/Windows.d";
+import { Window } from "./components/Windows";
 import Content from "./components/Content";
 import Title from "./components/Title";
 

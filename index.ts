@@ -1,1 +1,1 @@
-export { default as Windows } from "./dist/components/Windows";
+export { default as Windows, Window } from "./dist/components/Windows";

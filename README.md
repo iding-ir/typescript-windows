@@ -17,6 +17,12 @@ Typescript Floating Windows.
 windows.tsx:
 
 ```
+import React from "react";
+import { Window } from "typescript-windows";
+
+import Content from "./components/Content";
+import Title from "./components/Title";
+
 export const windows: Window[] = [
   {
     key: "window1",
@@ -58,26 +64,47 @@ export const windows: Window[] = [
     startMinimized: true,
   },
 ];
+
 ```
 
 App.tsx:
 
 ```
 import React from "react";
+import Windows from "typescript-windows/Windows";
 
-import "./App.css";
-import "typescript-windows/dist/styles/resizable.css";
-import "typescript-windows/dist/components/Windows.css";
+import "./App.scss";
 import { windows } from "./windows";
-import { Windows } from "typescript-windows";
+import iconMinimize from "./assets/images/icon-minimize.png";
+import iconMaximize from "./assets/images/icon-maximize.png";
+import iconResize from "./assets/images/icon-resize.png";
 
 const App = () => {
   return (
     <div className="app">
-      <Windows windows={windows} taskbar={true} grid={5} />
+      <Windows
+        windows={windows}
+        taskbar={true}
+        grid={5}
+        gridsGap={10}
+        gridsCount={12}
+        styles={{
+          borderRadius: "1rem",
+          headerSize: "2.4rem",
+          headerColor: "#bdbdbd",
+          headerBackground: "#424242",
+          bodyColor: "#9e9e9e",
+          bodyBackground: "#212121",
+          boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+          IconMaximize: `url(${iconMaximize})`,
+          IconMinimize: `url(${iconMinimize})`,
+          IconResize: `url(${iconResize})`,
+        }}
+      />
     </div>
   );
 };
 
 export default App;
+
 ```

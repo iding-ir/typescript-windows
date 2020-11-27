@@ -23,12 +23,25 @@ export interface Window {
     maximizable?: boolean;
     startMinimized?: boolean;
 }
-interface WindowsProps {
+export interface Styles {
+    borderRadius: string;
+    headerSize: string;
+    headerColor: string;
+    headerBackground: string;
+    bodyColor: string;
+    bodyBackground: string;
+    boxShadow: string;
+    IconMaximize: string;
+    IconMinimize: string;
+    IconResize: string;
+}
+export interface WindowsProps {
     windows: Window[];
     taskbar: boolean;
     grid: number;
     gridsGap: number;
     gridsCount: number;
+    styles: Styles;
 }
 declare const Windows: {
     (props: WindowsProps): JSX.Element;
@@ -37,6 +50,18 @@ declare const Windows: {
         grid: number;
         gridsGap: number;
         gridsCount: number;
+        styles: {
+            borderRadius: string;
+            headerSize: string;
+            headerColor: string;
+            headerBackground: string;
+            bodyColor: string;
+            bodyBackground: string;
+            boxShadow: string;
+            IconMaximize: string;
+            IconMinimize: string;
+            IconResize: string;
+        };
     };
 };
 export default Windows;

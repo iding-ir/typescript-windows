@@ -1,5 +1,4 @@
 /// <reference types="react" />
-import "./Title.scss";
 interface TitleProps {
     i18n: string;
 }

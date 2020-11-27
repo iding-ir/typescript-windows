@@ -8,10 +8,45 @@ import { ThemeProvider, DefaultTheme } from "react-jss";
 import { useGrids } from "../utils/useGrids";
 import { getLocalStorage } from "../utils/getLocalStorage";
 import { useStyles } from "./styles";
-import { Window, WindowsProps } from "./Windows.d";
 import iconMinimize from "../assets/images/icon-minimize.png";
 import iconMaximize from "../assets/images/icon-maximize.png";
 import iconResize from "../assets/images/icon-resize.png";
+
+export interface Window {
+  key: string;
+  title: JSX.Element;
+  component: JSX.Element;
+  grids: { x: number; y: number; w: number; h: number };
+  minSize?: { w: number; h: number };
+  maxSize?: { w: number; h: number };
+  draggable?: boolean;
+  resizable?: boolean;
+  minimizable?: boolean;
+  maximizable?: boolean;
+  startMinimized?: boolean;
+}
+
+export interface Styles {
+  borderRadius: string;
+  headerSize: string;
+  headerColor: string;
+  headerBackground: string;
+  bodyColor: string;
+  bodyBackground: string;
+  boxShadow: string;
+  IconMaximize: string;
+  IconMinimize: string;
+  IconResize: string;
+}
+
+export interface WindowsProps {
+  windows: Window[];
+  taskbar: boolean;
+  grid: number;
+  gridsGap: number;
+  gridsCount: number;
+  styles: Styles;
+}
 
 const Windows = (props: WindowsProps) => {
   const { windows, taskbar, grid, gridsCount, gridsGap, styles } = props;
