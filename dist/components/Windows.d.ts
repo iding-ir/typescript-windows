@@ -9,6 +9,14 @@ export interface Window {
         w: number;
         h: number;
     };
+    minSize?: {
+        w: number;
+        h: number;
+    };
+    maxSize?: {
+        w: number;
+        h: number;
+    };
     draggable?: boolean;
     resizable?: boolean;
     minimizable?: boolean;
