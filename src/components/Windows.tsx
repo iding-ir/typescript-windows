@@ -183,7 +183,7 @@ const Windows = (props: WindowsProps) => {
                 : "auto",
             }}
           >
-            <div className="tw-title">{title || null}</div>
+            <div className="tw-title" onDoubleClick={handleMaximize}>{title || null}</div>
 
             <div className="tw-buttons" onClick={handleZIndex}>
               {renderMinimize()}
