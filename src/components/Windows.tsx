@@ -183,9 +183,15 @@ const Windows = (props: WindowsProps) => {
                 : "auto",
             }}
           >
-            <div className="tw-title" onDoubleClick={handleMaximize}>{title || null}</div>
+            <div
+              className="tw-title"
+              onClick={handleZIndex}
+              onDoubleClick={handleMaximize}
+            >
+              {title || null}
+            </div>
 
-            <div className="tw-buttons" onClick={handleZIndex}>
+            <div className="tw-buttons">
               {renderMinimize()}
 
               {renderMaximize()}
@@ -218,8 +224,8 @@ const Windows = (props: WindowsProps) => {
             resizeHandles={["se"]}
             draggableOpts={{ grid: [grid, grid] }}
             onResize={handleResize}
-            minConstraints={minSize && [minSize?.w, minSize.h] }
-            maxConstraints={maxSize && [maxSize?.w, maxSize.h] }
+            minConstraints={minSize && [minSize?.w, minSize.h]}
+            maxConstraints={maxSize && [maxSize?.w, maxSize.h]}
           >
             {component}
           </ResizableBox>
@@ -246,9 +252,8 @@ const Windows = (props: WindowsProps) => {
           scale={1}
           handle=".tw-draggable"
           bounds="parent"
-          onStart={handleZIndex}
           onStop={handleDrag}
-          cancel=".tw-buttons"
+          cancel=".tw-buttons, tw-title"
         >
           <div className={classNames} style={{ zIndex: windowZIndexes[key] }}>
             {renderHeader()}
