@@ -3,18 +3,7 @@ import { createUseStyles } from "react-jss";
 import { Styles } from "./Windows";
 
 export const useStyles = (styles: Styles) => {
-  const {
-    borderRadius,
-    headerSize,
-    headerColor,
-    headerBackground,
-    bodyColor,
-    bodyBackground,
-    boxShadow,
-    IconMaximize,
-    IconMinimize,
-    IconResize,
-  } = styles;
+  const { header, body, icons, borderRadius, boxShadow } = styles;
 
   return createUseStyles({
     "tw-windows": {
@@ -33,19 +22,19 @@ export const useStyles = (styles: Styles) => {
 
       "& .tw-window": {
         position: "absolute",
-        overflow: "hidden",
         borderRadius: `${borderRadius} ${borderRadius} 0 ${borderRadius}`,
-        border: `1px solid ${headerBackground}`,
+        border: `1px solid ${header.background}`,
         boxShadow: boxShadow,
+        overflow: "hidden",
 
         "& .tw-header": {
           display: "flex",
           position: "relative",
           width: "100%",
-          height: headerSize,
-          lineHeight: headerSize,
-          color: headerColor,
-          backgroundColor: headerBackground,
+          height: header.size,
+          lineHeight: header.size,
+          color: header.color,
+          backgroundColor: header.background,
           boxShadow: boxShadow,
           zIndex: "1000",
           cursor: "pointer",
@@ -67,8 +56,8 @@ export const useStyles = (styles: Styles) => {
             padding: "0 0.5rem",
 
             "& .tw-button": {
-              width: headerSize,
-              height: headerSize,
+              width: header.size,
+              height: header.size,
               transition: "opacity 0.3s",
               backgroundSize: "50%",
               backgroundPosition: "center",
@@ -81,11 +70,11 @@ export const useStyles = (styles: Styles) => {
               },
 
               "&.tw-minimize": {
-                backgroundImage: IconMinimize,
+                backgroundImage: icons.minimize,
               },
 
               "&.tw-maximize": {
-                backgroundImage: IconMaximize,
+                backgroundImage: icons.maximize,
               },
             },
           },
@@ -93,8 +82,8 @@ export const useStyles = (styles: Styles) => {
 
         "& .tw-body": {
           overflow: "auto",
-          color: bodyColor,
-          backgroundColor: bodyBackground,
+          color: body.color,
+          backgroundColor: body.background,
         },
 
         "&.tw-minimize-on": {
@@ -143,7 +132,7 @@ export const useStyles = (styles: Styles) => {
         backgroundRepeat: "no-repeat",
         backgroundOrigin: "content-box",
         boxSizing: "border-box",
-        backgroundImage: IconResize,
+        backgroundImage: icons.resize,
         backgroundPosition: "bottom right",
         backgroundSize: "50%",
         opacity: "0.5",

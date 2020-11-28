@@ -16,6 +16,7 @@ Typescript draggable and resizable windows.
 ## Options
 
 Window:
+
 ```
 Window {
   key: string;
@@ -34,6 +35,7 @@ Window {
 ```
 
 Windows:
+
 ```
 Windows {
   windows: Window[];
@@ -122,16 +124,22 @@ const App = () => {
         gridsGap={10}
         gridsCount={12}
         styles={{
+          header: {
+            size: "2.4rem",
+            color: "#bdbdbd",
+            background: "#424242",
+          },
+          body: {
+            color: "#9e9e9e",
+            background: "#212121",
+          },
+          icons: {
+            maximize: `url(${iconMaximize})`,
+            minimize: `url(${iconMinimize})`,
+            resize: `url(${iconResize})`,
+          },
           borderRadius: "1rem",
-          headerSize: "2.4rem",
-          headerColor: "#bdbdbd",
-          headerBackground: "#424242",
-          bodyColor: "#9e9e9e",
-          bodyBackground: "#212121",
           boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
-          IconMaximize: `url(${iconMaximize})`,
-          IconMinimize: `url(${iconMinimize})`,
-          IconResize: `url(${iconResize})`,
         }}
       />
     </div>
