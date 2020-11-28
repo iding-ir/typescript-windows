@@ -1,7 +1,7 @@
 {
   "name": "typescript-windows",
   "version": "2.0.0",
-  "description": "Typescript Floating Windows.",
+  "description": "Typescript draggable and resizable windows.",
   "keywords": [
     "React",
     "Typescript",
