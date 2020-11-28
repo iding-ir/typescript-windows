@@ -17,6 +17,7 @@ export interface Window {
   title: JSX.Element;
   component: JSX.Element;
   grids: { x: number; y: number; w: number; h: number };
+  bounds?: { left: number; top: number; right: number; bottom: number };
   minSize?: { w: number; h: number };
   maxSize?: { w: number; h: number };
   draggable?: boolean;
@@ -105,6 +106,7 @@ const Windows = (props: WindowsProps) => {
         title,
         component,
         grids,
+        bounds,
         minSize,
         maxSize,
         draggable,
@@ -121,6 +123,19 @@ const Windows = (props: WindowsProps) => {
       const location = {
         x: gridsWidth * grids.x + gridsGap * (grids.x + 1),
         y: gridsHeight * grids.y + gridsGap * (grids.y + 1),
+      };
+
+      const limits = bounds && {
+        left: gridsWidth * bounds.left + gridsGap * (bounds.left + 1),
+        top: gridsHeight * bounds.top + gridsGap * (bounds.top + 1),
+        right:
+          gridsWidth * bounds.right +
+          gridsGap * bounds.right -
+          (windowSizes[key]?.w || size.w),
+        bottom:
+          gridsHeight * bounds.bottom +
+          gridsGap * bounds.bottom -
+          (windowSizes[key]?.h + headerHeight || size.h + headerHeight),
       };
 
       const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
@@ -269,7 +284,7 @@ const Windows = (props: WindowsProps) => {
           grid={[grid, grid]}
           scale={1}
           handle=".tw-draggable"
-          bounds="parent"
+          bounds={limits || "parent"}
           onStop={handleDrag}
           cancel="tw-buttons, tw-title"
         >
