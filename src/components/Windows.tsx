@@ -286,7 +286,7 @@ const Windows = (props: WindowsProps) => {
           handle=".tw-draggable"
           bounds={limits || "parent"}
           onStop={handleDrag}
-          cancel=".tw-buttons, .tw-title"
+          cancel=".tw-buttons"
         >
           <div className={classNames} style={{ zIndex: windowZIndexes[key] }}>
             {renderHeader()}
