@@ -2,15 +2,48 @@
 
 - [Intro](#intro)
 - [Demo](#demo)
+- [Options](#options)
 - [Example](#example)
 
 ## Intro
 
-Typescript Floating Windows.
+Typescript draggable and resizable windows.
 
 ## Demo
 
 [Live demo](http://typescript-windows.iding.ir)
+
+## Options
+
+Window:
+```
+Window {
+  key: string;
+  title: JSX.Element;
+  content: JSX.Element;
+  grids: { x: number; y: number; w: number; h: number };
+  bounds?: { left: number; top: number; right: number; bottom: number };
+  minSize?: { w: number; h: number };
+  maxSize?: { w: number; h: number };
+  draggable?: boolean;
+  resizable?: boolean;
+  minimizable?: boolean;
+  maximizable?: boolean;
+  startMinimized?: boolean;
+}
+```
+
+Windows:
+```
+Windows {
+  windows: Window[];
+  taskbar: boolean;
+  grid: number;
+  gridsGap: number;
+  gridsCount: number;
+  styles: Styles;
+}
+```
 
 ## Example
 
