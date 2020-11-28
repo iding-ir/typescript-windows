@@ -211,7 +211,7 @@ const Windows = (props: WindowsProps) => {
           <div
             className={classNames}
             ref={headerRef}
-            onClick={handleZIndex}
+            onMouseDown={handleZIndex}
             style={{
               width: windowMinimizes[key]
                 ? "auto"
