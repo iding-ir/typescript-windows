@@ -2,12 +2,18 @@
 export interface Window {
     key: string;
     title: JSX.Element;
-    component: JSX.Element;
+    content: JSX.Element;
     grids: {
         x: number;
         y: number;
         w: number;
         h: number;
+    };
+    bounds?: {
+        left: number;
+        top: number;
+        right: number;
+        bottom: number;
     };
     minSize?: {
         w: number;
