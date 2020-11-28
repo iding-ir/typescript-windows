@@ -211,7 +211,6 @@ const Windows = (props: WindowsProps) => {
           <div
             className={classNames}
             ref={headerRef}
-            onMouseDown={handleZIndex}
             style={{
               width: windowMinimizes[key]
                 ? "auto"
@@ -285,6 +284,7 @@ const Windows = (props: WindowsProps) => {
           scale={1}
           handle=".tw-draggable"
           bounds={limits || "parent"}
+          onStart={handleZIndex}
           onStop={handleDrag}
           cancel=".tw-buttons"
         >
