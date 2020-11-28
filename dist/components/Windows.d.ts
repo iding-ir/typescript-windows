@@ -30,16 +30,22 @@ export interface Window {
     startMinimized?: boolean;
 }
 export interface Styles {
+    header: {
+        size: string;
+        color: string;
+        background: string;
+    };
+    body: {
+        color: string;
+        background: string;
+    };
+    icons: {
+        maximize: string;
+        minimize: string;
+        resize: string;
+    };
     borderRadius: string;
-    headerSize: string;
-    headerColor: string;
-    headerBackground: string;
-    bodyColor: string;
-    bodyBackground: string;
     boxShadow: string;
-    IconMaximize: string;
-    IconMinimize: string;
-    IconResize: string;
 }
 export interface WindowsProps {
     windows: Window[];
@@ -57,16 +63,22 @@ declare const Windows: {
         gridsGap: number;
         gridsCount: number;
         styles: {
+            header: {
+                size: string;
+                color: string;
+                background: string;
+            };
+            body: {
+                color: string;
+                background: string;
+            };
+            icons: {
+                maximize: string;
+                minimize: string;
+                resize: string;
+            };
             borderRadius: string;
-            headerSize: string;
-            headerColor: string;
-            headerBackground: string;
-            bodyColor: string;
-            bodyBackground: string;
             boxShadow: string;
-            IconMaximize: string;
-            IconMinimize: string;
-            IconResize: string;
         };
     };
 };
