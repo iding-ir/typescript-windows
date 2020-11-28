@@ -15,7 +15,7 @@ import iconResize from "../assets/images/icon-resize.png";
 export interface Window {
   key: string;
   title: JSX.Element;
-  component: JSX.Element;
+  content: JSX.Element;
   grids: { x: number; y: number; w: number; h: number };
   bounds?: { left: number; top: number; right: number; bottom: number };
   minSize?: { w: number; h: number };
@@ -104,7 +104,7 @@ const Windows = (props: WindowsProps) => {
       const {
         key,
         title,
-        component,
+        content,
         grids,
         bounds,
         minSize,
@@ -260,10 +260,10 @@ const Windows = (props: WindowsProps) => {
             minConstraints={minSize && [minSize?.w, minSize.h]}
             maxConstraints={maxSize && [maxSize?.w, maxSize.h]}
           >
-            {component}
+            {content}
           </ResizableBox>
         ) : (
-          <div style={{ width, height }}>{component}</div>
+          <div style={{ width, height }}>{content}</div>
         );
       };
 

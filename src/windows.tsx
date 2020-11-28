@@ -8,7 +8,7 @@ export const windows: Window[] = [
   {
     key: "window1",
     title: <Title i18n="window1.title" />,
-    component: <Content i18n="window1.content" />,
+    content: <Content i18n="window1.content" />,
     grids: { x: 0, y: 0, w: 4, h: 3 },
     bounds: { left: 0, top: 0, right: 6, bottom: 6 },
     minSize: { w: 200, h: 100 },
@@ -22,7 +22,7 @@ export const windows: Window[] = [
   {
     key: "window2",
     title: <Title i18n="window2.title" />,
-    component: <Content i18n="window2.content" />,
+    content: <Content i18n="window2.content" />,
     grids: { x: 4, y: 9, w: 4, h: 3 },
     minSize: { w: 200, h: 100 },
     maxSize: { w: 600, h: 300 },
@@ -36,9 +36,9 @@ export const windows: Window[] = [
   {
     key: "window3",
     title: <Title i18n="window3.title" />,
-    component: <Content i18n="window3.content" />,
+    content: <Content i18n="window3.content" />,
     grids: { x: 8, y: 0, w: 4, h: 3 },
-    bounds: { left: 0, top: 0, right: 12, bottom: 12 },
+    bounds: { left: 6, top: 0, right: 12, bottom: 12 },
     minSize: { w: 200, h: 100 },
     maxSize: { w: 600, h: 300 },
     draggable: true,
