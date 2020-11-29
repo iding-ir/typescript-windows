@@ -46,7 +46,7 @@ export interface Styles {
   boxShadow: string;
 }
 
-export interface WindowsProps {
+export interface Props {
   windows: Window[];
   taskbar: boolean;
   grid: number;
@@ -55,7 +55,7 @@ export interface WindowsProps {
   styles: Styles;
 }
 
-const Windows = (props: WindowsProps) => {
+const Windows = (props: Props) => {
   const { windows, taskbar, grid, gridsCount, gridsGap, styles } = props;
 
   const classes = useStyles(styles)();
@@ -358,6 +358,6 @@ Windows.defaultProps = {
     borderRadius: "1rem",
     boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
   },
-};
+} as Partial<Props>;
 
 export default Windows;
