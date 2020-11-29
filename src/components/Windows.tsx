@@ -244,17 +244,33 @@ const Windows = (props: Props) => {
       };
 
       const renderBodyContents = () => {
-        const width = windowMaximizes[key]
+        let width = windowMaximizes[key]
           ? "100%"
           : windowSizes[key]
           ? windowSizes[key].w
           : size.w;
 
-        const height = windowMaximizes[key]
+        let height = windowMaximizes[key]
           ? "100%"
           : windowSizes[key]
           ? windowSizes[key].h
           : size.h;
+
+        if (minSize?.w) {
+          width = width > minSize.w ? width : minSize.w;
+        }
+
+        if (minSize?.h) {
+          height = height > minSize.h ? height : minSize.h;
+        }
+
+        if (maxSize?.w) {
+          width = width < maxSize.w ? width : maxSize.w;
+        }
+
+        if (maxSize?.h) {
+          height = height < maxSize.h ? height : maxSize.h;
+        }
 
         return resizable && !windowMaximizes[key] ? (
           <ResizableBox
