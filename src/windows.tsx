@@ -12,7 +12,7 @@ export const windows: Window[] = [
         top-left of screen.
       </div>
     ),
-    grids: { x: 0, y: 0, w: 4, h: 3 },
+    grids: { x: 0, y: 0, w: 4, h: 4 },
     bounds: { left: 0, top: 0, right: 6, bottom: 6 },
     minSize: { w: 200, h: 100 },
     maxSize: { w: 600, h: 300 },
@@ -28,7 +28,7 @@ export const windows: Window[] = [
     content: (
       <div style={{ padding: "1rem" }}>Only draggable. Has no bounds.</div>
     ),
-    grids: { x: 4, y: 9, w: 4, h: 3 },
+    grids: { x: 4, y: 8, w: 4, h: 4 },
     minSize: { w: 200, h: 100 },
     maxSize: { w: 600, h: 300 },
     bounds: { left: 0, top: 0, right: 12, bottom: 12 },
@@ -46,7 +46,7 @@ export const windows: Window[] = [
         Starting minimized. Bounded to the right side of screen
       </div>
     ),
-    grids: { x: 8, y: 0, w: 4, h: 3 },
+    grids: { x: 8, y: 0, w: 4, h: 4 },
     bounds: { left: 6, top: 0, right: 12, bottom: 12 },
     minSize: { w: 200, h: 100 },
     maxSize: { w: 600, h: 300 },
