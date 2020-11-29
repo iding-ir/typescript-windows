@@ -2,6 +2,7 @@
 
 - [Intro](#intro)
 - [Demo](#demo)
+- [Installation](#installation)
 - [Options](#options)
 - [Example](#example)
 
@@ -13,10 +14,16 @@ Typescript draggable and resizable windows.
 
 [Live demo](http://typescript-windows.iding.ir)
 
+## Installation
+
+npm:
+```
+npm install typescript-windows --save
+```
+
 ## Options
 
 Window:
-
 ```
 Window {
   key: string;
@@ -35,22 +42,20 @@ Window {
 ```
 
 Windows:
-
 ```
 Windows {
   windows: Window[];
-  taskbar: boolean;
-  grid: number;
-  gridsGap: number;
-  gridsCount: number;
-  styles: Styles;
+  taskbar?: boolean;
+  grid?: number;
+  gridsGap?: number;
+  gridsCount?: number;
+  styles?: Styles;
 }
 ```
 
 ## Example
 
 windows.tsx:
-
 ```
 import React from "react";
 import { Window } from "typescript-windows";
@@ -99,11 +104,9 @@ export const windows: Window[] = [
     startMinimized: true,
   },
 ];
-
 ```
 
 App.tsx:
-
 ```
 import React from "react";
 import Windows from "typescript-windows/Windows";
@@ -147,5 +150,4 @@ const App = () => {
 };
 
 export default App;
-
 ```
