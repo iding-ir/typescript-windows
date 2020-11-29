@@ -47,7 +47,7 @@ export interface Styles {
     borderRadius: string;
     boxShadow: string;
 }
-export interface WindowsProps {
+export interface Props {
     windows: Window[];
     taskbar: boolean;
     grid: number;
@@ -56,31 +56,8 @@ export interface WindowsProps {
     styles: Styles;
 }
 declare const Windows: {
-    (props: WindowsProps): JSX.Element;
-    defaultProps: {
-        taskbar: boolean;
-        grid: number;
-        gridsGap: number;
-        gridsCount: number;
-        styles: {
-            header: {
-                size: string;
-                color: string;
-                background: string;
-            };
-            body: {
-                color: string;
-                background: string;
-            };
-            icons: {
-                maximize: string;
-                minimize: string;
-                resize: string;
-            };
-            borderRadius: string;
-            boxShadow: string;
-        };
-    };
+    (props: Props): JSX.Element;
+    defaultProps: Partial<Props>;
 };
 export default Windows;
 //# sourceMappingURL=Windows.d.ts.map
