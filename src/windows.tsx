@@ -2,7 +2,7 @@ import React from "react";
 
 import Window from "./components/Window";
 
-export const windows: any[] = [
+export const windows: JSX.Element[] = [
   <Window
     id="window1"
     key="window1"

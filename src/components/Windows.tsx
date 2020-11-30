@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import useDimensions from "react-use-dimensions";
 import { ThemeProvider, DefaultTheme } from "react-jss";
 
-import Window from "./Window";
 import { useGrids } from "../utils/useGrids";
 import { getLocalStorage } from "../utils/getLocalStorage";
 import { useStyles } from "./styles";
@@ -31,7 +30,7 @@ export interface Styles {
 }
 
 export interface Props {
-  windows: Window[];
+  windows: JSX.Element[];
   taskbar: boolean;
   grid: number;
   gridsGap: number;
@@ -41,13 +40,9 @@ export interface Props {
 
 const Windows = (props: Props) => {
   const { windows, taskbar, grid, gridsCount, gridsGap, styles } = props;
-
   const classes = useStyles(styles)();
-
   const { gridsWidth, gridsHeight } = useGrids(gridsCount, gridsGap);
-
   const [headerRef, { height: headerHeight }] = useDimensions();
-
   const { state, setState } = useContext(StateContext);
 
   const iWindowSizes = getLocalStorage("windowSizes", {});
@@ -61,9 +56,8 @@ const Windows = (props: Props) => {
   const [windowLocations, setWindowLocations] = useState(iWindowLocations);
   const [windowMaximizes, setWindowMaximizes] = useState(iWindowMaximizes);
   const [windowMinimizes, setWindowMinimizes] = useState(iWindowMinimizes);
-  const [currentWindow, setCurrentWindow] = useState();
-  const [taskbarItemsIn, setTaskbarItemsIn] = useState<Window[]>([]);
-  const [taskbarItemsOut, setTaskbarItemsOut] = useState<Window[]>([]);
+  const [taskbarItemsIn, setTaskbarItemsIn] = useState<JSX.Element[]>([]);
+  const [taskbarItemsOut, setTaskbarItemsOut] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
@@ -105,14 +99,13 @@ const Windows = (props: Props) => {
       setWindowLocations,
       setWindowMaximizes,
       setWindowMinimizes,
-      setCurrentWindow,
     });
-    
-    let taskbarItemsIn: Window[] = [];
-    let taskbarItemsOut: Window[] = [];
+
+    let taskbarItemsIn: JSX.Element[] = [];
+    let taskbarItemsOut: JSX.Element[] = [];
 
     windows.forEach((window) => {
-      if (windowMinimizes[currentWindow!] && taskbar) {
+      if (windowMinimizes[window.props.id] && taskbar) {
         taskbarItemsIn = [...taskbarItemsIn, window];
       } else {
         taskbarItemsOut = [...taskbarItemsOut, window];

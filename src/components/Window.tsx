@@ -55,10 +55,7 @@ const Window = (props: Props) => {
     setWindowLocations,
     setWindowMaximizes,
     setWindowMinimizes,
-    setCurrentWindow,
   } = state;
-
-  setCurrentWindow(id);
 
   const size = {
     w: gridsWidth * grids.w + gridsGap * (grids.w - 1),
@@ -268,6 +265,6 @@ Window.defaultProps = {
   minimizable: true,
   maximizable: true,
   startMinimized: false,
-} as Partial<Props>
+} as Partial<Props>;
 
 export default Window;
