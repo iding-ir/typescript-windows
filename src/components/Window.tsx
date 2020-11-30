@@ -259,4 +259,15 @@ const Window = (props: Props) => {
   );
 };
 
+Window.defaultProps = {
+  bounds: undefined,
+  minSize: { w: 200, h: 100 },
+  maxSize: undefined,
+  draggable: true,
+  resizable: true,
+  minimizable: true,
+  maximizable: true,
+  startMinimized: false,
+} as Partial<Props>
+
 export default Window;
