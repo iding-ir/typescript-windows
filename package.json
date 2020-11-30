@@ -1,5 +1,5 @@
 {
-  "name": "typescript-windows",
+  "name": "windows",
   "version": "3.0.0",
   "description": "Typescript draggable and resizable windows.",
   "keywords": [
@@ -46,6 +46,8 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-resizable": "^1.7.2",
     "i18next": "^19.8.3",
+    "mkdirp": "^1.0.4",
+    "ncp": "^2.0.0",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -59,7 +61,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "publish:npm": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline && node-sass src/ -o dist && tsc --project tsconfig.types.json"
+    "publish:npm": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline&& node-sass src/ -o dist && tsc --project tsconfig.types.json && mkdirp dist/assets && mkdirp dist/assets/images && ncp src/assets/images dist/assets/images"
   },
   "eslintConfig": {
     "extends": [
