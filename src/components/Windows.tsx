@@ -45,11 +45,15 @@ const Windows = (props: Props) => {
   const [headerRef, { height: headerHeight }] = useDimensions();
   const { state, setState } = useContext(StateContext);
 
+  const dBoxMinimizes = windows.reduce((total: object, item: JSX.Element) => {
+    return { ...total, [item.props.id]: item.props.startMinimized };
+  }, {});
+
   const iWindowSizes = getLocalStorage("windowSizes", {});
   const iWindowZIndexes = getLocalStorage("windowZIndexes", {});
   const iWindowLocations = getLocalStorage("windowLocations", {});
   const iWindowMaximizes = getLocalStorage("windowMaximizes", {});
-  const iWindowMinimizes = getLocalStorage("windowMinimizes", {});
+  const iWindowMinimizes = getLocalStorage("windowMinimizes", dBoxMinimizes);
 
   const [windowSizes, setWindowSizes] = useState(iWindowSizes);
   const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);
