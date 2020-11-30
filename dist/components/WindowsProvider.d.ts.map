@@ -1,0 +1,1 @@
+{"version":3,"file":"WindowsProvider.d.ts","sourceRoot":"","sources":["../../src/components/WindowsProvider.tsx"],"names":[],"mappings":"AAAA,OAAc,EAAE,OAAO,EAA2B,MAAM,OAAO,CAAC;AAEhE,eAAO,MAAM,YAAY,EAAE,OAAO,CAAC,GAAG,CAGpC,CAAC;AAEH,UAAU,KAAK;IACb,QAAQ,EAAE,GAAG,CAAC,OAAO,CAAC;CACvB;AAED,eAAO,MAAM,aAAa,UAAW,KAAK,gBAUzC,CAAC;AAEF,eAAe,aAAa,CAAC"}

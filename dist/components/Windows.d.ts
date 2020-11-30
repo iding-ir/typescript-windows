@@ -1,34 +1,4 @@
 /// <reference types="react" />
-export interface Window {
-    key: string;
-    title: JSX.Element;
-    content: JSX.Element;
-    grids: {
-        x: number;
-        y: number;
-        w: number;
-        h: number;
-    };
-    bounds?: {
-        left: number;
-        top: number;
-        right: number;
-        bottom: number;
-    };
-    minSize?: {
-        w: number;
-        h: number;
-    };
-    maxSize?: {
-        w: number;
-        h: number;
-    };
-    draggable?: boolean;
-    resizable?: boolean;
-    minimizable?: boolean;
-    maximizable?: boolean;
-    startMinimized?: boolean;
-}
 export interface Styles {
     header: {
         size: string;
@@ -48,7 +18,7 @@ export interface Styles {
     boxShadow: string;
 }
 export interface Props {
-    windows: Window[];
+    windows: JSX.Element[];
     taskbar: boolean;
     grid: number;
     gridsGap: number;
