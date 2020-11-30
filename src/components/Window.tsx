@@ -218,7 +218,7 @@ const Window = (props: Props) => {
     );
   };
 
-  const classNames = clsx("tw-window", id, {
+  const classNames = clsx("tw-window", {
     "tw-taskbar-on": taskbar,
     "tw-taskbar-off": !taskbar,
     "tw-minimize-on": windowMinimizes[id],
@@ -240,7 +240,11 @@ const Window = (props: Props) => {
       onStop={handleDrag}
       cancel=".tw-buttons"
     >
-      <div className={classNames} style={{ zIndex: windowZIndexes[id] }}>
+      <div
+        className={classNames}
+        id={id}
+        style={{ zIndex: windowZIndexes[id] }}
+      >
         {renderHeader()}
 
         {renderBody()}
