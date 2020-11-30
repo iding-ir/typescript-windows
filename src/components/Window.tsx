@@ -59,7 +59,9 @@ const Window = (props: Props) => {
 
   const size = {
     w: gridsWidth * grids.w + gridsGap * (grids.w - 1),
-    h: gridsHeight * grids.h + gridsGap * (grids.h - 1) - headerHeight,
+    h: headerHeight
+      ? gridsHeight * grids.h + gridsGap * (grids.h - 1) - headerHeight
+      : 0,
   };
 
   const location = {
