@@ -208,7 +208,7 @@ const App = () => {
 export default App;
 ```
 
-App.css:
+App.scss:
 ```
 .app {
   width: 100%;
