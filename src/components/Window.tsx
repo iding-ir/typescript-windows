@@ -180,33 +180,22 @@ const Window = (props: Props) => {
   };
 
   const renderBodyContents = () => {
-    let width = windowMaximizes[id]
+    const width = windowMaximizes[id]
       ? "100%"
       : windowSizes[id]
       ? windowSizes[id].w
       : size.w;
 
-    let height = windowMaximizes[id]
+    const height = windowMaximizes[id]
       ? "100%"
       : windowSizes[id]
       ? windowSizes[id].h
       : size.h;
 
-    if (minSize?.w) {
-      width = width > minSize.w ? width : minSize.w;
-    }
-
-    if (minSize?.h) {
-      height = height > minSize.h ? height : minSize.h;
-    }
-
-    if (maxSize?.w) {
-      width = width < maxSize.w ? width : maxSize.w;
-    }
-
-    if (maxSize?.h) {
-      height = height < maxSize.h ? height : maxSize.h;
-    }
+    const minWidth = windowMaximizes[id] ? "100%" : minSize?.w;
+    const minHeight = windowMaximizes[id] ? "100%" : minSize?.h;
+    const maxWidth = windowMaximizes[id] ? "100%" : maxSize?.w;
+    const maxHeight = windowMaximizes[id] ? "100%" : maxSize?.h;
 
     return resizable && !windowMaximizes[id] ? (
       <ResizableBox
@@ -221,7 +210,9 @@ const Window = (props: Props) => {
         {content}
       </ResizableBox>
     ) : (
-      <div style={{ width, height }}>{content}</div>
+      <div style={{ width, height, minWidth, minHeight, maxWidth, maxHeight }}>
+        {content}
+      </div>
     );
   };
 
