@@ -7,8 +7,8 @@ import { StateContext } from "./WindowsProvider";
 
 export interface Props {
   id: string;
-  title: JSX.Element;
-  content: JSX.Element;
+  title?: JSX.Element;
+  children: JSX.Element;
   grids: { x: number; y: number; w: number; h: number };
   bounds?: { left: number; top: number; right: number; bottom: number };
   minSize?: { w: number; h: number };
@@ -26,7 +26,7 @@ const Window = (props: Props) => {
   const {
     id,
     title,
-    content,
+    children,
     grids,
     bounds,
     minSize,
@@ -209,11 +209,11 @@ const Window = (props: Props) => {
         minConstraints={minSize && [minSize?.w, minSize.h]}
         maxConstraints={maxSize && [maxSize?.w, maxSize.h]}
       >
-        {content}
+        {children}
       </ResizableBox>
     ) : (
       <div style={{ width, height, minWidth, minHeight, maxWidth, maxHeight }}>
-        {content}
+        {children}
       </div>
     );
   };
@@ -254,6 +254,7 @@ const Window = (props: Props) => {
 };
 
 Window.defaultProps = {
+  title: <div></div>,
   bounds: undefined,
   minSize: { w: 200, h: 100 },
   maxSize: undefined,
