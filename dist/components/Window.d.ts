@@ -1,14 +1,14 @@
 /// <reference types="react" />
 export interface Props {
     id: string;
-    title: JSX.Element;
-    content: JSX.Element;
+    children: JSX.Element;
     grids: {
         x: number;
         y: number;
         w: number;
         h: number;
     };
+    title?: JSX.Element;
     bounds?: {
         left: number;
         top: number;

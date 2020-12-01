@@ -18,7 +18,7 @@ export interface Styles {
     boxShadow: string;
 }
 export interface Props {
-    windows: JSX.Element[];
+    children: JSX.Element[];
     taskbar: boolean;
     grid: number;
     gridsGap: number;
