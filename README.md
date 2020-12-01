@@ -36,7 +36,13 @@ Windows {
 }
 ```
 
-#### Example
+| Option     | Type    | Default | Description                                   |
+| ---------- | ------- | ------- | --------------------------------------------- |
+| taskbar    | boolean | true    | Whether of not windows minimize to a taskbar. |
+| grid       | number  | 1       | Step size when dragging and resizing.         |
+| gridsGap   | number  | 10      | Gap size between grids.                       |
+| gridsCount | number  | 12      | Number of grids.                              |
+| styles     | Styles  |         | JSS style for components.                     |
 
 ```
 <Windows
@@ -71,9 +77,8 @@ Window:
 ```
 Window {
   id: string;
-  title: JSX.Element;
-  content: JSX.Element;
   grids: { x: number; y: number; w: number; h: number };
+  title?: JSX.Element;
   bounds?: { left: number; top: number; right: number; bottom: number };
   minSize?: { w: number; h: number };
   maxSize?: { w: number; h: number };
@@ -85,15 +90,26 @@ Window {
 }
 ```
 
-#### Example
+| Option         | Type          | Default | Description                                     |
+| -------------- | ------------- | ------- | ----------------------------------------------- |
+| id             | Unique string |         | HTML id attribute set for a window.             |
+| grids          | object        |         | Position of a window between grids.             |
+| title          | JSX.Element   |         | JSX title of a window.                          |
+| bounds         | object        |         | Bounds of a window between grids.               |
+| minSize        | object        |         | Minimum resizable size of a window.             |
+| maxSize        | object        |         | Maximum resizable size of a window.             |
+| draggable      | boolean       | true    | Whether a window is draggable or not.           |
+| resizable      | boolean       | true    | Whether a window is resizable or not.           |
+| minimizable    | boolean       | true    | Whether a window is minimizable or not.         |
+| maximizable    | boolean       | true    | Whether a window is maximizable or not.         |
+| startMinimized | boolean       | false   | Whether a window should start minimized or not. |
 
 ```
 <Window
   id="window"
-  title={<div>Title</div>}
-  content={<div style={{ padding: "1rem" }}>Content</div>}
-  bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
   grids={{ x: 4, y: 8, w: 4, h: 4 }}
+  title={<div>Title</div>}
+  bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
   minSize={{ w: 200, h: 100 }}
   maxSize={{ w: 500, h: 300 }}
   draggable={true}
@@ -101,7 +117,9 @@ Window {
   minimizable={true}
   maximizable={true}
   startMinimized={true}
-/>
+>
+  <div style={{ padding: "1rem" }}>Content</div>
+</Window>
 ```
 
 ## Example
@@ -110,7 +128,7 @@ App.tsx:
 
 ```
 import React from "react";
-import { Windows, WindowsProvider } from "typescript-windows";
+import { WindowsProvider, Windows, Window } from "typescript-windows";
 
 import "./App.scss";
 
@@ -118,82 +136,88 @@ const App = () => {
   return (
     <div className="app">
       <WindowsProvider>
-        <Windows grid={5}>
+        <Windows taskbar={true} grid={5}>
           <Window
             id="window1"
-            title={<div>Window 1</div>}
-            content={
-              <div style={{ padding: "1rem" }}>
-                Draggable, resizable, minimizable and maximizable.
-              </div>
-            }
             grids={{ x: 0, y: 0, w: 4, h: 4 }}
-          />
+            title={<div>Window 1</div>}
+          >
+            <div style={{ padding: "1rem" }}>
+              Draggable, resizable, minimizable and maximizable.
+            </div>
+          </Window>
 
           <Window
             id="window2"
-            title={<div>Window 2</div>}
-            content={
-              <div style={{ padding: "1rem" }}>
-                With minimum and maximum size.
-              </div>
-            }
             grids={{ x: 4, y: 0, w: 4, h: 4 }}
+            title={<div>Window 2</div>}
             minSize={{ w: 200, h: 100 }}
             maxSize={{ w: 500, h: 300 }}
-          />
+          >
+            <div style={{ padding: "1rem" }}>
+              With minimum and maximum size.
+            </div>
+          </Window>
 
           <Window
             id="window3"
-            title={<div>Window 3</div>}
-            content={
-              <div style={{ padding: "1rem" }}>
-                Bounded to the upper half of the screen.
-              </div>
-            }
             grids={{ x: 8, y: 0, w: 4, h: 4 }}
+            title={<div>Window 3</div>}
             bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
-          />
+          >
+            <div style={{ padding: "1rem" }}>
+              Bounded to the upper half of the screen.
+            </div>
+          </Window>
 
           <Window
             id="window4"
-            title={<div>Window 4</div>}
-            content={<div style={{ padding: "1rem" }}>Not draggable.</div>}
             grids={{ x: 0, y: 4, w: 4, h: 4 }}
+            title={<div>Window 4</div>}
             draggable={false}
-          />
+          >
+            <div style={{ padding: "1rem" }}>Not draggable.</div>
+          </Window>
 
           <Window
             id="window5"
-            title={<div>Window 5</div>}
-            content={<div style={{ padding: "1rem" }}>Not resizable.</div>}
             grids={{ x: 4, y: 4, w: 4, h: 4 }}
+            title={<div>Window 5</div>}
             resizable={false}
-          />
+          >
+            <div style={{ padding: "1rem" }}>Not resizable.</div>
+          </Window>
 
           <Window
             id="window6"
-            title={<div>Window 6</div>}
-            content={<div style={{ padding: "1rem" }}>Not minimizable.</div>}
             grids={{ x: 8, y: 4, w: 4, h: 4 }}
+            title={<div>Window 6</div>}
             minimizable={false}
-          />
+          >
+            <div style={{ padding: "1rem" }}>Not minimizable.</div>
+          </Window>
 
           <Window
             id="window7"
-            title={<div>Window 7</div>}
-            content={<div style={{ padding: "1rem" }}>Not maximizable.</div>}
             grids={{ x: 0, y: 8, w: 4, h: 4 }}
+            title={<div>Window 7</div>}
             maximizable={false}
-          />
+          >
+            <div style={{ padding: "1rem" }}>Not maximizable.</div>
+          </Window>
+
+          <Window id="window8" grids={{ x: 4, y: 8, w: 4, h: 4 }}>
+            <div style={{ padding: "1rem" }}>Without a title.</div>
+          </Window>
 
           <Window
-            id="window8"
-            title={<div>Window 8</div>}
-            content={<div style={{ padding: "1rem" }}>Starting minimized.</div>}
-            grids={{ x: 4, y: 8, w: 4, h: 4 }}
+            id="window9"
+            grids={{ x: 8, y: 8, w: 4, h: 4 }}
+            title={<div>Window 9</div>}
             startMinimized={true}
-          />
+          >
+            <div style={{ padding: "1rem" }}>Starting minimized.</div>
+          </Window>
         </Windows>
       </WindowsProvider>
     </div>
