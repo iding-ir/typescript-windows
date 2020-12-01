@@ -7,9 +7,9 @@ import { StateContext } from "./WindowsProvider";
 
 export interface Props {
   id: string;
-  title?: JSX.Element;
   children: JSX.Element;
   grids: { x: number; y: number; w: number; h: number };
+  title?: JSX.Element;
   bounds?: { left: number; top: number; right: number; bottom: number };
   minSize?: { w: number; h: number };
   maxSize?: { w: number; h: number };
@@ -25,9 +25,9 @@ const Window = (props: Props) => {
 
   const {
     id,
-    title,
     children,
     grids,
+    title,
     bounds,
     minSize,
     maxSize,

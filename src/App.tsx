@@ -12,8 +12,8 @@ const App = () => {
         <Windows taskbar={true} grid={5}>
           <Window
             id="window1"
-            title={<div>Window 1</div>}
             grids={{ x: 0, y: 0, w: 4, h: 4 }}
+            title={<div>Window 1</div>}
           >
             <div style={{ padding: "1rem" }}>
               Draggable, resizable, minimizable and maximizable.
@@ -22,8 +22,8 @@ const App = () => {
 
           <Window
             id="window2"
-            title={<div>Window 2</div>}
             grids={{ x: 4, y: 0, w: 4, h: 4 }}
+            title={<div>Window 2</div>}
             minSize={{ w: 200, h: 100 }}
             maxSize={{ w: 500, h: 300 }}
           >
@@ -34,8 +34,8 @@ const App = () => {
 
           <Window
             id="window3"
-            title={<div>Window 3</div>}
             grids={{ x: 8, y: 0, w: 4, h: 4 }}
+            title={<div>Window 3</div>}
             bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
           >
             <div style={{ padding: "1rem" }}>
@@ -45,8 +45,8 @@ const App = () => {
 
           <Window
             id="window4"
-            title={<div>Window 4</div>}
             grids={{ x: 0, y: 4, w: 4, h: 4 }}
+            title={<div>Window 4</div>}
             draggable={false}
           >
             <div style={{ padding: "1rem" }}>Not draggable.</div>
@@ -54,8 +54,8 @@ const App = () => {
 
           <Window
             id="window5"
-            title={<div>Window 5</div>}
             grids={{ x: 4, y: 4, w: 4, h: 4 }}
+            title={<div>Window 5</div>}
             resizable={false}
           >
             <div style={{ padding: "1rem" }}>Not resizable.</div>
@@ -63,8 +63,8 @@ const App = () => {
 
           <Window
             id="window6"
-            title={<div>Window 6</div>}
             grids={{ x: 8, y: 4, w: 4, h: 4 }}
+            title={<div>Window 6</div>}
             minimizable={false}
           >
             <div style={{ padding: "1rem" }}>Not minimizable.</div>
@@ -72,8 +72,8 @@ const App = () => {
 
           <Window
             id="window7"
-            title={<div>Window 7</div>}
             grids={{ x: 0, y: 8, w: 4, h: 4 }}
+            title={<div>Window 7</div>}
             maximizable={false}
           >
             <div style={{ padding: "1rem" }}>Not maximizable.</div>
@@ -85,8 +85,8 @@ const App = () => {
 
           <Window
             id="window9"
-            title={<div>Window 9</div>}
             grids={{ x: 8, y: 8, w: 4, h: 4 }}
+            title={<div>Window 9</div>}
             startMinimized={true}
           >
             <div style={{ padding: "1rem" }}>Starting minimized.</div>
