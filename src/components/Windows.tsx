@@ -30,7 +30,7 @@ export interface Styles {
 }
 
 export interface Props {
-  windows: JSX.Element[];
+  children: JSX.Element[];
   taskbar: boolean;
   grid: number;
   gridsGap: number;
@@ -39,13 +39,13 @@ export interface Props {
 }
 
 const Windows = (props: Props) => {
-  const { windows, taskbar, grid, gridsCount, gridsGap, styles } = props;
+  const { children, taskbar, grid, gridsCount, gridsGap, styles } = props;
   const classes = useStyles(styles)();
   const { gridsWidth, gridsHeight } = useGrids(gridsCount, gridsGap);
   const [headerRef, { height: headerHeight }] = useDimensions();
   const { state, setState } = useContext(StateContext);
 
-  const dBoxMinimizes = windows.reduce((total: object, item: JSX.Element) => {
+  const dBoxMinimizes = children.reduce((total: object, item: JSX.Element) => {
     return { ...total, [item.props.id]: item.props.startMinimized };
   }, {});
 
@@ -108,7 +108,7 @@ const Windows = (props: Props) => {
     let taskbarItemsIn: JSX.Element[] = [];
     let taskbarItemsOut: JSX.Element[] = [];
 
-    windows.forEach((window) => {
+    children.forEach((window) => {
       if (windowMinimizes[window.props.id] && taskbar) {
         taskbarItemsIn = [...taskbarItemsIn, window];
       } else {
