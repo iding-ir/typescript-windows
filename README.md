@@ -8,7 +8,7 @@
 
 ## Intro
 
-Typescript draggable and resizable windows.
+Typescript React components for draggable and resizable windows.
 
 ## Demo
 
