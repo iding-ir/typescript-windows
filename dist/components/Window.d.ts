@@ -3,10 +3,12 @@ export interface Props {
     id: string;
     children: JSX.Element;
     grids: {
-        x: number;
-        y: number;
-        w: number;
-        h: number;
+        [key: string]: {
+            x: number;
+            y: number;
+            w: number;
+            h: number;
+        };
     };
     title?: JSX.Element;
     bounds?: {

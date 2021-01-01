@@ -20,7 +20,10 @@ export interface Styles {
 export interface Props {
     children: JSX.Element[];
     taskbar: boolean;
-    grid: number;
+    step: number;
+    breakPoints: {
+        [key: string]: number;
+    };
     gridsGap: number;
     gridsCount: number;
     styles: Styles;
