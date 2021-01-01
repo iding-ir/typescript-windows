@@ -154,7 +154,7 @@ const Windows = (props: Props) => {
 Windows.defaultProps = {
   taskbar: true,
   step: 1,
-  breakPoints: { mobile: 0, tablet: 600, desktop: 840 },
+  breakPoints: { mobile: 0, tablet: 600, desktop: 1280 },
   gridsGap: 10,
   gridsCount: 12,
   styles: {
