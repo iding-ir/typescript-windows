@@ -1,6 +1,6 @@
 {
   "name": "typescript-windows",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Typescript draggable and resizable windows.",
   "keywords": [
     "React",
