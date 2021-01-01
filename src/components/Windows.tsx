@@ -32,7 +32,7 @@ export interface Styles {
 export interface Props {
   children: JSX.Element[];
   taskbar: boolean;
-  grid: number;
+  step: number;
   breakPoints: { [key: string]: number };
   gridsGap: number;
   gridsCount: number;
@@ -43,7 +43,7 @@ const Windows = (props: Props) => {
   const {
     children,
     taskbar,
-    grid,
+    step,
     breakPoints,
     gridsCount,
     gridsGap,
@@ -96,7 +96,7 @@ const Windows = (props: Props) => {
     setState({
       ...state,
       taskbar,
-      grid,
+      step,
       breakPoints,
       gridsGap,
       gridsWidth,
@@ -153,7 +153,7 @@ const Windows = (props: Props) => {
 
 Windows.defaultProps = {
   taskbar: true,
-  grid: 1,
+  step: 1,
   breakPoints: { mobile: 0, tablet: 600, desktop: 840 },
   gridsGap: 10,
   gridsCount: 12,

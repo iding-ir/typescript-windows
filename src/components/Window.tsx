@@ -42,7 +42,7 @@ const Window = (props: Props) => {
 
   const {
     taskbar,
-    grid,
+    step,
     breakPoints,
     gridsGap,
     gridsWidth,
@@ -215,7 +215,7 @@ const Window = (props: Props) => {
         width={width}
         height={height}
         resizeHandles={["se"]}
-        draggableOpts={{ grid: [grid, grid] }}
+        draggableOpts={{ grid: [step, step] }}
         onResize={handleResize}
         minConstraints={minSize && [minSize?.w, minSize.h]}
         maxConstraints={maxSize && [maxSize?.w, maxSize.h]}
@@ -243,7 +243,7 @@ const Window = (props: Props) => {
       key={id}
       defaultPosition={windowLocations[id] || location}
       position={windowLocations[id] || location}
-      grid={[grid, grid]}
+      grid={[step, step]}
       scale={1}
       handle=".tw-draggable"
       bounds={limits || "parent"}

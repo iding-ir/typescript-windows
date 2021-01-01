@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="app">
       <WindowsProvider>
-        <Windows taskbar={true} grid={5}>
+        <Windows taskbar={true} step={5}>
           <Window
             id="window1"
             grids={{
