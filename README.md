@@ -16,7 +16,7 @@ Typescript draggable and resizable windows.
 
 ## Installation
 
-npm:
+#### npm
 
 ```
 npm install typescript-windows --save
@@ -24,7 +24,7 @@ npm install typescript-windows --save
 
 ## Options
 
-Windows:
+#### Windows
 
 ```
 Windows {
@@ -41,23 +41,20 @@ Windows {
 | ----------- | ------- | ------- | --------------------------------------------- |
 | taskbar     | boolean | true    | Whether of not windows minimize to a taskbar. |
 | step        | number  | 1       | Step size when dragging and resizing.         |
-| breakPoints | object  | \*      | Window breakpoints                            |
+| breakPoints | object  | \*      | View breakpoints.                             |
 | gridsGap    | number  | 10      | Gap size between grids.                       |
 | gridsCount  | number  | 12      | Number of grids.                              |
 | styles      | Styles  | \*\*    | JSS style for components.                     |
 
-\*
+##### \*
 
 ```
-
 { mobile: 0, tablet: 600, desktop: 1280 }
-
 ```
 
-\*\*
+##### \*\*
 
 ```
-
 {
   header: {
     size: "2.4rem",
@@ -76,13 +73,11 @@ Windows {
   borderRadius: "1rem",
   boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
 }
-
 ```
 
-Example:
+#### Example
 
-````
-
+```
 <Windows
 taskbar={true}
 step={5}
@@ -109,13 +104,11 @@ styles={{
   }}
 
 ></Windows>
-
 ```
 
-Window:
+#### Window
 
 ```
-
 Window {
 id: string;
 grids: {
@@ -131,7 +124,6 @@ minimizable?: boolean;
 maximizable?: boolean;
 startMinimized?: boolean;
 }
-
 ```
 
 | Option         | Type          | Default | Description                                     |
@@ -148,10 +140,9 @@ startMinimized?: boolean;
 | maximizable    | boolean       | true    | Whether a window is maximizable or not.         |
 | startMinimized | boolean       | false   | Whether a window should start minimized or not. |
 
-Example:
+#### Example
 
 ```
-
 <Window
 id="window"
 grids={{
@@ -176,7 +167,7 @@ startMinimized={true}
 
 ## Example
 
-App.tsx:
+#### App.tsx
 
 ```
 import React from "react";
@@ -318,7 +309,7 @@ const App = () => {
 export default App;
 ```
 
-App.scss:
+#### App.scss
 
 ```
 .app {
@@ -327,4 +318,3 @@ App.scss:
   background-color: #263238;
 }
 ```
-````
