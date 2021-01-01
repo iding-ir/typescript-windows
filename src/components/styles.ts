@@ -14,6 +14,9 @@ export const useStyles = (styles: Styles) => {
 
       "& .tw-taskbar": {
         display: "flex",
+        flexDirection: "row-reverse",
+        flexWrap: "wrap",
+        transform: "rotate(180deg)",
         position: "absolute",
         bottom: "0",
         left: "0",
@@ -91,9 +94,19 @@ export const useStyles = (styles: Styles) => {
 
           "&.tw-taskbar-on": {
             position: "relative",
-            transform: "none !important",
+            transform: "rotate(180deg) !important",
             borderRadius: borderRadius,
             margin: "0.25rem",
+            flexGrow: "10",
+            width: "calc(50% - 0.5rem)",
+            minWidth: "calc(160px - 0.5rem)",
+            maxWidth: "calc(240px - 0.5rem)",
+
+            "& .tw-header": {
+              "&.tw-draggable": {
+                cursor: "default",
+              },
+            },
           },
 
           "& .tw-body": {
