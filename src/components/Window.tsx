@@ -186,13 +186,13 @@ const Window = (props: Props) => {
       ? "100%"
       : windowSizes[id]
       ? windowSizes[id].w
-      : size.w;
+      : Math.max(size.w, minSize?.w || 0);
 
     const height = windowMaximizes[id]
       ? "100%"
       : windowSizes[id]
       ? windowSizes[id].h
-      : size.h;
+      : Math.max(size.h, minSize?.h || 0);
 
     const minWidth = windowMaximizes[id] ? "100%" : minSize?.w;
     const minHeight = windowMaximizes[id] ? "100%" : minSize?.h;
