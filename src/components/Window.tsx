@@ -68,8 +68,6 @@ const Window = (props: Props) => {
     tablet: grids.tablet || grids.desktop,
   };
 
-  console.log(id, grids);
-
   const { breakpoint, maxWidth, minWidth } = useBreakpoint(
     breakPoints,
     "desktop"
