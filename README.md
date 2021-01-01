@@ -29,28 +29,67 @@ Windows:
 ```
 Windows {
   taskbar?: boolean;
-  grid?: number;
+  step?: number;
+  breakPoints: { [key: string]: number };
   gridsGap?: number;
   gridsCount?: number;
   styles?: Styles;
 }
 ```
 
-| Option     | Type    | Default | Description                                   |
-| ---------- | ------- | ------- | --------------------------------------------- |
-| taskbar    | boolean | true    | Whether of not windows minimize to a taskbar. |
-| grid       | number  | 1       | Step size when dragging and resizing.         |
-| gridsGap   | number  | 10      | Gap size between grids.                       |
-| gridsCount | number  | 12      | Number of grids.                              |
-| styles     | Styles  |         | JSS style for components.                     |
+| Option      | Type    | Default | Description                                   |
+| ----------- | ------- | ------- | --------------------------------------------- |
+| taskbar     | boolean | true    | Whether of not windows minimize to a taskbar. |
+| step        | number  | 1       | Step size when dragging and resizing.         |
+| breakPoints | object  | \*      | Window breakpoints                            |
+| gridsGap    | number  | 10      | Gap size between grids.                       |
+| gridsCount  | number  | 12      | Number of grids.                              |
+| styles      | Styles  | \*\*    | JSS style for components.                     |
+
+\*
 
 ```
+
+{ mobile: 0, tablet: 600, desktop: 1280 }
+
+```
+
+\*\*
+
+```
+
+{
+  header: {
+    size: "2.4rem",
+    color: "#bdbdbd",
+    background: "#424242",
+  },
+  body: {
+    color: "#9e9e9e",
+    background: "#212121",
+  },
+  icons: {
+    maximize: `url(${iconMaximize})`,
+    minimize: `url(${iconMinimize})`,
+    resize: `url(${iconResize})`,
+  },
+  borderRadius: "1rem",
+  boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+}
+
+```
+
+Example:
+
+````
+
 <Windows
-  taskbar={true}
-  grid={5}
-  gridsGap={10}
-  gridsCount={12}
-  styles={{
+taskbar={true}
+step={5}
+breakPoints: { mobile: 0, tablet: 600, desktop: 1280 },
+gridsGap={10}
+gridsCount={12}
+styles={{
     header: {
       size: "2.4rem",
       color: "#bdbdbd",
@@ -68,26 +107,31 @@ Windows {
     borderRadius: "1rem",
     boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
   }}
->
-</Windows>
+
+></Windows>
+
 ```
 
 Window:
 
 ```
+
 Window {
-  id: string;
-  grids: { x: number; y: number; w: number; h: number };
-  title?: JSX.Element;
-  bounds?: { left: number; top: number; right: number; bottom: number };
-  minSize?: { w: number; h: number };
-  maxSize?: { w: number; h: number };
-  draggable?: boolean;
-  resizable?: boolean;
-  minimizable?: boolean;
-  maximizable?: boolean;
-  startMinimized?: boolean;
+id: string;
+grids: {
+  [key: string]: { x: number; y: number; w: number; h: number };
+};
+title?: JSX.Element;
+bounds?: { left: number; top: number; right: number; bottom: number };
+minSize?: { w: number; h: number };
+maxSize?: { w: number; h: number };
+draggable?: boolean;
+resizable?: boolean;
+minimizable?: boolean;
+maximizable?: boolean;
+startMinimized?: boolean;
 }
+
 ```
 
 | Option         | Type          | Default | Description                                     |
@@ -104,19 +148,27 @@ Window {
 | maximizable    | boolean       | true    | Whether a window is maximizable or not.         |
 | startMinimized | boolean       | false   | Whether a window should start minimized or not. |
 
+Example:
+
 ```
+
 <Window
-  id="window"
-  grids={{ x: 4, y: 8, w: 4, h: 4 }}
-  title={<div>Title</div>}
-  bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
-  minSize={{ w: 200, h: 100 }}
-  maxSize={{ w: 500, h: 300 }}
-  draggable={true}
-  resizable={true}
-  minimizable={true}
-  maximizable={true}
-  startMinimized={true}
+id="window"
+grids={{
+  mobile: { x: 0, y: 0, w: 12, h: 1 },
+  tablet: { x: 0, y: 0, w: 6, h: 3 },
+  desktop: { x: 0, y: 0, w: 4, h: 4 },
+}}
+title={<div>Title</div>}
+bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
+minSize={{ w: 200, h: 100 }}
+maxSize={{ w: 500, h: 300 }}
+draggable={true}
+resizable={true}
+minimizable={true}
+maximizable={true}
+startMinimized={true}
+
 >
   <div style={{ padding: "1rem" }}>Content</div>
 </Window>
@@ -136,10 +188,14 @@ const App = () => {
   return (
     <div className="app">
       <WindowsProvider>
-        <Windows taskbar={true} grid={5}>
+        <Windows taskbar={true} step={5}>
           <Window
             id="window1"
-            grids={{ x: 0, y: 0, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 0, w: 12, h: 1 },
+              tablet: { x: 0, y: 0, w: 6, h: 3 },
+              desktop: { x: 0, y: 0, w: 4, h: 4 },
+            }}
             title={<div>Window 1</div>}
           >
             <div style={{ padding: "1rem" }}>
@@ -149,7 +205,11 @@ const App = () => {
 
           <Window
             id="window2"
-            grids={{ x: 4, y: 0, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 1, w: 12, h: 1 },
+              tablet: { x: 6, y: 0, w: 6, h: 3 },
+              desktop: { x: 4, y: 0, w: 4, h: 4 },
+            }}
             title={<div>Window 2</div>}
             minSize={{ w: 200, h: 100 }}
             maxSize={{ w: 500, h: 300 }}
@@ -161,7 +221,11 @@ const App = () => {
 
           <Window
             id="window3"
-            grids={{ x: 8, y: 0, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 2, w: 12, h: 1 },
+              tablet: { x: 0, y: 3, w: 6, h: 3 },
+              desktop: { x: 8, y: 0, w: 4, h: 4 },
+            }}
             title={<div>Window 3</div>}
             bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
           >
@@ -172,7 +236,11 @@ const App = () => {
 
           <Window
             id="window4"
-            grids={{ x: 0, y: 4, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 3, w: 12, h: 1 },
+              tablet: { x: 6, y: 3, w: 6, h: 3 },
+              desktop: { x: 0, y: 4, w: 4, h: 4 },
+            }}
             title={<div>Window 4</div>}
             draggable={false}
           >
@@ -181,7 +249,11 @@ const App = () => {
 
           <Window
             id="window5"
-            grids={{ x: 4, y: 4, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 4, w: 12, h: 1 },
+              tablet: { x: 0, y: 6, w: 6, h: 3 },
+              desktop: { x: 4, y: 4, w: 4, h: 4 },
+            }}
             title={<div>Window 5</div>}
             resizable={false}
           >
@@ -190,7 +262,11 @@ const App = () => {
 
           <Window
             id="window6"
-            grids={{ x: 8, y: 4, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 5, w: 12, h: 1 },
+              tablet: { x: 6, y: 6, w: 6, h: 3 },
+              desktop: { x: 8, y: 4, w: 4, h: 4 },
+            }}
             title={<div>Window 6</div>}
             minimizable={false}
           >
@@ -199,20 +275,35 @@ const App = () => {
 
           <Window
             id="window7"
-            grids={{ x: 0, y: 8, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 6, w: 12, h: 1 },
+              tablet: { x: 0, y: 9, w: 6, h: 3 },
+              desktop: { x: 0, y: 8, w: 4, h: 4 },
+            }}
             title={<div>Window 7</div>}
             maximizable={false}
           >
             <div style={{ padding: "1rem" }}>Not maximizable.</div>
           </Window>
 
-          <Window id="window8" grids={{ x: 4, y: 8, w: 4, h: 4 }}>
+          <Window
+            id="window8"
+            grids={{
+              mobile: { x: 0, y: 7, w: 12, h: 1 },
+              tablet: { x: 6, y: 9, w: 6, h: 3 },
+              desktop: { x: 4, y: 8, w: 4, h: 4 },
+            }}
+          >
             <div style={{ padding: "1rem" }}>Without a title.</div>
           </Window>
 
           <Window
             id="window9"
-            grids={{ x: 8, y: 8, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 8, w: 12, h: 1 },
+              tablet: { x: 2, y: 2, w: 8, h: 8 },
+              desktop: { x: 8, y: 8, w: 4, h: 4 },
+            }}
             title={<div>Window 9</div>}
             startMinimized={true}
           >
@@ -236,3 +327,4 @@ App.scss:
   background-color: #263238;
 }
 ```
+````
