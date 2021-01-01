@@ -165,6 +165,8 @@ startMinimized={true}
 </Window>
 ```
 
+Note: in "grids" option, "desktop" is mandatory and the other two are optional.
+
 ## Example
 
 #### App.tsx
