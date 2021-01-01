@@ -33,13 +33,22 @@ export interface Props {
   children: JSX.Element[];
   taskbar: boolean;
   grid: number;
+  breakPoints: { [key: string]: number };
   gridsGap: number;
   gridsCount: number;
   styles: Styles;
 }
 
 const Windows = (props: Props) => {
-  const { children, taskbar, grid, gridsCount, gridsGap, styles } = props;
+  const {
+    children,
+    taskbar,
+    grid,
+    breakPoints,
+    gridsCount,
+    gridsGap,
+    styles,
+  } = props;
   const classes = useStyles(styles)();
   const { gridsWidth, gridsHeight } = useGrids(gridsCount, gridsGap);
   const [headerRef, { height: headerHeight }] = useDimensions();
@@ -88,6 +97,7 @@ const Windows = (props: Props) => {
       ...state,
       taskbar,
       grid,
+      breakPoints,
       gridsGap,
       gridsWidth,
       gridsHeight,
@@ -144,6 +154,7 @@ const Windows = (props: Props) => {
 Windows.defaultProps = {
   taskbar: true,
   grid: 1,
+  breakPoints: { mobile: 0, tablet: 600, desktop: 840 },
   gridsGap: 10,
   gridsCount: 12,
   styles: {

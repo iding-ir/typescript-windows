@@ -12,7 +12,11 @@ const App = () => {
         <Windows taskbar={true} grid={5}>
           <Window
             id="window1"
-            grids={{ x: 0, y: 0, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 0, w: 12, h: 1 },
+              tablet: { x: 0, y: 0, w: 6, h: 3 },
+              desktop: { x: 0, y: 0, w: 4, h: 4 },
+            }}
             title={<div>Window 1</div>}
           >
             <div style={{ padding: "1rem" }}>
@@ -22,7 +26,11 @@ const App = () => {
 
           <Window
             id="window2"
-            grids={{ x: 4, y: 0, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 1, w: 12, h: 1 },
+              tablet: { x: 6, y: 0, w: 6, h: 3 },
+              desktop: { x: 4, y: 0, w: 4, h: 4 },
+            }}
             title={<div>Window 2</div>}
             minSize={{ w: 200, h: 100 }}
             maxSize={{ w: 500, h: 300 }}
@@ -34,7 +42,11 @@ const App = () => {
 
           <Window
             id="window3"
-            grids={{ x: 8, y: 0, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 2, w: 12, h: 1 },
+              tablet: { x: 0, y: 3, w: 6, h: 3 },
+              desktop: { x: 8, y: 0, w: 4, h: 4 },
+            }}
             title={<div>Window 3</div>}
             bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
           >
@@ -45,7 +57,11 @@ const App = () => {
 
           <Window
             id="window4"
-            grids={{ x: 0, y: 4, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 3, w: 12, h: 1 },
+              tablet: { x: 6, y: 3, w: 6, h: 3 },
+              desktop: { x: 0, y: 4, w: 4, h: 4 },
+            }}
             title={<div>Window 4</div>}
             draggable={false}
           >
@@ -54,7 +70,11 @@ const App = () => {
 
           <Window
             id="window5"
-            grids={{ x: 4, y: 4, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 4, w: 12, h: 1 },
+              tablet: { x: 0, y: 6, w: 6, h: 3 },
+              desktop: { x: 4, y: 4, w: 4, h: 4 },
+            }}
             title={<div>Window 5</div>}
             resizable={false}
           >
@@ -63,7 +83,11 @@ const App = () => {
 
           <Window
             id="window6"
-            grids={{ x: 8, y: 4, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 5, w: 12, h: 1 },
+              tablet: { x: 6, y: 6, w: 6, h: 3 },
+              desktop: { x: 8, y: 4, w: 4, h: 4 },
+            }}
             title={<div>Window 6</div>}
             minimizable={false}
           >
@@ -72,20 +96,35 @@ const App = () => {
 
           <Window
             id="window7"
-            grids={{ x: 0, y: 8, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 6, w: 12, h: 1 },
+              tablet: { x: 0, y: 9, w: 6, h: 3 },
+              desktop: { x: 0, y: 8, w: 4, h: 4 },
+            }}
             title={<div>Window 7</div>}
             maximizable={false}
           >
             <div style={{ padding: "1rem" }}>Not maximizable.</div>
           </Window>
 
-          <Window id="window8" grids={{ x: 4, y: 8, w: 4, h: 4 }}>
+          <Window
+            id="window8"
+            grids={{
+              mobile: { x: 0, y: 7, w: 12, h: 1 },
+              tablet: { x: 6, y: 9, w: 6, h: 3 },
+              desktop: { x: 4, y: 8, w: 4, h: 4 },
+            }}
+          >
             <div style={{ padding: "1rem" }}>Without a title.</div>
           </Window>
 
           <Window
             id="window9"
-            grids={{ x: 8, y: 8, w: 4, h: 4 }}
+            grids={{
+              mobile: { x: 0, y: 8, w: 12, h: 1 },
+              tablet: { x: 2, y: 2, w: 8, h: 8 },
+              desktop: { x: 8, y: 8, w: 4, h: 4 },
+            }}
             title={<div>Window 9</div>}
             startMinimized={true}
           >

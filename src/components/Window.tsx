@@ -2,13 +2,16 @@ import React, { useContext, SyntheticEvent } from "react";
 import Draggable, { DraggableEvent, DraggableData } from "react-draggable";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
 import clsx from "clsx";
+import useBreakpoint from "use-breakpoint";
 
 import { StateContext } from "./WindowsProvider";
 
 export interface Props {
   id: string;
   children: JSX.Element;
-  grids: { x: number; y: number; w: number; h: number };
+  grids: {
+    [key: string]: { x: number; y: number; w: number; h: number };
+  };
   title?: JSX.Element;
   bounds?: { left: number; top: number; right: number; bottom: number };
   minSize?: { w: number; h: number };
@@ -40,6 +43,7 @@ const Window = (props: Props) => {
   const {
     taskbar,
     grid,
+    breakPoints,
     gridsGap,
     gridsWidth,
     gridsHeight,
@@ -57,16 +61,23 @@ const Window = (props: Props) => {
     setWindowMinimizes,
   } = state;
 
+  const { breakpoint, maxWidth, minWidth } = useBreakpoint(
+    breakPoints,
+    "desktop"
+  );
+
+  const bp = breakpoint as string;
+
   const size = {
-    w: gridsWidth * grids.w + gridsGap * (grids.w - 1),
+    w: gridsWidth * grids[bp].w + gridsGap * (grids[bp].w - 1),
     h: headerHeight
-      ? gridsHeight * grids.h + gridsGap * (grids.h - 1) - headerHeight
+      ? gridsHeight * grids[bp].h + gridsGap * (grids[bp].h - 1) - headerHeight
       : 0,
   };
 
   const location = {
-    x: gridsWidth * grids.x + gridsGap * (grids.x + 1),
-    y: gridsHeight * grids.y + gridsGap * (grids.y + 1),
+    x: gridsWidth * grids[bp].x + gridsGap * (grids[bp].x + 1),
+    y: gridsHeight * grids[bp].y + gridsGap * (grids[bp].y + 1),
   };
 
   const limits = bounds && {
