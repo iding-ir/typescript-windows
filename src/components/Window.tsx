@@ -26,10 +26,11 @@ export interface Props {
 const Window = (props: Props) => {
   const { state } = useContext(StateContext);
 
+  let { grids } = props;
+
   const {
     id,
     children,
-    grids,
     title,
     bounds,
     minSize,
@@ -60,6 +61,14 @@ const Window = (props: Props) => {
     setWindowMaximizes,
     setWindowMinimizes,
   } = state;
+
+  grids = {
+    ...grids,
+    mobile: grids.mobile || grids.desktop,
+    tablet: grids.tablet || grids.desktop,
+  };
+
+  console.log(id, grids);
 
   const { breakpoint, maxWidth, minWidth } = useBreakpoint(
     breakPoints,
