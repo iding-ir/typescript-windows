@@ -26,11 +26,10 @@ export interface Props {
 const Window = (props: Props) => {
   const { state } = useContext(StateContext);
 
-  let { grids } = props;
-
   const {
     id,
     children,
+    grids,
     title,
     bounds,
     minSize,
@@ -62,11 +61,13 @@ const Window = (props: Props) => {
     setWindowMinimizes,
   } = state;
 
-  grids = {
-    ...grids,
-    mobile: grids.mobile || grids.desktop,
-    tablet: grids.tablet || grids.desktop,
-  };
+  grids.tablet = grids.tablet || grids.mobile;
+  grids.desktop = grids.desktop || grids.tablet;
+
+  if (bounds) {
+    bounds.tablet = bounds.tablet || bounds.mobile;
+    bounds.desktop = bounds.desktop || bounds.tablet;
+  }
 
   const { breakpoint } = useBreakpoint(breakPoints, "desktop");
 
