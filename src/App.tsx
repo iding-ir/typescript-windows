@@ -55,7 +55,7 @@ const App = () => {
             }}
           >
             <div style={{ padding: "1rem" }}>
-              Bounded to the upper half of the screen.
+              Bounded to half of the screen.
             </div>
           </Window>
 
