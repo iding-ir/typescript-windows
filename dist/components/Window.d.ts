@@ -1,26 +1,5 @@
 /// <reference types="react" />
-export interface Grid {
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-}
-export interface Grids {
-    [key: string]: Grid;
-}
-export interface Bounds {
-    left: number;
-    top: number;
-    right: number;
-    bottom: number;
-}
-export interface Size {
-    w: number;
-    h: number;
-}
-export interface Sizes {
-    [key: string]: Size;
-}
+import { Size, Grids, Bounds } from "./index.d";
 export interface Props {
     id: string;
     children: JSX.Element;
