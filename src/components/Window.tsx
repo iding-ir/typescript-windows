@@ -5,17 +5,44 @@ import clsx from "clsx";
 import useBreakpoint from "use-breakpoint";
 
 import { StateContext } from "./WindowsProvider";
+import { useSize } from "../utils/useSize";
+import { useLocation } from "../utils/useLocation";
+import { useLimits } from "../utils/useLimits";
+
+export interface Grid {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+export interface Grids {
+  [key: string]: Grid;
+}
+
+export interface Bounds {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+}
+
+export interface Size {
+  w: number;
+  h: number;
+}
+
+export interface Sizes {
+  [key: string]: Size;
+}
 
 export interface Props {
   id: string;
   children: JSX.Element;
-  grids: {
-    [key: string]: { x: number; y: number; w: number; h: number };
-  };
+  grids: Grids;
   title?: JSX.Element;
-  bounds?: { left: number; top: number; right: number; bottom: number };
-  minSize?: { w: number; h: number };
-  maxSize?: { w: number; h: number };
+  bounds?: Bounds;
+  minSize?: Size;
+  maxSize?: Size;
   draggable?: boolean;
   resizable?: boolean;
   minimizable?: boolean;
@@ -68,37 +95,35 @@ const Window = (props: Props) => {
     tablet: grids.tablet || grids.desktop,
   };
 
-  const { breakpoint, maxWidth, minWidth } = useBreakpoint(
-    breakPoints,
-    "desktop"
+  const { breakpoint } = useBreakpoint(breakPoints, "desktop");
+
+  const { size } = useSize(
+    headerHeight,
+    gridsHeight,
+    gridsWidth,
+    gridsGap,
+    grids,
+    breakpoint as string
   );
 
-  const bp = breakpoint as string;
+  const { location } = useLocation(
+    gridsHeight,
+    gridsWidth,
+    gridsGap,
+    grids,
+    breakpoint as string
+  );
 
-  const size = {
-    w: gridsWidth * grids[bp].w + gridsGap * (grids[bp].w - 1),
-    h: headerHeight
-      ? gridsHeight * grids[bp].h + gridsGap * (grids[bp].h - 1) - headerHeight
-      : 0,
-  };
-
-  const location = {
-    x: gridsWidth * grids[bp].x + gridsGap * (grids[bp].x + 1),
-    y: gridsHeight * grids[bp].y + gridsGap * (grids[bp].y + 1),
-  };
-
-  const limits = bounds && {
-    left: gridsWidth * bounds.left + gridsGap * (bounds.left + 1),
-    top: gridsHeight * bounds.top + gridsGap * (bounds.top + 1),
-    right:
-      gridsWidth * bounds.right +
-      gridsGap * bounds.right -
-      (windowSizes[id]?.w || size.w),
-    bottom:
-      gridsHeight * bounds.bottom +
-      gridsGap * bounds.bottom -
-      (windowSizes[id]?.h + headerHeight || size.h + headerHeight),
-  };
+  const { limits } = useLimits(
+    headerHeight,
+    windowSizes,
+    gridsHeight,
+    gridsWidth,
+    gridsGap,
+    bounds,
+    size,
+    id
+  );
 
   const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
     setWindowSizes({
