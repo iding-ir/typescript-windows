@@ -79,30 +79,29 @@ Windows {
 
 ```
 <Windows
-taskbar={true}
-step={5}
-breakPoints: { mobile: 0, tablet: 600, desktop: 1280 },
-gridsGap={10}
-gridsCount={12}
-styles={{
-    header: {
-      size: "2.4rem",
-      color: "#bdbdbd",
-      background: "#424242",
-    },
-    body: {
-      color: "#9e9e9e",
-      background: "#212121",
-    },
-    icons: {
-      maximize: `url(${iconMaximize})`,
-      minimize: `url(${iconMinimize})`,
-      resize: `url(${iconResize})`,
-    },
-    borderRadius: "1rem",
-    boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+  taskbar={true}
+  step={5}
+  breakPoints: { mobile: 0, tablet: 600, desktop: 1280 },
+  gridsGap={10}
+  gridsCount={12}
+  styles={{
+      header: {
+        size: "2.4rem",
+        color: "#bdbdbd",
+        background: "#424242",
+      },
+      body: {
+        color: "#9e9e9e",
+        background: "#212121",
+      },
+      icons: {
+        maximize: `url(${iconMaximize})`,
+        minimize: `url(${iconMinimize})`,
+        resize: `url(${iconResize})`,
+      },
+      borderRadius: "1rem",
+      boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
   }}
-
 ></Windows>
 ```
 
@@ -110,19 +109,21 @@ styles={{
 
 ```
 Window {
-id: string;
-grids: {
-  [key: string]: { x: number; y: number; w: number; h: number };
-};
-title?: JSX.Element;
-bounds?: { left: number; top: number; right: number; bottom: number };
-minSize?: { w: number; h: number };
-maxSize?: { w: number; h: number };
-draggable?: boolean;
-resizable?: boolean;
-minimizable?: boolean;
-maximizable?: boolean;
-startMinimized?: boolean;
+  id: string;
+  grids: {
+    [key: string]: { x: number; y: number; w: number; h: number };
+  };
+  title?: JSX.Element;
+  bounds: {
+    [key: string]: { left: number; top: number; right: number; bottom: number };
+  };
+  minSize?: { w: number; h: number };
+  maxSize?: { w: number; h: number };
+  draggable?: boolean;
+  resizable?: boolean;
+  minimizable?: boolean;
+  maximizable?: boolean;
+  startMinimized?: boolean;
 }
 ```
 
@@ -144,22 +145,25 @@ startMinimized?: boolean;
 
 ```
 <Window
-id="window"
-grids={{
-  mobile: { x: 0, y: 0, w: 12, h: 1 },
-  tablet: { x: 0, y: 0, w: 6, h: 3 },
-  desktop: { x: 0, y: 0, w: 4, h: 4 },
-}}
-title={<div>Title</div>}
-bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
-minSize={{ w: 200, h: 100 }}
-maxSize={{ w: 500, h: 300 }}
-draggable={true}
-resizable={true}
-minimizable={true}
-maximizable={true}
-startMinimized={true}
-
+  id="window"
+  grids={{
+    mobile: { x: 0, y: 0, w: 12, h: 1 },
+    tablet: { x: 0, y: 0, w: 6, h: 3 },
+    desktop: { x: 0, y: 0, w: 4, h: 4 },
+  }}
+  title={<div>Title</div>}
+  bounds={{
+    mobile: { top: 0, left: 0, right: 12, bottom: 6 },
+    tablet: { top: 0, left: 6, right: 12, bottom: 12 },
+    desktop: { top: 0, left: 0, right: 12, bottom: 6 },
+  }}
+  minSize={{ w: 200, h: 100 }}
+  maxSize={{ w: 500, h: 300 }}
+  draggable={true}
+  resizable={true}
+  minimizable={true}
+  maximizable={true}
+  startMinimized={true}
 >
   <div style={{ padding: "1rem" }}>Content</div>
 </Window>
@@ -220,7 +224,11 @@ const App = () => {
               desktop: { x: 8, y: 0, w: 4, h: 4 },
             }}
             title={<div>Window 3</div>}
-            bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
+            bounds={{
+              mobile: { top: 0, left: 0, right: 12, bottom: 6 },
+              tablet: { top: 0, left: 6, right: 12, bottom: 12 },
+              desktop: { top: 0, left: 0, right: 12, bottom: 6 },
+            }}
           >
             <div style={{ padding: "1rem" }}>
               Bounded to the upper half of the screen.
