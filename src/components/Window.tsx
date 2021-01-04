@@ -5,9 +5,7 @@ import clsx from "clsx";
 import useBreakpoint from "use-breakpoint";
 
 import { StateContext } from "./WindowsProvider";
-import { useSize } from "../utils/useSize";
-import { useLocation } from "../utils/useLocation";
-import { useLimits } from "../utils/useLimits";
+import { useWindow } from "../utils/useWindow";
 
 export interface Grid {
   x: number;
@@ -97,32 +95,16 @@ const Window = (props: Props) => {
 
   const { breakpoint } = useBreakpoint(breakPoints, "desktop");
 
-  const { size } = useSize(
-    headerHeight,
-    gridsHeight,
-    gridsWidth,
-    gridsGap,
-    grids,
-    breakpoint as string
-  );
-
-  const { location } = useLocation(
-    gridsHeight,
-    gridsWidth,
-    gridsGap,
-    grids,
-    breakpoint as string
-  );
-
-  const { limits } = useLimits(
+  const { size, location, limits } = useWindow(
     headerHeight,
     windowSizes,
     gridsHeight,
     gridsWidth,
     gridsGap,
     bounds,
-    size,
-    id
+    grids,
+    id,
+    breakpoint as string
   );
 
   const handleResize = (e: SyntheticEvent, data: ResizeCallbackData) => {
