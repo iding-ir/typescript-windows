@@ -1,4 +1,4 @@
-import { Grids, Bounds, Sizes } from "../components/Window";
+import { Grids, Bounds, Sizes } from "../components/index.d";
 
 export const useWindow = (
   headerHeight: number,

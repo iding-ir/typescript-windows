@@ -9,31 +9,13 @@ import iconMinimize from "../assets/images/icon-minimize.png";
 import iconMaximize from "../assets/images/icon-maximize.png";
 import iconResize from "../assets/images/icon-resize.png";
 import { StateContext } from "./WindowsProvider";
-
-export interface Styles {
-  header: {
-    size: string;
-    color: string;
-    background: string;
-  };
-  body: {
-    color: string;
-    background: string;
-  };
-  icons: {
-    maximize: string;
-    minimize: string;
-    resize: string;
-  };
-  borderRadius: string;
-  boxShadow: string;
-}
+import { Styles, BreakPoints } from "./index.d";
 
 export interface Props {
   children: JSX.Element[];
   taskbar: boolean;
   step: number;
-  breakPoints: { [key: string]: number };
+  breakPoints: BreakPoints;
   gridsGap: number;
   gridsCount: number;
   styles: Styles;
