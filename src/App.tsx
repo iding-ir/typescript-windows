@@ -13,6 +13,8 @@ const App = () => {
           <Window
             id="window1"
             grids={{
+              mobile: { x: 0, y: 0, w: 12, h: 1 },
+              tablet: { x: 0, y: 0, w: 6, h: 3 },
               desktop: { x: 0, y: 0, w: 4, h: 4 },
             }}
             title={<div>Window 1</div>}
@@ -47,6 +49,8 @@ const App = () => {
             }}
             title={<div>Window 3</div>}
             bounds={{
+              mobile: { top: 0, left: 0, right: 12, bottom: 6 },
+              tablet: { top: 0, left: 6, right: 12, bottom: 12 },
               desktop: { top: 0, left: 0, right: 12, bottom: 6 },
             }}
           >
