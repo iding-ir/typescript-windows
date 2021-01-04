@@ -17,11 +17,15 @@ export interface Sizes {
   [key: string]: Size;
 }
 
-export interface Bounds {
+export interface Bound {
   left: number;
   top: number;
   right: number;
   bottom: number;
+}
+
+export interface Bounds {
+  [key: string]: Bound;
 }
 
 export type BreakPoint = number;

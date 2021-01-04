@@ -48,7 +48,11 @@ const App = () => {
               desktop: { x: 8, y: 0, w: 4, h: 4 },
             }}
             title={<div>Window 3</div>}
-            bounds={{ top: 0, left: 0, right: 12, bottom: 6 }}
+            bounds={{
+              mobile: { top: 0, left: 0, right: 12, bottom: 6 },
+              tablet: { top: 0, left: 6, right: 12, bottom: 12 },
+              desktop: { top: 0, left: 0, right: 12, bottom: 6 },
+            }}
           >
             <div style={{ padding: "1rem" }}>
               Bounded to the upper half of the screen.
