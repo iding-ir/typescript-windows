@@ -1,30 +1,34 @@
 /// <reference types="react" />
+export interface Grid {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+}
+export interface Grids {
+    [key: string]: Grid;
+}
+export interface Bounds {
+    left: number;
+    top: number;
+    right: number;
+    bottom: number;
+}
+export interface Size {
+    w: number;
+    h: number;
+}
+export interface Sizes {
+    [key: string]: Size;
+}
 export interface Props {
     id: string;
     children: JSX.Element;
-    grids: {
-        [key: string]: {
-            x: number;
-            y: number;
-            w: number;
-            h: number;
-        };
-    };
+    grids: Grids;
     title?: JSX.Element;
-    bounds?: {
-        left: number;
-        top: number;
-        right: number;
-        bottom: number;
-    };
-    minSize?: {
-        w: number;
-        h: number;
-    };
-    maxSize?: {
-        w: number;
-        h: number;
-    };
+    bounds?: Bounds;
+    minSize?: Size;
+    maxSize?: Size;
     draggable?: boolean;
     resizable?: boolean;
     minimizable?: boolean;
