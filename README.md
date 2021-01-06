@@ -169,7 +169,7 @@ Window {
 </Window>
 ```
 
-Note: in "grids" option, "desktop" is mandatory and the other two are optional.
+Note: in "grids" and "bounds" options, "mobile" key:value is mandatory and the other two are optional.
 
 ## Example
 
