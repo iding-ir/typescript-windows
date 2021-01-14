@@ -10,7 +10,7 @@ import { Size, Grids, Bounds } from "./index.d";
 
 export interface Props {
   id: string;
-  children: JSX.Element;
+  children: React.ReactNode;
   grids: Grids;
   title?: JSX.Element;
   bounds?: Bounds;
