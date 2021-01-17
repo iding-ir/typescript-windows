@@ -9,9 +9,9 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
   const iStyles: Styles = {
     headerSize: "2.4rem",
     headerColor: "#bdbdbd",
-    headerBackground: "#424242",
+    headerBackgroundColor: "#424242",
     bodyColor: "#9e9e9e",
-    bodyBackground: "#212121",
+    bodyBackgroundColor: "#212121",
     iconMaximize: `url(${icon_maximize})`,
     iconMinimize: `url(${icon_minimize})`,
     iconResize: `url(${icon_resize})`,
@@ -23,9 +23,9 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
   const {
     headerSize,
     headerColor,
-    headerBackground,
+    headerBackgroundColor,
     bodyColor,
-    bodyBackground,
+    bodyBackgroundColor,
     iconMaximize,
     iconMinimize,
     iconResize,
@@ -56,7 +56,7 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
       "& .tw-window": {
         position: "absolute",
         borderRadius: `${borderRadius} ${borderRadius} 0 ${borderRadius}`,
-        border: `1px solid ${headerBackground}`,
+        border: `1px solid ${headerBackgroundColor}`,
         boxShadow: boxShadow,
         overflow: "hidden",
 
@@ -67,7 +67,7 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
           height: headerSize,
           lineHeight: headerSize,
           color: headerColor,
-          backgroundColor: headerBackground,
+          backgroundColor: headerBackgroundColor,
           boxShadow: boxShadow,
           zIndex: "1000",
           cursor: "pointer",
@@ -116,7 +116,7 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
         "& .tw-body": {
           overflow: "auto",
           color: bodyColor,
-          backgroundColor: bodyBackground,
+          backgroundColor: bodyBackgroundColor,
         },
 
         "&.tw-minimize-on": {

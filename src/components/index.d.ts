@@ -37,9 +37,9 @@ export interface BreakPoints {
 export interface Styles {
   headerSize: string;
   headerColor: string;
-  headerBackground: string;
+  headerBackgroundColor: string;
   bodyColor: string;
-  bodyBackground: string;
+  bodyBackgroundColor: string;
   iconMaximize: string;
   iconMinimize: string;
   iconResize: string;
