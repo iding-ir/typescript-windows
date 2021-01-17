@@ -56,20 +56,15 @@ Windows {
 
 ```
 {
-  header: {
-    size: "2.4rem",
-    color: "#bdbdbd",
-    background: "#424242",
-  },
-  body: {
-    color: "#9e9e9e",
-    background: "#212121",
-  },
-  icons: {
-    maximize: `url(${iconMaximize})`,
-    minimize: `url(${iconMinimize})`,
-    resize: `url(${iconResize})`,
-  },
+  headerSize: "2.4rem",
+  headerColor: "#bdbdbd",
+  headerBackgroundColor: "#424242",
+  bodyColor: "#9e9e9e",
+  bodyBackgroundColor: "#212121",
+  iconMaximize: `url(${icon_maximize})`,
+  iconMinimize: `url(${icon_minimize})`,
+  iconResize: `url(${icon_resize})`,
+  backgroundColor: "#263238",
   borderRadius: "1rem",
   boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
 }
@@ -85,22 +80,17 @@ Windows {
   gridsGap={10}
   gridsCount={12}
   styles={{
-      header: {
-        size: "2.4rem",
-        color: "#bdbdbd",
-        background: "#424242",
-      },
-      body: {
-        color: "#9e9e9e",
-        background: "#212121",
-      },
-      icons: {
-        maximize: `url(${iconMaximize})`,
-        minimize: `url(${iconMinimize})`,
-        resize: `url(${iconResize})`,
-      },
-      borderRadius: "1rem",
-      boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+    headerSize: "2.4rem",
+    headerColor: "#bdbdbd",
+    headerBackgroundColor: "#424242",
+    bodyColor: "#9e9e9e",
+    bodyBackgroundColor: "#212121",
+    iconMaximize: `url(${icon_maximize})`,
+    iconMinimize: `url(${icon_minimize})`,
+    iconResize: `url(${icon_resize})`,
+    backgroundColor: "#263238",
+    borderRadius: "1rem",
+    boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
   }}
 ></Windows>
 ```
