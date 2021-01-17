@@ -1,9 +1,36 @@
 import { createUseStyles } from "react-jss";
 
 import { Styles } from "./index.d";
+import icon_minimize from "../assets/images/icon-minimize.png";
+import icon_maximize from "../assets/images/icon-maximize.png";
+import icon_resize from "../assets/images/icon-resize.png";
 
-export const useStyles = (styles: Styles) => {
-  const { header, body, icons, borderRadius, boxShadow } = styles;
+export const useStyles = (styles: Partial<Styles> | undefined) => {
+  const iStyles: Styles = {
+    headerSize: "2.4rem",
+    headerColor: "#bdbdbd",
+    headerBackground: "#424242",
+    bodyColor: "#9e9e9e",
+    bodyBackground: "#212121",
+    iconMaximize: `url(${icon_minimize})`,
+    iconMinimize: `url(${icon_maximize})`,
+    iconResize: `url(${icon_resize})`,
+    borderRadius: "1rem",
+    boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+  };
+
+  const {
+    headerSize,
+    headerColor,
+    headerBackground,
+    bodyColor,
+    bodyBackground,
+    borderRadius,
+    iconMaximize,
+    iconMinimize,
+    iconResize,
+    boxShadow,
+  } = Object.assign(iStyles, styles || {}) as Styles;
 
   return createUseStyles({
     "tw-windows": {
@@ -26,7 +53,7 @@ export const useStyles = (styles: Styles) => {
       "& .tw-window": {
         position: "absolute",
         borderRadius: `${borderRadius} ${borderRadius} 0 ${borderRadius}`,
-        border: `1px solid ${header.background}`,
+        border: `1px solid ${headerBackground}`,
         boxShadow: boxShadow,
         overflow: "hidden",
 
@@ -34,10 +61,10 @@ export const useStyles = (styles: Styles) => {
           display: "flex",
           position: "relative",
           width: "100%",
-          height: header.size,
-          lineHeight: header.size,
-          color: header.color,
-          backgroundColor: header.background,
+          height: headerSize,
+          lineHeight: headerSize,
+          color: headerColor,
+          backgroundColor: headerBackground,
           boxShadow: boxShadow,
           zIndex: "1000",
           cursor: "pointer",
@@ -59,8 +86,8 @@ export const useStyles = (styles: Styles) => {
             padding: "0 0.5rem",
 
             "& .tw-button": {
-              width: header.size,
-              height: header.size,
+              width: headerSize,
+              height: headerSize,
               transition: "opacity 0.3s",
               backgroundSize: "50%",
               backgroundPosition: "center",
@@ -73,11 +100,11 @@ export const useStyles = (styles: Styles) => {
               },
 
               "&.tw-minimize": {
-                backgroundImage: icons.minimize,
+                backgroundImage: iconMinimize,
               },
 
               "&.tw-maximize": {
-                backgroundImage: icons.maximize,
+                backgroundImage: iconMaximize,
               },
             },
           },
@@ -85,8 +112,8 @@ export const useStyles = (styles: Styles) => {
 
         "& .tw-body": {
           overflow: "auto",
-          color: body.color,
-          backgroundColor: body.background,
+          color: bodyColor,
+          backgroundColor: bodyBackground,
         },
 
         "&.tw-minimize-on": {
@@ -145,7 +172,7 @@ export const useStyles = (styles: Styles) => {
         backgroundRepeat: "no-repeat",
         backgroundOrigin: "content-box",
         boxSizing: "border-box",
-        backgroundImage: icons.resize,
+        backgroundImage: iconResize,
         backgroundPosition: "bottom right",
         backgroundSize: "50%",
         opacity: "0.5",
