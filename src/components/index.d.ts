@@ -35,20 +35,15 @@ export interface BreakPoints {
 }
 
 export interface Styles {
-  header: {
-    size: string;
-    color: string;
-    background: string;
-  };
-  body: {
-    color: string;
-    background: string;
-  };
-  icons: {
-    maximize: string;
-    minimize: string;
-    resize: string;
-  };
+  headerSize: string;
+  headerColor: string;
+  headerBackgroundColor: string;
+  bodyColor: string;
+  bodyBackgroundColor: string;
+  iconMaximize: string;
+  iconMinimize: string;
+  iconResize: string;
+  backgroundColor: string;
   borderRadius: string;
   boxShadow: string;
 }

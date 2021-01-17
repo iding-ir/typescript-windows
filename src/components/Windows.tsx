@@ -5,9 +5,6 @@ import { ThemeProvider, DefaultTheme } from "react-jss";
 import { useGrids } from "../utils/useGrids";
 import { getLocalStorage } from "../utils/getLocalStorage";
 import { useStyles } from "./styles";
-import iconMinimize from "../assets/images/icon-minimize.png";
-import iconMaximize from "../assets/images/icon-maximize.png";
-import iconResize from "../assets/images/icon-resize.png";
 import { StateContext } from "./WindowsProvider";
 import { Styles, BreakPoints } from "./index.d";
 
@@ -18,7 +15,7 @@ export interface Props {
   breakPoints: BreakPoints;
   gridsGap: number;
   gridsCount: number;
-  styles: Styles;
+  styles?: Partial<Styles>;
 }
 
 const Windows = (props: Props) => {
@@ -31,6 +28,7 @@ const Windows = (props: Props) => {
     gridsGap,
     styles,
   } = props;
+
   const classes = useStyles(styles)();
   const { gridsWidth, gridsHeight } = useGrids(gridsCount, gridsGap);
   const [headerRef, { height: headerHeight }] = useDimensions();
@@ -139,24 +137,6 @@ Windows.defaultProps = {
   breakPoints: { mobile: 0, tablet: 600, desktop: 1280 },
   gridsGap: 10,
   gridsCount: 12,
-  styles: {
-    header: {
-      size: "2.4rem",
-      color: "#bdbdbd",
-      background: "#424242",
-    },
-    body: {
-      color: "#9e9e9e",
-      background: "#212121",
-    },
-    icons: {
-      maximize: `url(${iconMaximize})`,
-      minimize: `url(${iconMinimize})`,
-      resize: `url(${iconResize})`,
-    },
-    borderRadius: "1rem",
-    boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
-  },
 } as Partial<Props>;
 
 export default Windows;

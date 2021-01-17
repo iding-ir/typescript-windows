@@ -7,7 +7,7 @@ export interface Props {
     breakPoints: BreakPoints;
     gridsGap: number;
     gridsCount: number;
-    styles: Styles;
+    styles?: Partial<Styles>;
 }
 declare const Windows: {
     (props: Props): JSX.Element;
