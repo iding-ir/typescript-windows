@@ -43,6 +43,7 @@ export interface Styles {
   iconMaximize: string;
   iconMinimize: string;
   iconResize: string;
+  backgroundColor: string;
   borderRadius: string;
   boxShadow: string;
 }

@@ -15,6 +15,7 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
     iconMaximize: `url(${icon_maximize})`,
     iconMinimize: `url(${icon_minimize})`,
     iconResize: `url(${icon_resize})`,
+    backgroundColor: "#263238",
     borderRadius: "1rem",
     boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
   };
@@ -25,10 +26,11 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
     headerBackground,
     bodyColor,
     bodyBackground,
-    borderRadius,
     iconMaximize,
     iconMinimize,
     iconResize,
+    backgroundColor,
+    borderRadius,
     boxShadow,
   } = Object.assign(iStyles, styles || {}) as Styles;
 
@@ -38,6 +40,7 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
       width: "100%",
       height: "100%",
       overflow: "hidden",
+      backgroundColor: backgroundColor,
 
       "& .tw-taskbar": {
         display: "flex",
