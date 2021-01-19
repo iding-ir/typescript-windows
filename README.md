@@ -28,6 +28,7 @@ npm install typescript-windows --save
 
 ```
 Windows {
+  id: string;
   taskbar?: boolean;
   step?: number;
   breakPoints: { [key: string]: number };
@@ -39,6 +40,7 @@ Windows {
 
 | Option      | Type    | Default | Description                                   |
 | ----------- | ------- | ------- | --------------------------------------------- |
+| id          | string  |         | HTML id attribute of windows wrapper.         |
 | taskbar     | boolean | true    | Whether of not windows minimize to a taskbar. |
 | step        | number  | 1       | Step size when dragging and resizing.         |
 | breakPoints | object  | \*      | View breakpoints.                             |
@@ -74,6 +76,7 @@ Windows {
 
 ```
 <Windows
+  id="example"
   taskbar={true}
   step={5}
   breakPoints: { mobile: 0, tablet: 600, desktop: 1280 },
@@ -175,7 +178,7 @@ const App = () => {
   return (
     <div className="app">
       <WindowsProvider>
-        <Windows taskbar={true} step={5}>
+        <Windows id="example" taskbar={true} step={5}>
           <Window
             id="window1"
             grids={{
