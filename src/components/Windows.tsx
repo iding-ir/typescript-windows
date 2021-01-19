@@ -4,11 +4,13 @@ import { ThemeProvider, DefaultTheme } from "react-jss";
 
 import { useGrids } from "../utils/useGrids";
 import { getLocalStorage } from "../utils/getLocalStorage";
+import { setLocalStorage } from "../utils/setLocalStorage";
 import { useStyles } from "./styles";
 import { StateContext } from "./WindowsProvider";
 import { Styles, BreakPoints } from "./index.d";
 
 export interface Props {
+  id: string;
   children: JSX.Element[];
   taskbar: boolean;
   step: number;
@@ -20,6 +22,7 @@ export interface Props {
 
 const Windows = (props: Props) => {
   const {
+    id,
     children,
     taskbar,
     step,
@@ -38,11 +41,11 @@ const Windows = (props: Props) => {
     return { ...total, [item.props.id]: item.props.startMinimized };
   }, {});
 
-  const iWindowSizes = getLocalStorage("windowSizes", {});
-  const iWindowZIndexes = getLocalStorage("windowZIndexes", {});
-  const iWindowLocations = getLocalStorage("windowLocations", {});
-  const iWindowMaximizes = getLocalStorage("windowMaximizes", {});
-  const iWindowMinimizes = getLocalStorage("windowMinimizes", dBoxMinimizes);
+  const iWindowSizes = getLocalStorage(id, "sizes", {});
+  const iWindowZIndexes = getLocalStorage(id, "zIndexes", {});
+  const iWindowLocations = getLocalStorage(id, "locations", {});
+  const iWindowMaximizes = getLocalStorage(id, "maximizes", {});
+  const iWindowMinimizes = getLocalStorage(id, "minimizes", dBoxMinimizes);
 
   const [windowSizes, setWindowSizes] = useState(iWindowSizes);
   const [windowZIndexes, setWindowZIndexes] = useState(iWindowZIndexes);
@@ -53,24 +56,24 @@ const Windows = (props: Props) => {
   const [taskbarItemsOut, setTaskbarItemsOut] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    localStorage.setItem("windowSizes", JSON.stringify(windowSizes));
-  }, [windowSizes]);
+    setLocalStorage(id, "sizes", windowSizes);
+  }, [id, windowSizes]);
 
   useEffect(() => {
-    localStorage.setItem("windowZIndexes", JSON.stringify(windowZIndexes));
-  }, [windowZIndexes]);
+    setLocalStorage(id, "zIndexes", windowZIndexes);
+  }, [id, windowZIndexes]);
 
   useEffect(() => {
-    localStorage.setItem("windowLocations", JSON.stringify(windowLocations));
-  }, [windowLocations]);
+    setLocalStorage(id, "locations", windowLocations);
+  }, [id, windowLocations]);
 
   useEffect(() => {
-    localStorage.setItem("windowMaximizes", JSON.stringify(windowMaximizes));
-  }, [windowMaximizes]);
+    setLocalStorage(id, "maximizes", windowMaximizes);
+  }, [id, windowMaximizes]);
 
   useEffect(() => {
-    localStorage.setItem("windowMinimizes", JSON.stringify(windowMinimizes));
-  }, [windowMinimizes]);
+    setLocalStorage(id, "minimizes", windowMinimizes);
+  }, [id, windowMinimizes]);
 
   useEffect(() => {
     setState({
@@ -122,7 +125,7 @@ const Windows = (props: Props) => {
 
   return (
     <ThemeProvider theme={{} as DefaultTheme}>
-      <div className={classes["tw-windows"]}>
+      <div id={id} className={classes["tw-windows"]}>
         {taskbarItemsOut}
 
         <div className="tw-taskbar">{taskbarItemsIn}</div>
