@@ -31,7 +31,7 @@ Windows {
   id: string;
   taskbar?: boolean;
   step?: number;
-  breakPoints: { [key: string]: number };
+  breakPoints?: { [key: string]: number };
   gridsGap?: number;
   gridsCount?: number;
   styles?: Styles;
