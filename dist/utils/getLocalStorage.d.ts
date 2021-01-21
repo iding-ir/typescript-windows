@@ -1,2 +1,2 @@
-export declare const getLocalStorage: (name: string, defaultValue: any) => any;
+export declare const getLocalStorage: (id: string, name: string, defaultValue: any) => any;
 //# sourceMappingURL=getLocalStorage.d.ts.map
