@@ -1,6 +1,7 @@
 /// <reference types="react" />
 import { Styles, BreakPoints } from "./index.d";
 export interface Props {
+    id: string;
     children: JSX.Element[];
     taskbar: boolean;
     step: number;
