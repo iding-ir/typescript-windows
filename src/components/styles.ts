@@ -71,6 +71,7 @@ export const useStyles = (
           taskbarLocation === "bottom" || taskbarLocation === "top"
             ? "100%"
             : "unset",
+        zIndex: "0",
       },
 
       "& .tw-window": {
