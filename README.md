@@ -30,6 +30,7 @@ npm install typescript-windows --save
 Windows {
   id: string;
   taskbar?: boolean;
+  taskbarLocation?: Position;
   step?: number;
   breakPoints?: { [key: string]: number };
   gridsGap?: number;
@@ -38,15 +39,16 @@ Windows {
 }
 ```
 
-| Option      | Type    | Default | Description                                   |
-| ----------- | ------- | ------- | --------------------------------------------- |
-| id          | string  |         | HTML id attribute of windows wrapper.         |
-| taskbar     | boolean | true    | Whether of not windows minimize to a taskbar. |
-| step        | number  | 1       | Step size when dragging and resizing.         |
-| breakPoints | object  | \*      | View breakpoints.                             |
-| gridsGap    | number  | 10      | Gap size between grids.                       |
-| gridsCount  | number  | 12      | Number of grids.                              |
-| styles      | Styles  | \*\*    | JSS style for components.                     |
+| Option          | Type     | Default  | Description                                   |
+| --------------- | -------- | -------- | --------------------------------------------- |
+| id              | string   |          | HTML id attribute of windows wrapper.         |
+| taskbar         | boolean  | true     | Whether of not windows minimize to a taskbar. |
+| taskbarLocation | Position | "bottom" | Taskbar location.                             |
+| step            | number   | 1        | Step size when dragging and resizing.         |
+| breakPoints     | object   | \*       | View breakpoints.                             |
+| gridsGap        | number   | 10       | Gap size between grids.                       |
+| gridsCount      | number   | 12       | Number of grids.                              |
+| styles          | Styles   | \*\*     | JSS style for components.                     |
 
 ##### \*
 
