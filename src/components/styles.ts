@@ -113,9 +113,10 @@ export const useStyles = (
               width: headerSize,
               height: headerSize,
               transition: "opacity 0.3s",
-              backgroundSize: "50%",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
+              maskSize: "50%",
+              maskPosition: "center",
+              maskRepeat: "no-repeat",
+              backgroundColor: headerColor,
               opacity: "0.5",
               cursor: "pointer",
 
@@ -124,11 +125,11 @@ export const useStyles = (
               },
 
               "&.tw-minimize": {
-                backgroundImage: iconMinimize,
+                maskImage: iconMinimize,
               },
 
               "&.tw-maximize": {
-                backgroundImage: iconMaximize,
+                maskImage: iconMaximize,
               },
             },
           },

@@ -137,13 +137,17 @@ const Window = (props: Props) => {
 
   const renderMinimize = () => {
     return minimizable ? (
-      <div className="tw-button tw-minimize" onClick={handleMinimize}></div>
+      <div className="tw-button tw-minimize" onClick={handleMinimize}>
+        <div />
+      </div>
     ) : null;
   };
 
   const renderMaximize = () => {
     return maximizable ? (
-      <div className="tw-button tw-maximize" onClick={handleMaximize}></div>
+      <div className="tw-button tw-maximize" onClick={handleMaximize}>
+        <div />
+      </div>
     ) : null;
   };
 
