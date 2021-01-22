@@ -7,12 +7,13 @@ import { getLocalStorage } from "../utils/getLocalStorage";
 import { setLocalStorage } from "../utils/setLocalStorage";
 import { useStyles } from "./styles";
 import { StateContext } from "./WindowsProvider";
-import { Styles, BreakPoints } from "./index.d";
+import { Styles, BreakPoints, TaskbarLocation } from "./index.d";
 
 export interface Props {
   id: string;
   children: JSX.Element[];
   taskbar: boolean;
+  taskbarLocation: TaskbarLocation;
   step: number;
   breakPoints: BreakPoints;
   gridsGap: number;
@@ -25,6 +26,7 @@ const Windows = (props: Props) => {
     id,
     children,
     taskbar,
+    taskbarLocation,
     step,
     breakPoints,
     gridsCount,
@@ -32,7 +34,7 @@ const Windows = (props: Props) => {
     styles,
   } = props;
 
-  const classes = useStyles(styles)();
+  const classes = useStyles(styles, taskbarLocation)();
   const { gridsWidth, gridsHeight } = useGrids(gridsCount, gridsGap);
   const [headerRef, { height: headerHeight }] = useDimensions();
   const { state, setState } = useContext(StateContext);
@@ -136,6 +138,7 @@ const Windows = (props: Props) => {
 
 Windows.defaultProps = {
   taskbar: true,
+  taskbarLocation: "bottom",
   step: 1,
   breakPoints: { mobile: 0, tablet: 600, desktop: 1280 },
   gridsGap: 10,

@@ -1,9 +1,10 @@
 /// <reference types="react" />
-import { Styles, BreakPoints } from "./index.d";
+import { Styles, BreakPoints, TaskbarLocation } from "./index.d";
 export interface Props {
     id: string;
     children: JSX.Element[];
     taskbar: boolean;
+    taskbarLocation: TaskbarLocation;
     step: number;
     breakPoints: BreakPoints;
     gridsGap: number;
