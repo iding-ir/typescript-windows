@@ -47,3 +47,5 @@ export interface Styles {
   borderRadius: string;
   boxShadow: string;
 }
+
+export type TaskbarLocation = "top" | "left" | "right" | "bottom";

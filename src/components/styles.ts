@@ -4,8 +4,12 @@ import { Styles } from "./index.d";
 import icon_minimize from "../assets/images/icon-minimize.png";
 import icon_maximize from "../assets/images/icon-maximize.png";
 import icon_resize from "../assets/images/icon-resize.png";
+import { TaskbarLocation } from "./index.d";
 
-export const useStyles = (styles: Partial<Styles> | undefined) => {
+export const useStyles = (
+  styles: Partial<Styles> | undefined,
+  taskbarLocation: TaskbarLocation
+) => {
   const iStyles: Styles = {
     headerSize: "2.4rem",
     headerColor: "#bdbdbd",
@@ -44,13 +48,29 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
 
       "& .tw-taskbar": {
         display: "flex",
-        flexDirection: "row-reverse",
+        flexDirection:
+          taskbarLocation === "bottom"
+            ? "row-reverse"
+            : taskbarLocation === "top"
+            ? "row"
+            : "column",
         flexWrap: "wrap",
-        transform: "rotate(180deg)",
+        padding: "0.25rem",
+        transform:
+          taskbarLocation === "bottom"
+            ? "rotate(180deg)"
+            : taskbarLocation === "right"
+            ? "scaleX(-1)"
+            : "none",
         position: "absolute",
-        bottom: "0",
-        left: "0",
-        width: "100%",
+        top: taskbarLocation !== "bottom" ? "0" : "auto",
+        left: taskbarLocation !== "right" ? "0" : "auto",
+        right: taskbarLocation !== "left" ? "0" : "auto",
+        bottom: taskbarLocation !== "top" ? "0" : "auto",
+        width:
+          taskbarLocation === "bottom" || taskbarLocation === "top"
+            ? "100%"
+            : "unset",
       },
 
       "& .tw-window": {
@@ -124,13 +144,35 @@ export const useStyles = (styles: Partial<Styles> | undefined) => {
 
           "&.tw-taskbar-on": {
             position: "relative",
-            transform: "rotate(180deg) !important",
+            transform:
+              taskbarLocation === "bottom"
+                ? "rotate(180deg) !important"
+                : taskbarLocation === "right"
+                ? "scaleX(-1) !important"
+                : "none !important",
             borderRadius: borderRadius,
             margin: "0.25rem",
             flexGrow: "10",
-            width: "calc(50% - 0.5rem)",
-            minWidth: "calc(160px - 0.5rem)",
-            maxWidth: "calc(240px - 0.5rem)",
+            width:
+              taskbarLocation === "top" || taskbarLocation === "bottom"
+                ? "calc(50% - 0.5rem)"
+                : "calc(100% - 0.5rem)",
+            minWidth:
+              taskbarLocation === "top" || taskbarLocation === "bottom"
+                ? "calc(160px - 0.5rem)"
+                : "unset",
+            maxWidth:
+              taskbarLocation === "top" || taskbarLocation === "bottom"
+                ? "calc(240px - 0.5rem)"
+                : "unset",
+            minHeight:
+              taskbarLocation === "left" || taskbarLocation === "right"
+                ? headerSize
+                : "unset",
+            maxHeight:
+              taskbarLocation === "left" || taskbarLocation === "right"
+                ? headerSize
+                : "unset",
 
             "& .tw-header": {
               "&.tw-draggable": {
