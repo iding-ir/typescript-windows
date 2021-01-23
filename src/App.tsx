@@ -22,26 +22,6 @@ const App = () => {
             <div style={{ padding: "1rem" }}>
               Draggable, resizable, minimizable and maximizable.
             </div>
-
-            <div style={{ padding: "1rem" }}>
-              Draggable, resizable, minimizable and maximizable.
-            </div>
-
-            <div style={{ padding: "1rem" }}>
-              Draggable, resizable, minimizable and maximizable.
-            </div>
-
-            <div style={{ padding: "1rem" }}>
-              Draggable, resizable, minimizable and maximizable.
-            </div>
-
-            <div style={{ padding: "1rem" }}>
-              Draggable, resizable, minimizable and maximizable.
-            </div>
-
-            <div style={{ padding: "1rem" }}>
-              Draggable, resizable, minimizable and maximizable.
-            </div>
           </Window>
 
           <Window
