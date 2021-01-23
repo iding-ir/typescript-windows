@@ -136,7 +136,6 @@ export const useStyles = (
         },
 
         "& .tw-body": {
-          overflow: "auto",
           color: bodyColor,
           backgroundColor: bodyBackgroundColor,
         },
@@ -210,10 +209,11 @@ export const useStyles = (
 
       "& .react-resizable": {
         position: "relative",
+        overflow: "auto",
       },
 
       "& .react-resizable-handle": {
-        position: "absolute",
+        position: "fixed",
         width: "20px",
         height: "20px",
         backgroundRepeat: "no-repeat",
