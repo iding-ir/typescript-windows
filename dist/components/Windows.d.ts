@@ -2,6 +2,7 @@
 import { Styles, BreakPoints, TaskbarLocation } from "./index.d";
 export interface Props {
     id: string;
+    background: JSX.Element | null;
     children: JSX.Element[];
     taskbar: boolean;
     taskbarLocation: TaskbarLocation;
