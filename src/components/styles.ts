@@ -210,6 +210,25 @@ export const useStyles = (
       "& .react-resizable": {
         position: "relative",
         overflow: "auto",
+        scrollbarColor: "rgba(130, 130, 130, 0.2) rgba(130, 130, 130, 0.1)",
+        scrollbarWidth: "thin",
+
+        "&::-webkit-scrollbar": {
+          width: "0.5rem",
+        },
+
+        "&::-webkit-scrollbar-track": {
+          background: "rgba(130, 130, 130, 0.1)",
+        },
+
+        "&::-webkit-scrollbar-thumb": {
+          borderRadius: "3px",
+          background: "rgba(130, 130, 130, 0.1)",
+        },
+
+        "&::-webkit-scrollbar-thumb:hover": {
+          background: "rgba(130, 130, 130, 0.2)",
+        },
       },
 
       "& .react-resizable-handle": {
