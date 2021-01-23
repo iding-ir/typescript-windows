@@ -46,6 +46,15 @@ export const useStyles = (
       overflow: "hidden",
       backgroundColor: backgroundColor,
 
+      "& .tw-background": {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        right: "0",
+        bottom: "0",
+        zIndex: "0",
+      },
+
       "& .tw-taskbar": {
         display: "flex",
         flexDirection:

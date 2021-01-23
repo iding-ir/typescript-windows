@@ -11,6 +11,7 @@ import { Styles, BreakPoints, TaskbarLocation } from "./index.d";
 
 export interface Props {
   id: string;
+  background: JSX.Element | null;
   children: JSX.Element[];
   taskbar: boolean;
   taskbarLocation: TaskbarLocation;
@@ -24,6 +25,7 @@ export interface Props {
 const Windows = (props: Props) => {
   const {
     id,
+    background,
     children,
     taskbar,
     taskbarLocation,
@@ -128,6 +130,8 @@ const Windows = (props: Props) => {
   return (
     <ThemeProvider theme={{} as DefaultTheme}>
       <div id={id} className={classes["tw-windows"]}>
+        <div className="tw-background">{background}</div>
+
         {taskbarItemsOut}
 
         <div className="tw-taskbar">{taskbarItemsIn}</div>
@@ -137,6 +141,7 @@ const Windows = (props: Props) => {
 };
 
 Windows.defaultProps = {
+  background: null,
   taskbar: true,
   taskbarLocation: "bottom",
   step: 1,
