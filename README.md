@@ -29,6 +29,7 @@ npm install typescript-windows --save
 ```
 Windows {
   id: string;
+  background?: JSX.Element | null;
   taskbar?: boolean;
   taskbarLocation?: Position;
   step?: number;
@@ -42,6 +43,7 @@ Windows {
 | Option          | Type     | Default  | Description                                   |
 | --------------- | -------- | -------- | --------------------------------------------- |
 | id              | string   |          | HTML id attribute of windows wrapper.         |
+| background      | JSX      | null     | Windows wrapper background JSX element.       |
 | taskbar         | boolean  | true     | Whether of not windows minimize to a taskbar. |
 | taskbarLocation | Position | "bottom" | Taskbar location.                             |
 | step            | number   | 1        | Step size when dragging and resizing.         |
