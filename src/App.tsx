@@ -118,8 +118,11 @@ const App = () => {
               tablet: { x: 6, y: 9, w: 6, h: 3 },
               desktop: { x: 4, y: 8, w: 4, h: 4 },
             }}
+            startMinimized={{ mobile: false, tablet: true, desktop: false }}
           >
-            <div style={{ padding: "1rem" }}>Without a title.</div>
+            <div style={{ padding: "1rem" }}>
+              Without a title. Start minimized on tablet only.
+            </div>
           </Window>
 
           <Window
@@ -130,7 +133,7 @@ const App = () => {
               desktop: { x: 8, y: 8, w: 4, h: 4 },
             }}
             title={<div>Window 9</div>}
-            startMinimized={true}
+            startMinimized={{ mobile: true, tablet: true, desktop: true }}
           >
             <div style={{ padding: "1rem" }}>Starting minimized.</div>
           </Window>

@@ -17,6 +17,10 @@ export interface Sizes {
   [key: string]: Size;
 }
 
+export interface Minimizes {
+  [key: string]: Boolean;
+}
+
 export interface Bound {
   left: number;
   top: number;
