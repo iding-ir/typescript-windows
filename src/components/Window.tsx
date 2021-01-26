@@ -6,7 +6,7 @@ import useBreakpoint from "use-breakpoint";
 
 import { StateContext } from "./WindowsProvider";
 import { useWindow } from "../utils/useWindow";
-import { Size, Grids, Bounds } from "./index.d";
+import { Size, Grids, Minimizes, Bounds } from "./index.d";
 
 export interface Props {
   id: string;
@@ -20,7 +20,7 @@ export interface Props {
   resizable?: boolean;
   minimizable?: boolean;
   maximizable?: boolean;
-  startMinimized?: boolean;
+  startMinimized?: Minimizes;
 }
 
 const Window = (props: Props) => {
@@ -101,7 +101,7 @@ const Window = (props: Props) => {
   };
 
   const handleDrag = (e: DraggableEvent, data: DraggableData) => {
-    if (windowMaximizes[id] || windowMinimizes[id]) {
+    if (windowMaximizes[id] || windowMinimizes[id][breakpoint]) {
       return;
     }
 
@@ -114,7 +114,11 @@ const Window = (props: Props) => {
   const handleMaximize = () => {
     setWindowMinimizes({
       ...windowMinimizes,
-      [id]: false,
+      [id]: {
+        mobile: false,
+        tablet: false,
+        desktop: false,
+      },
     });
 
     setWindowMaximizes({
@@ -131,7 +135,11 @@ const Window = (props: Props) => {
 
     setWindowMinimizes({
       ...windowMinimizes,
-      [id]: !windowMinimizes[id],
+      [id]: {
+        mobile: !windowMinimizes[id].mobile,
+        tablet: !windowMinimizes[id].tablet,
+        desktop: !windowMinimizes[id].desktop,
+      },
     });
   };
 
@@ -158,7 +166,7 @@ const Window = (props: Props) => {
         ref={headerRef}
         onMouseDown={handleZIndex} // Has to be here because of desktop devices
         style={{
-          width: windowMinimizes[id]
+          width: windowMinimizes[id][breakpoint]
             ? "auto"
             : windowSizes[id]
             ? windowSizes[id].w
@@ -222,8 +230,8 @@ const Window = (props: Props) => {
   const classNames = clsx("tw-window", {
     "tw-taskbar-on": taskbar,
     "tw-taskbar-off": !taskbar,
-    "tw-minimize-on": windowMinimizes[id],
-    "tw-minimize-off": !windowMinimizes[id],
+    "tw-minimize-on": windowMinimizes[id][breakpoint],
+    "tw-minimize-off": !windowMinimizes[id][breakpoint],
     "tw-maximize-on": windowMaximizes[id],
     "tw-maximize-off": !windowMaximizes[id],
   });
@@ -263,7 +271,7 @@ Window.defaultProps = {
   resizable: true,
   minimizable: true,
   maximizable: true,
-  startMinimized: false,
+  startMinimized: { mobile: false, tablet: false, desktop: false },
 } as Partial<Props>;
 
 export default Window;

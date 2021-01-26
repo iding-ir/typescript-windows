@@ -33,7 +33,7 @@ Windows {
   taskbar?: boolean;
   taskbarLocation?: Position;
   step?: number;
-  breakPoints?: { [key: string]: number };
+  breakPoints?: { mobile: number; tablet: number; desktop: number };
   gridsGap?: number;
   gridsCount?: number;
   styles?: Styles;
@@ -120,7 +120,7 @@ Window {
   resizable?: boolean;
   minimizable?: boolean;
   maximizable?: boolean;
-  startMinimized?: boolean;
+  startMinimized?: { mobile: boolean; tablet: boolean; desktop: boolean };
 }
 ```
 
@@ -136,7 +136,13 @@ Window {
 | resizable      | boolean       | true    | Whether a window is resizable or not.           |
 | minimizable    | boolean       | true    | Whether a window is minimizable or not.         |
 | maximizable    | boolean       | true    | Whether a window is maximizable or not.         |
-| startMinimized | boolean       | false   | Whether a window should start minimized or not. |
+| startMinimized | Minimizes     | \*      | Whether a window should start minimized or not. |
+
+##### \*
+
+```
+{ mobile: false, tablet: false, desktop: false }
+```
 
 #### Example
 
@@ -160,13 +166,13 @@ Window {
   resizable={true}
   minimizable={true}
   maximizable={true}
-  startMinimized={true}
+  startMinimized={{ mobile: true, tablet: true, desktop: true }}
 >
   <div style={{ padding: "1rem" }}>Content</div>
 </Window>
 ```
 
-Note: in "grids" and "bounds" options, "mobile" key:value is mandatory and the other two are optional.
+> in `grids`, `bounds` and `startMinimized` options, "mobile" key:value is mandatory and the other two are optional.
 
 ## Example
 
@@ -291,8 +297,11 @@ const App = () => {
               tablet: { x: 6, y: 9, w: 6, h: 3 },
               desktop: { x: 4, y: 8, w: 4, h: 4 },
             }}
+            startMinimized={{ mobile: false, tablet: true, desktop: false }}
           >
-            <div style={{ padding: "1rem" }}>Without a title.</div>
+            <div style={{ padding: "1rem" }}>
+              Without a title. Start minimized on tablet only.
+            </div>
           </Window>
 
           <Window
@@ -303,7 +312,7 @@ const App = () => {
               desktop: { x: 8, y: 8, w: 4, h: 4 },
             }}
             title={<div>Window 9</div>}
-            startMinimized={true}
+            startMinimized={{ mobile: true, tablet: true, desktop: true }}
           >
             <div style={{ padding: "1rem" }}>Starting minimized.</div>
           </Window>

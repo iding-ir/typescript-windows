@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import useDimensions from "react-use-dimensions";
 import { ThemeProvider, DefaultTheme } from "react-jss";
+import useBreakpoint from "use-breakpoint";
 
 import { useGrids } from "../utils/useGrids";
 import { getLocalStorage } from "../utils/getLocalStorage";
@@ -40,9 +41,22 @@ const Windows = (props: Props) => {
   const { gridsWidth, gridsHeight } = useGrids(gridsCount, gridsGap);
   const [headerRef, { height: headerHeight }] = useDimensions();
   const { state, setState } = useContext(StateContext);
+  const { breakpoint } = useBreakpoint(breakPoints, "desktop");
 
   const dBoxMinimizes = children.reduce((total: object, item: JSX.Element) => {
-    return { ...total, [item.props.id]: item.props.startMinimized };
+    const { id, startMinimized } = item.props;
+
+    startMinimized.tablet =
+      startMinimized.tablet === undefined
+        ? startMinimized.mobile
+        : startMinimized.tablet;
+
+    startMinimized.desktop =
+      startMinimized.desktop === undefined
+        ? startMinimized.tablet
+        : startMinimized.desktop;
+
+    return { ...total, [id]: startMinimized };
   }, {});
 
   const iWindowSizes = getLocalStorage(id, "sizes", {});
@@ -106,7 +120,7 @@ const Windows = (props: Props) => {
     let taskbarItemsOut: JSX.Element[] = [];
 
     children.forEach((window) => {
-      if (windowMinimizes[window.props.id] && taskbar) {
+      if (windowMinimizes[window.props.id][breakpoint] && taskbar) {
         taskbarItemsIn = [...taskbarItemsIn, window];
       } else {
         taskbarItemsOut = [...taskbarItemsOut, window];
