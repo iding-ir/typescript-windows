@@ -1,5 +1,5 @@
 import React from "react";
-import { Size, Grids, Bounds } from "./index.d";
+import { Size, Grids, Minimizes, Bounds } from "./index.d";
 export interface Props {
     id: string;
     children: React.ReactNode;
@@ -12,7 +12,7 @@ export interface Props {
     resizable?: boolean;
     minimizable?: boolean;
     maximizable?: boolean;
-    startMinimized?: boolean;
+    startMinimized?: Minimizes;
 }
 declare const Window: {
     (props: Props): JSX.Element;
