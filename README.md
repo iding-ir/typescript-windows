@@ -12,7 +12,7 @@ Typescript React components for draggable and resizable windows.
 
 ## Demo
 
-[Live demo](http://typescript-windows.iding.ir)
+[Live demo](https://typescript-windows.gilak.dev)
 
 ## Installation
 
